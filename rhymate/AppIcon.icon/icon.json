@@ -25,16 +25,6 @@
       "hidden" : false,
       "layers" : [
         {
-          "blend-mode" : "overlay",
-          "fill" : {
-            "solid" : "display-p3:0.34252,0.45437,0.39967,0.43000"
-          },
-          "glass" : true,
-          "hidden" : false,
-          "image-name" : "Vector (1).svg",
-          "name" : "Vector (1)"
-        },
-        {
           "fill" : {
             "solid" : "display-p3:0.11035,0.18929,0.17338,1.00000"
           },

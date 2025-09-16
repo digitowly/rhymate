@@ -19,7 +19,13 @@ struct LyricAssistentView: View {
     var body: some View {
         VStack {
             ScrollView{
-                RhymesView(word: searchText, favorites: $favorites)
+                if searchText.isEmpty {
+                    Image("rhymate")
+                        .font(.system(size: 64))
+                    Text("")
+                } else {
+                    RhymesView(word: searchText, favorites: $favorites)
+                }
             }
             Spacer()
             VStack {
