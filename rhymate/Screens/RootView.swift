@@ -42,7 +42,6 @@ struct RootView: View {
                 CompositionView(composition: composition, favorites: $favorites)
             } else {
                 Text("Select a composition")
-                    .foregroundStyle(.secondary)
             }
         }
     }

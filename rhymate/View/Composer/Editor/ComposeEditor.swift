@@ -42,7 +42,8 @@ struct ComposeEditor: View {
                 Button {
                     isAssistentVisible.toggle()
                 } label: {
-                    Image(systemName: "music.note")
+                    Image("rhymate")
+                        .font(.system(size: 24))
                 }
                 Menu {
                     Button {
@@ -67,7 +68,7 @@ struct ComposeEditor: View {
         }
         .sheet(isPresented: $isAssistentVisible, content: {
             NavigationStack {
-                LyricAssistentView(
+                LyricAssistantView(
                     text: $selected,
                     favorites: $favorites,
                     hasAutoSubmit: true

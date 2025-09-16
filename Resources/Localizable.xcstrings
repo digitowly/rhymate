@@ -21,6 +21,9 @@
     "About" : {
 
     },
+    "bold" : {
+
+    },
     "Cancel" : {
 
     },
@@ -139,6 +142,9 @@
         }
       }
     },
+    "italic" : {
+
+    },
     "Move" : {
 
     },
@@ -149,6 +155,9 @@
 
     },
     "No Projects yet" : {
+
+    },
+    "No rhymes yet" : {
 
     },
     "Projects" : {
@@ -204,6 +213,9 @@
 
     },
     "Title" : {
+
+    },
+    "Type a word or phrase below to get started" : {
 
     },
     "Wiktionary API" : {

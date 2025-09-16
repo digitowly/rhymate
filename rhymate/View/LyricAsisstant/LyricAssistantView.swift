@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct LyricAssistentView: View {
+struct LyricAssistantView: View {
     @Binding var text: String;
     @Binding var favorites: FavoriteRhymes;
     var hasAutoSubmit = false
@@ -20,9 +20,7 @@ struct LyricAssistentView: View {
         VStack {
             ScrollView{
                 if searchText.isEmpty {
-                    Image("rhymate")
-                        .font(.system(size: 64))
-                    Text("")
+                    LyricAssistantEmptyView()
                 } else {
                     RhymesView(word: searchText, favorites: $favorites)
                 }
@@ -76,15 +74,15 @@ struct LyricAssistentView: View {
     }
 }
 
-private struct LyricAssistentPreview: View {
+private struct LyricAssistantPreview: View {
     @State var text: String = "Hello World"
     @State var favorites = FavoriteRhymesStorage().getFavoriteRhymes()
     
     var body: some View {
-        LyricAssistentView(text: $text, favorites: $favorites)
+        LyricAssistantView(text: $text, favorites: $favorites)
     }
 }
 
 #Preview {
-    LyricAssistentPreview()
+    LyricAssistantPreview()
 }

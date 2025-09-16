@@ -44,7 +44,7 @@
           "fill" : {
             "solid" : "display-p3:0.11035,0.18929,0.17338,1.00000"
           },
-          "glass" : true,
+          "glass" : false,
           "hidden" : false,
           "image-name" : "Group.svg",
           "name" : "Group",
