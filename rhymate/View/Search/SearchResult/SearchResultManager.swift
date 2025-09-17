@@ -29,6 +29,9 @@ struct SearchResultManager: View {
                             ), label: {
                                 Label("History", systemImage: "clock")
                             })
+                            NavigationLink(destination: FavoritesScreen(favorites: $favorites)) {
+                                Label("Favorites", systemImage: "heart")
+                            }
                         }
                         Section(){
                             NavigationLink(destination: AboutScreen(), label: {
@@ -49,6 +52,7 @@ struct SearchResultManager: View {
                 }
             }
         }
-        .navigationTitle("Search")
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
