@@ -82,38 +82,6 @@
               "value" : {
                 "linear-gradient" : [
                   "display-p3:0.61650,0.89455,0.82749,1.00000",
-                  "display-p3:0.31527,0.54499,0.48880,1.00000"
-                ]
-              }
-            },
-            {
-              "appearance" : "light",
-              "value" : {
-                "linear-gradient" : [
-                  "display-p3:0.54610,0.94822,0.84135,1.00000",
-                  "display-p3:0.39135,0.78918,0.68546,1.00000"
-                ]
-              }
-            }
-          ],
-          "glass" : true,
-          "hidden" : true,
-          "image-name" : "Vector (2).svg",
-          "name" : "Vector (2)",
-          "position" : {
-            "scale" : 1,
-            "translation-in-points" : [
-              -63.1351327192016,
-              110.33803738320894
-            ]
-          }
-        },
-        {
-          "fill-specializations" : [
-            {
-              "value" : {
-                "linear-gradient" : [
-                  "display-p3:0.61650,0.89455,0.82749,1.00000",
                   "display-p3:0.34996,0.60251,0.54614,1.00000"
                 ]
               }
