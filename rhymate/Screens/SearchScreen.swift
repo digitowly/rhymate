@@ -2,6 +2,8 @@ import Foundation
 import SwiftUI
 
 struct SearchScreen: View {
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+
     private let fetcher = DatamuseFetcher()
     private var historyStorage: SearchHistoryStorage
     
@@ -45,7 +47,7 @@ struct SearchScreen: View {
             withAnimation{ isLoading = true }
             let suggestionsResponse = try await fetcher.getSuggestions(forWord: term)
             if suggestionsResponse.isEmpty {
-               return withAnimation{isLoading = false; searchError = .noResults }
+                return withAnimation{isLoading = false; searchError = .noResults }
             }
             suggestions = suggestionsResponse
             withAnimation{ isLoading = false; searchError = nil }
@@ -57,44 +59,50 @@ struct SearchScreen: View {
             return withAnimation{
                 isLoading = false
                 searchError = ErrorHelper().getSearchError(error: error)
-                suggestions = [] 
+                suggestions = []
             }
         }
     }
     
     var body: some View {
-        VStack{
-            SearchResultManager(
-                isLoading: $isLoading,
-                input: $input,
-                searchError: $searchError,
-                searchHistory: $searchHistory,
-                suggestions: $suggestions,
-                favorites: $favorites,
-                onRhymesScreenDisappear: storeSearchTerm
-            )
-            .navigationDestination(isPresented: $navigateToResults) {
-                RhymesScreen(
-                    word: Formatter().normalize(input),
+        let searchPlacement: SearchFieldPlacement = horizontalSizeClass == .compact ?
+            .automatic : .navigationBarDrawer(displayMode: .automatic)
+        
+        VStack {
+            NavigationStack {
+                SearchResultManager(
+                    isLoading: $isLoading,
+                    input: $input,
+                    searchError: $searchError,
+                    searchHistory: $searchHistory,
+                    suggestions: $suggestions,
                     favorites: $favorites,
-                    onDisappear: storeSearchTerm
+                    onRhymesScreenDisappear: storeSearchTerm
                 )
+                
+                .navigationDestination(isPresented: $navigateToResults) {
+                    RhymesScreen(
+                        word: Formatter().normalize(input),
+                        favorites: $favorites,
+                        onDisappear: storeSearchTerm
+                    )
+                }
             }
-        }
-        .searchable(
-            text: $input,
-            placement: .navigationBarDrawer(displayMode: .always),
-            prompt: "Find a rhyme"
-        )
-        .onSubmit(of: .search, { navigateToResults = true } )
-        .onChange(of: input) { i in
-            isLoading = i.isEmpty == false;
-            suggestions = []
-            debounceTask?.cancel()
-            debounceTask = Task { [input = i] in
-                try? await Task.sleep(nanoseconds: 300_000_000)
-                if !Task.isCancelled {
-                    await search(searchTerm: input)
+            .searchable(
+                text: $input,
+                placement: searchPlacement,
+                prompt: "Find a rhyme"
+            )
+            .onSubmit(of: .search, { navigateToResults = true } )
+            .onChange(of: input) { i in
+                isLoading = i.isEmpty == false;
+                suggestions = []
+                debounceTask?.cancel()
+                debounceTask = Task { [input = i] in
+                    try? await Task.sleep(nanoseconds: 300_000_000)
+                    if !Task.isCancelled {
+                        await search(searchTerm: input)
+                    }
                 }
             }
         }

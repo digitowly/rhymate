@@ -141,9 +141,6 @@
     "Rhymate uses the Datamuse API to find rhyming words and Wiktionary for word definitions." : {
 
     },
-    "Search" : {
-
-    },
     "searchInput" : {
       "extractionState" : "manual",
       "localizations" : {

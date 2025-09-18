@@ -26,6 +26,7 @@
 		EC37ABBA2C639ED300B28B58 /* FavoritesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC37ABB92C639ED300B28B58 /* FavoritesGrid.swift */; };
 		EC37ABBD2C63A05900B28B58 /* FavoritesGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC37ABBC2C63A05900B28B58 /* FavoritesGridItem.swift */; };
 		EC4313D82DFC56910023D835 /* SearchHistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4313D72DFC56910023D835 /* SearchHistoryScreen.swift */; };
+		EC57075C2E7ABC3E00839CD6 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = EC57075B2E7ABC3E00839CD6 /* AppIcon.icon */; };
 		EC5A28C52C3FC6EE00DEDFFF /* FavoritesDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5A28C42C3FC6EE00DEDFFF /* FavoritesDetail.swift */; };
 		EC5A28C72C404C9C00DEDFFF /* FavoritesItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5A28C62C404C9C00DEDFFF /* FavoritesItemView.swift */; };
 		EC5A28CC2C40555100DEDFFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EC5A28CB2C40555100DEDFFF /* README.md */; };
@@ -106,6 +107,7 @@
 		EC37ABB92C639ED300B28B58 /* FavoritesGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesGrid.swift; sourceTree = "<group>"; };
 		EC37ABBC2C63A05900B28B58 /* FavoritesGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesGridItem.swift; sourceTree = "<group>"; };
 		EC4313D72DFC56910023D835 /* SearchHistoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryScreen.swift; sourceTree = "<group>"; };
+		EC57075B2E7ABC3E00839CD6 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		EC5A28C42C3FC6EE00DEDFFF /* FavoritesDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesDetail.swift; sourceTree = "<group>"; };
 		EC5A28C62C404C9C00DEDFFF /* FavoritesItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesItemView.swift; sourceTree = "<group>"; };
 		EC5A28CB2C40555100DEDFFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				EC7782DC2C39C904008E9884 /* View */,
 				EC81FCF12DFAC12C008512CF /* Screens */,
 				EC238A5C2C321F6800829799 /* rhymateApp.swift */,
+				EC57075B2E7ABC3E00839CD6 /* AppIcon.icon */,
 				EC238A602C321F6900829799 /* Assets.xcassets */,
 				EC238A622C321F6900829799 /* Preview Content */,
 			);
@@ -551,6 +554,7 @@
 				EC5A28CC2C40555100DEDFFF /* README.md in Resources */,
 				EC238A642C321F6900829799 /* Preview Assets.xcassets in Resources */,
 				ECBD845D2C451B9D00193BA2 /* Localizable.xcstrings in Resources */,
+				EC57075C2E7ABC3E00839CD6 /* AppIcon.icon in Resources */,
 				EC238A612C321F6900829799 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -805,7 +809,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = demonyze.rhymate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -842,7 +846,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = demonyze.rhymate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
