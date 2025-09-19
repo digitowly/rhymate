@@ -77,12 +77,12 @@ struct SearchScreen: View {
                 RhymesView(
                     word: Formatter.normalize(input),
                     favorites: $favorites,
-                    onRhymesScreenDisappear: storeSearchTerm
+                    onDisappear: storeSearchTerm
                 )
                 
                 .navigationDestination(isPresented: $navigateToResults) {
-                    RhymesScreen(
-                        word: Formatter().normalize(input),
+                    RhymesView(
+                        word: Formatter.normalize(input),
                         favorites: $favorites,
                         onDisappear: storeSearchTerm
                     )
