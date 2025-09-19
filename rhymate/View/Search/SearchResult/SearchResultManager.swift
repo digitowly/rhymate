@@ -52,6 +52,7 @@ struct SearchResultManager: View {
                 }
             }
         }
-        .navigationTitle("Search")
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

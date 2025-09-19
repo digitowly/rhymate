@@ -2,6 +2,8 @@ import Foundation
 import SwiftUI
 
 struct SearchScreen: View {
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+
     private let fetcher = DatamuseFetcher()
     private var historyStorage: SearchHistoryStorage
     
@@ -43,7 +45,7 @@ struct SearchScreen: View {
             withAnimation{ isLoading = true }
             let suggestionsResponse = try await fetcher.getSuggestions(forWord: term)
             if suggestionsResponse.isEmpty {
-               return withAnimation{isLoading = false; searchError = .noResults }
+                return withAnimation{isLoading = false; searchError = .noResults }
             }
             suggestions = suggestionsResponse
             withAnimation{ isLoading = false; searchError = nil }
@@ -75,8 +77,16 @@ struct SearchScreen: View {
                 RhymesView(
                     word: Formatter.normalize(input),
                     favorites: $favorites,
-                    onDisappear: storeSearchTerm
+                    onRhymesScreenDisappear: storeSearchTerm
                 )
+                
+                .navigationDestination(isPresented: $navigateToResults) {
+                    RhymesScreen(
+                        word: Formatter().normalize(input),
+                        favorites: $favorites,
+                        onDisappear: storeSearchTerm
+                    )
+                }
             }
         }
         .searchable(
