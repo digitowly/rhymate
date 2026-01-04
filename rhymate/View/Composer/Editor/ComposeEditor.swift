@@ -12,8 +12,6 @@ struct ComposeEditor: View {
     
     @State private var coordinator: TextEditorContainer.Coordinator? = nil
     
-    @StateObject private var keyboard = KeyboardObserver()
-    
     var body: some View {
         ZStack() {
             TextEditorContainer(
@@ -37,13 +35,12 @@ struct ComposeEditor: View {
         }
         .toolbar {
             ToolbarItemGroup(
-                placement: keyboard.isKeyboardVisible ? .navigation : .bottomBar
+                placement: .navigation
             ) {
                 Button {
                     isAssistentVisible.toggle()
                 } label: {
-                    Image("rhymate")
-                        .font(.system(size: 24))
+                    Image(systemName: "character.book.closed")
                 }
                 Menu {
                     Button {

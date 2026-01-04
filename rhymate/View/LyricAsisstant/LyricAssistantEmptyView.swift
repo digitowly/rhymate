@@ -2,7 +2,7 @@ import SwiftUI
 
 struct LyricAssistantEmptyView: View {
     var body: some View {
-        Image("rhymate")
+        Image(systemName: "character.book.closed.fill")
             .font(.system(size: 72))
             .padding(16)
             .padding(.top, 32)
