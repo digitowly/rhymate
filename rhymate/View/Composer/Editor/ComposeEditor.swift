@@ -6,7 +6,7 @@ struct ComposeEditor: View {
     @Binding var favorites: FavoriteRhymes
     var onChange: (() -> Void)?
     
-    @State private var isAssistentVisible = false
+    @State private var isAssistantVisible = false
     @State private var selected = ""
     @State private var height: CGFloat = 400
     
@@ -22,7 +22,9 @@ struct ComposeEditor: View {
                 },
                 onSelectionChange: { selection, range in
                     DispatchQueue.main.async {
-                        self.selected = selection
+                        withAnimation {
+                            self.selected = selection
+                        }
                     }
                 },
                 onHeightChange: { updatedHeight in
@@ -37,10 +39,12 @@ struct ComposeEditor: View {
             ToolbarItemGroup(
                 placement: .navigation
             ) {
-                Button {
-                    isAssistentVisible.toggle()
-                } label: {
-                    Image(systemName: "character.book.closed")
+                if $selected.wrappedValue.count >= 1 {
+                    Button {
+                        isAssistantVisible.toggle()
+                    } label: {
+                        Image(systemName: "character.book.closed")
+                    }
                 }
                 Menu {
                     Button {
@@ -63,7 +67,7 @@ struct ComposeEditor: View {
 
             }
         }
-        .sheet(isPresented: $isAssistentVisible, content: {
+        .sheet(isPresented: $isAssistantVisible, content: {
             NavigationStack {
                 LyricAssistantView(
                     text: $selected,
@@ -72,7 +76,7 @@ struct ComposeEditor: View {
                 ).toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            isAssistentVisible.toggle()
+                            isAssistantVisible.toggle()
                         } label: {
                             Image(systemName: "xmark")
                         }

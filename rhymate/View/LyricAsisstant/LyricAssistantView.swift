@@ -44,19 +44,15 @@ struct LyricAssistantView: View {
                     HStack() {
                         if text.split(separator: " ").count == 1 {
                             Button(action: {
-                                hideKeyboard()
-                                searchText = text;
+                                 hideKeyboard()
+                                 searchText = text;
                             }) {
-                                Image(systemName: "paperplane.fill")
-                                    .rotationEffect(.degrees(45))
-                                    .font(.system(size: 18))
-                                    .frame(width: 42, height: 42)
-                                    .background(Color.secondary.opacity(0.3))
-                                    .clipShape(Circle())
-                            }
-                            .disabled(text.isEmpty)
-                            .padding(.bottom, 2)
-                            .padding(.leading, 6)
+                                Label("Send", systemImage: "arrow.up")
+                                     .labelStyle(.iconOnly)
+                                     .frame(width: 30, height: 30)
+                             }
+                             .buttonStyle(.borderedProminent)
+                             .disabled(text.isEmpty)
                         }
                     }
                 }.padding(.horizontal)

@@ -17,9 +17,7 @@ struct RootView: View {
             }
 
             NavigationSplitView {
-                CompositionCollectionListView(
-                    selectedCollection: $selectedCollection,
-                    )
+                CompositionCollectionListView(selectedCollection: $selectedCollection)
             } content: {
                 if let collection = selectedCollection {
                     CompositionListView(
@@ -29,7 +27,6 @@ struct RootView: View {
                     )
                 } else {
                     Text("Select something")
-
                 }
             } detail: {
                 if let composition = selectedComposition {
