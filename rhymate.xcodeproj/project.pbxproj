@@ -36,8 +36,6 @@
 		EC7782E62C3B1BE8008E9884 /* Datamuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7782E52C3B1BE8008E9884 /* Datamuse.swift */; };
 		EC7782E82C3C5B4B008E9884 /* Rhyme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7782E72C3C5B4B008E9884 /* Rhyme.swift */; };
 		EC7782EB2C3C5F67008E9884 /* FavoritesToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7782EA2C3C5F67008E9884 /* FavoritesToggle.swift */; };
-		EC7A0EF32E1C3F9E005CB643 /* rhymate.svg in Resources */ = {isa = PBXBuildFile; fileRef = EC7A0EF22E1C3F9E005CB643 /* rhymate.svg */; };
-		EC7A0EF52E1C4E06005CB643 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = EC7A0EF42E1C4E06005CB643 /* AppIcon.icon */; };
 		EC7A0EF72E1D2148005CB643 /* LyricAssistantEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0EF62E1D2148005CB643 /* LyricAssistantEmptyView.swift */; };
 		EC81FCEB2DF9F77E008512CF /* SearchResultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81FCEA2DF9F77E008512CF /* SearchResultManager.swift */; };
 		EC81FCEE2DF9F7DB008512CF /* SearchResultError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81FCED2DF9F7DB008512CF /* SearchResultError.swift */; };
@@ -132,14 +130,13 @@
 		EC5A28C42C3FC6EE00DEDFFF /* FavoritesDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesDetail.swift; sourceTree = "<group>"; };
 		EC5A28C62C404C9C00DEDFFF /* FavoritesItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesItemView.swift; sourceTree = "<group>"; };
 		EC5A28CB2C40555100DEDFFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EC5BA1AB2F0F03B70090987A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EC7304552C538C72006BCEAA /* WiktionaryDefinitionsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiktionaryDefinitionsStorage.swift; sourceTree = "<group>"; };
 		EC7782DA2C39B2AB008E9884 /* StorageHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageHandlerTests.swift; sourceTree = "<group>"; };
 		EC7782E22C39CC28008E9884 /* RhymesStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhymesStorageTests.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		EC7782E52C3B1BE8008E9884 /* Datamuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datamuse.swift; sourceTree = "<group>"; };
 		EC7782E72C3C5B4B008E9884 /* Rhyme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rhyme.swift; sourceTree = "<group>"; };
 		EC7782EA2C3C5F67008E9884 /* FavoritesToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesToggle.swift; sourceTree = "<group>"; };
-		EC7A0EF22E1C3F9E005CB643 /* rhymate.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = rhymate.svg; sourceTree = "<group>"; };
-		EC7A0EF42E1C4E06005CB643 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		EC7A0EF62E1D2148005CB643 /* LyricAssistantEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricAssistantEmptyView.swift; sourceTree = "<group>"; };
 		EC81FCEA2DF9F77E008512CF /* SearchResultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultManager.swift; sourceTree = "<group>"; };
 		EC81FCED2DF9F7DB008512CF /* SearchResultError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultError.swift; sourceTree = "<group>"; };
@@ -242,6 +239,7 @@
 		EC238A5B2C321F6800829799 /* rhymate */ = {
 			isa = PBXGroup;
 			children = (
+				EC5BA1AB2F0F03B70090987A /* Info.plist */,
 				ECD1C82E2C5FAE3C009D16A9 /* rhymate.entitlements */,
 				ECBD84562C43DADB00193BA2 /* Constants.swift */,
 				ECA8F6E62E0458A5009212D0 /* Extensions */,
@@ -673,7 +671,6 @@
 				ECBD845D2C451B9D00193BA2 /* Localizable.xcstrings in Resources */,
 				EC57075C2E7ABC3E00839CD6 /* AppIcon.icon in Resources */,
 				EC238A612C321F6900829799 /* Assets.xcassets in Resources */,
-				EC7A0EF52E1C4E06005CB643 /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -935,6 +932,7 @@
 				DEVELOPMENT_TEAM = 84QBTUSCQL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = rhymate/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Rhymate;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -973,6 +971,7 @@
 				DEVELOPMENT_TEAM = 84QBTUSCQL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = rhymate/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Rhymate;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

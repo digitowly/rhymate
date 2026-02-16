@@ -3,49 +3,47 @@ import Foundation
 
 @Model
 class Composition {
-    var id: UUID
-    var title: String
-    var contentData: Data
-    var createdAt: Date
-    var updatedAt: Date
-    @Relationship var collection: CompositionCollection?
-    
+
+    var id: UUID = UUID()
+
+    var title: String = ""
+    var contentData: Data = Data()
+    var createdAt: Date = Date()
+    var updatedAt: Date = Date()
+
+    var collection: CompositionCollection?
+
     @Transient
     var content: NSAttributedString {
         get {
-            (try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSAttributedString.self, from: contentData)) ?? NSAttributedString(string: "")
+            (try? NSKeyedUnarchiver.unarchivedObject(
+                ofClass: NSAttributedString.self,
+                from: contentData
+            )) ?? NSAttributedString(string: "")
         }
         set {
-            do {
-                contentData = try NSKeyedArchiver.archivedData(withRootObject: newValue, requiringSecureCoding: false)
-            } catch {
-                print("Failed to archive NSAttributedString: \(error)")
-                contentData = Data()
-            }
+            contentData =
+                (try? NSKeyedArchiver.archivedData(
+                    withRootObject: newValue,
+                    requiringSecureCoding: false
+                )) ?? Data()
         }
     }
-    
+
     init(
-        title: String,
-        content: NSAttributedString?,
-        createdAt: Date,
-        updatedAt: Date,
+        title: String = "",
+        content: NSAttributedString? = nil,
         collection: CompositionCollection? = nil
     ) {
         self.id = UUID()
         self.title = title
-        do {
-            if let safeContent = content {
-                contentData = try NSKeyedArchiver.archivedData(withRootObject: safeContent, requiringSecureCoding: false)
-            } else {
-                contentData = Data()
-            }
-        } catch {
-            print("Failed to archive NSAttributedString: \(error)")
-            contentData = Data()
-        }
-        self.createdAt = createdAt
-        self.updatedAt = updatedAt
+        self.contentData =
+            (try? NSKeyedArchiver.archivedData(
+                withRootObject: content ?? NSAttributedString(),
+                requiringSecureCoding: false
+            )) ?? Data()
+        self.createdAt = .now
+        self.updatedAt = .now
         self.collection = collection
     }
 }

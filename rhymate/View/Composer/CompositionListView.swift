@@ -94,8 +94,6 @@ struct CompositionListView: View {
         let newComposition = Composition(
             title: "Untitled",
             content: nil,
-            createdAt: Date.now,
-            updatedAt: Date.now,
             collection: collection
         )
         modelContext.insert(newComposition)
