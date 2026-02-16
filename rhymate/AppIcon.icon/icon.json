@@ -4,7 +4,7 @@
       "value" : {
         "linear-gradient" : [
           "extended-gray:1.00000,1.00000",
-          "display-p3:0.90481,1.00000,0.98376,1.00000"
+          "display-p3:0.74593,1.00000,0.86407,1.00000"
         ]
       }
     },
@@ -27,52 +27,45 @@
         {
           "fill-specializations" : [
             {
-              "value" : {
-                "solid" : "display-p3:0.11035,0.18929,0.17338,1.00000"
-              }
-            },
-            {
               "appearance" : "dark",
               "value" : {
-                "solid" : "display-p3:0.47775,0.71456,0.59421,1.00000"
+                "linear-gradient" : [
+                  "display-p3:0.11035,0.18929,0.17338,1.00000",
+                  "display-p3:0.14516,0.24992,0.22654,1.00000"
+                ]
               }
             }
           ],
-          "glass" : true,
-          "hidden" : false,
-          "image-name" : "Vector (1).svg",
-          "name" : "note_shape",
-          "position" : {
-            "scale" : 1,
-            "translation-in-points" : [
-              0,
-              0
-            ]
-          }
+          "image-name" : "rhymo_outline.svg",
+          "name" : "rhymo_outline"
         },
         {
           "fill-specializations" : [
             {
               "value" : {
-                "solid" : "display-p3:0.11035,0.18929,0.17338,1.00000"
+                "linear-gradient" : [
+                  "display-p3:0.83566,1.00000,0.87792,1.00000",
+                  "display-p3:0.66777,1.00000,0.83980,1.00000"
+                ]
               }
             },
             {
               "appearance" : "dark",
               "value" : {
-                "solid" : "display-p3:0.47775,0.71456,0.59421,1.00000"
+                "linear-gradient" : [
+                  "display-p3:0.83566,1.00000,0.87792,1.00000",
+                  "display-p3:0.58241,1.00000,0.87756,1.00000"
+                ]
               }
             }
           ],
-          "glass" : true,
-          "hidden" : false,
-          "image-name" : "Group.svg",
-          "name" : "eye",
+          "image-name" : "rhymo_background.svg",
+          "name" : "rhymo_background",
           "position" : {
             "scale" : 1,
             "translation-in-points" : [
-              -68.39751995309373,
-              137.5600051301271
+              -65.7985598983031,
+              100.0676836137603
             ]
           }
         }
