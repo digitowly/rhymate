@@ -11,7 +11,20 @@ class Composition {
     var createdAt: Date = Date()
     var updatedAt: Date = Date()
 
+    var chordsData: Data?
+
     var collection: CompositionCollection?
+
+    @Transient
+    var chords: [ChordPlacement] {
+        get {
+            guard let data = chordsData else { return [] }
+            return (try? JSONDecoder().decode([ChordPlacement].self, from: data)) ?? []
+        }
+        set {
+            chordsData = try? JSONEncoder().encode(newValue)
+        }
+    }
 
     init(
         title: String = "",

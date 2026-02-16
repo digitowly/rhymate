@@ -3,12 +3,14 @@ import SwiftUI
 struct ComposeEditor: View {
     var key: String;
     @Binding var text: String
+    @Binding var chords: [ChordPlacement]
     @Binding var favorites: FavoriteRhymes
     var onChange: (() -> Void)?
 
     @State private var isAssistantVisible = false
     @State private var selected = ""
     @State private var height: CGFloat = 400
+    @State private var isChordModeActive = false
 
     @State private var coordinator: TextEditorContainer.Coordinator? = nil
 
@@ -17,6 +19,8 @@ struct ComposeEditor: View {
             TextEditorContainer(
                 initialText: MarkdownConverter.toAttributedString(text),
                 initialHeight: height,
+                chords: chords,
+                isChordModeActive: isChordModeActive,
                 onTextChange: { updatedText in
                     updateText(updatedText)
                 },
@@ -29,6 +33,12 @@ struct ComposeEditor: View {
                 },
                 onHeightChange: { updatedHeight in
                     self.height = max(updatedHeight, 600)
+                },
+                onChordsChange: { updatedChords in
+                    DispatchQueue.main.async {
+                        self.chords = updatedChords
+                        onChange?()
+                    }
                 },
                 coordinatorRef: $coordinator
             )
@@ -45,6 +55,12 @@ struct ComposeEditor: View {
                     } label: {
                         Image(systemName: "character.book.closed")
                     }
+                }
+                Button {
+                    isChordModeActive.toggle()
+                } label: {
+                    Image(systemName: "number.square")
+                        .foregroundColor(isChordModeActive ? .accentColor : .secondary)
                 }
                 Menu {
                     Button {
@@ -86,7 +102,7 @@ struct ComposeEditor: View {
             .presentationDetents([.medium, .large])
         })
     }
-    
+
     private func updateText(_ updatedText: NSAttributedString) {
         DispatchQueue.main.async {
             self.text = MarkdownConverter.toMarkdown(updatedText)

@@ -86,6 +86,8 @@
 		ECE8AB392E15C47A007F08D4 /* CompositionMoveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8AB382E15C47A007F08D4 /* CompositionMoveView.swift */; };
 		ECF4C9342C52EC7D001E6B55 /* WiktionaryFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF4C9332C52EC7D001E6B55 /* WiktionaryFetcherTests.swift */; };
 		ECF4C9392C52F2AB001E6B55 /* WiktionaryDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF4C9382C52F2AB001E6B55 /* WiktionaryDefinitions.swift */; };
+		EC0000042F12000000000001 /* ChordPlacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000052F12000000000001 /* ChordPlacement.swift */; };
+		EC0000062F12000000000002 /* ChordOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000072F12000000000002 /* ChordOverlayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,6 +192,8 @@
 		ECE8AB382E15C47A007F08D4 /* CompositionMoveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionMoveView.swift; sourceTree = "<group>"; };
 		ECF4C9332C52EC7D001E6B55 /* WiktionaryFetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiktionaryFetcherTests.swift; sourceTree = "<group>"; };
 		ECF4C9382C52F2AB001E6B55 /* WiktionaryDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiktionaryDefinitions.swift; sourceTree = "<group>"; };
+		EC0000052F12000000000001 /* ChordPlacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordPlacement.swift; sourceTree = "<group>"; };
+		EC0000072F12000000000002 /* ChordOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordOverlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -467,6 +471,7 @@
 			children = (
 				ECA8F6F22E09C9BE009212D0 /* Compositon.swift */,
 				ECE8AB312E114C62007F08D4 /* CompositionCollection.swift */,
+				EC0000052F12000000000001 /* ChordPlacement.swift */,
 			);
 			path = Composer;
 			sourceTree = "<group>";
@@ -551,6 +556,7 @@
 				ECA551922E0321AA009DD4A5 /* ComposeEditor.swift */,
 				ECA8F6D12E0328BD009212D0 /* TextEditorViewController.swift */,
 				ECA8F6D32E0328D9009212D0 /* TextEditorContainer.swift */,
+				EC0000072F12000000000002 /* ChordOverlayView.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -761,6 +767,8 @@
 				EC238A8E2C3363A000829799 /* RhymesGrid.swift in Sources */,
 				ECD720F02C5C0366007CE080 /* SearchHistoryStorage.swift in Sources */,
 				ECB1A5DF2C3C84730087EDF9 /* Storage.swift in Sources */,
+				EC0000042F12000000000001 /* ChordPlacement.swift in Sources */,
+				EC0000062F12000000000002 /* ChordOverlayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
