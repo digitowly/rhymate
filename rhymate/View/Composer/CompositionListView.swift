@@ -93,7 +93,6 @@ struct CompositionListView: View {
         guard let collection = selectedCollection else { return }
         let newComposition = Composition(
             title: "Untitled",
-            content: nil,
             collection: collection
         )
         modelContext.insert(newComposition)

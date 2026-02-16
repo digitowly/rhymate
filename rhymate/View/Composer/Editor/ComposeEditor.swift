@@ -2,20 +2,20 @@ import SwiftUI
 
 struct ComposeEditor: View {
     var key: String;
-    @Binding var text: NSAttributedString
+    @Binding var text: String
     @Binding var favorites: FavoriteRhymes
     var onChange: (() -> Void)?
-    
+
     @State private var isAssistantVisible = false
     @State private var selected = ""
     @State private var height: CGFloat = 400
-    
+
     @State private var coordinator: TextEditorContainer.Coordinator? = nil
-    
+
     var body: some View {
         ZStack() {
             TextEditorContainer(
-                initialText: text,
+                initialText: MarkdownConverter.toAttributedString(text),
                 initialHeight: height,
                 onTextChange: { updatedText in
                     updateText(updatedText)
@@ -89,7 +89,7 @@ struct ComposeEditor: View {
     
     private func updateText(_ updatedText: NSAttributedString) {
         DispatchQueue.main.async {
-            self.text = updatedText
+            self.text = MarkdownConverter.toMarkdown(updatedText)
             onChange?()
         }
     }

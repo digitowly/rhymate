@@ -42,6 +42,7 @@
 		EC81FCF32DFAC194008512CF /* RhymesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81FCF22DFAC194008512CF /* RhymesView.swift */; };
 		EC81FCF72DFAC85F008512CF /* Mutation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81FCF62DFAC85F008512CF /* Mutation.swift */; };
 		EC81FCF92DFAE333008512CF /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81FCF82DFAE333008512CF /* Formatter.swift */; };
+		EC0000012E02000000000001 /* MarkdownConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000002E02000000000001 /* MarkdownConverter.swift */; };
 		EC81FCFB2DFB2186008512CF /* LoadingSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81FCFA2DFB2186008512CF /* LoadingSpinner.swift */; };
 		ECA551932E0321AA009DD4A5 /* ComposeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA551922E0321AA009DD4A5 /* ComposeEditor.swift */; };
 		ECA8F6D22E0328BD009212D0 /* TextEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6D12E0328BD009212D0 /* TextEditorViewController.swift */; };
@@ -66,6 +67,7 @@
 		ECBD84422C41016700193BA2 /* FavoritesOrganizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD84412C41016700193BA2 /* FavoritesOrganizer.swift */; };
 		ECBD84462C42678C00193BA2 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD84452C42678C00193BA2 /* Fetcher.swift */; };
 		ECBD84492C42F90E00193BA2 /* FetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD84482C42F90E00193BA2 /* FetcherTests.swift */; };
+		EC0000032E02000000000002 /* MarkdownConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000022E02000000000002 /* MarkdownConverterTests.swift */; };
 		ECBD844D2C42FBF100193BA2 /* TestProtocolHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD844C2C42FBF100193BA2 /* TestProtocolHandler.swift */; };
 		ECBD84522C43385D00193BA2 /* DatamuseFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD84512C43385D00193BA2 /* DatamuseFetcherTests.swift */; };
 		ECBD84542C43BC9400193BA2 /* FallbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD84532C43BC9400193BA2 /* FallbackView.swift */; };
@@ -143,6 +145,7 @@
 		EC81FCF22DFAC194008512CF /* RhymesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhymesView.swift; sourceTree = "<group>"; };
 		EC81FCF62DFAC85F008512CF /* Mutation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mutation.swift; sourceTree = "<group>"; };
 		EC81FCF82DFAE333008512CF /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		EC0000002E02000000000001 /* MarkdownConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownConverter.swift; sourceTree = "<group>"; };
 		EC81FCFA2DFB2186008512CF /* LoadingSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSpinner.swift; sourceTree = "<group>"; };
 		ECA551922E0321AA009DD4A5 /* ComposeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeEditor.swift; sourceTree = "<group>"; };
 		ECA8F6D12E0328BD009212D0 /* TextEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +170,7 @@
 		ECBD84412C41016700193BA2 /* FavoritesOrganizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesOrganizer.swift; sourceTree = "<group>"; };
 		ECBD84452C42678C00193BA2 /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
 		ECBD84482C42F90E00193BA2 /* FetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherTests.swift; sourceTree = "<group>"; };
+		EC0000022E02000000000002 /* MarkdownConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownConverterTests.swift; sourceTree = "<group>"; };
 		ECBD844C2C42FBF100193BA2 /* TestProtocolHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestProtocolHandler.swift; sourceTree = "<group>"; };
 		ECBD84512C43385D00193BA2 /* DatamuseFetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatamuseFetcherTests.swift; sourceTree = "<group>"; };
 		ECBD84532C43BC9400193BA2 /* FallbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallbackView.swift; sourceTree = "<group>"; };
@@ -482,6 +486,7 @@
 				ECBD84412C41016700193BA2 /* FavoritesOrganizer.swift */,
 				ECBD84452C42678C00193BA2 /* Fetcher.swift */,
 				EC81FCF82DFAE333008512CF /* Formatter.swift */,
+				EC0000002E02000000000001 /* MarkdownConverter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -490,6 +495,7 @@
 			isa = PBXGroup;
 			children = (
 				ECBD84482C42F90E00193BA2 /* FetcherTests.swift */,
+				EC0000022E02000000000002 /* MarkdownConverterTests.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -730,6 +736,7 @@
 				EC81FCEB2DF9F77E008512CF /* SearchResultManager.swift in Sources */,
 				ECA8F6DD2E042FA6009212D0 /* SearchError.swift in Sources */,
 				EC81FCF92DFAE333008512CF /* Formatter.swift in Sources */,
+				EC0000012E02000000000001 /* MarkdownConverter.swift in Sources */,
 				EC7782E62C3B1BE8008E9884 /* Datamuse.swift in Sources */,
 				ECA8F6EC2E045D26009212D0 /* KeyboardObserver.swift in Sources */,
 				ECA8F6E52E0448EE009212D0 /* GrowingTextView.swift in Sources */,
@@ -766,6 +773,7 @@
 				ECBD844D2C42FBF100193BA2 /* TestProtocolHandler.swift in Sources */,
 				ECA8F6DB2E042C3C009212D0 /* LyricTypeTest.swift in Sources */,
 				ECBD84492C42F90E00193BA2 /* FetcherTests.swift in Sources */,
+				EC0000032E02000000000002 /* MarkdownConverterTests.swift in Sources */,
 				ECF4C9342C52EC7D001E6B55 /* WiktionaryFetcherTests.swift in Sources */,
 				ECBD84522C43385D00193BA2 /* DatamuseFetcherTests.swift in Sources */,
 				ECF4C9392C52F2AB001E6B55 /* WiktionaryDefinitions.swift in Sources */,
