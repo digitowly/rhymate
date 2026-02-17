@@ -108,24 +108,46 @@
         }
       }
     },
-    "fallbackFavoritesText" : {
+    "emptyFavorites.title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mark rhymes as favorites by toggling the heart icon."
+            "value" : "No Favorites"
           }
         }
       }
     },
-    "fallbackFavoritesTitle" : {
+    "emptyFavorites.description" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No favorites yet"
+            "value" : "Tap the heart icon on any rhyme to save it here."
+          }
+        }
+      }
+    },
+    "emptyHistory.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No History"
+          }
+        }
+      }
+    },
+    "emptyHistory.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your recent searches will appear here."
           }
         }
       }

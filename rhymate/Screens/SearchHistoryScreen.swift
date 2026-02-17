@@ -5,7 +5,7 @@ struct SearchHistoryScreen: View {
     let destination: (String) -> RhymesView
 
     let historyStorage = SearchHistoryStorage()
-    
+
     func deleteHistory() {
         do {
             for entry in history {
@@ -17,33 +17,39 @@ struct SearchHistoryScreen: View {
         history = historyStorage.get()
     }
 
-    
+
     var body: some View {
-        List {
-            ForEach(Array(history.indices), id: \.self) { idx in
-                let entry = $history[idx]
-                NavigationLink(
-                    destination: { destination(entry.input.wrappedValue) },
-                    label: { Text("\(entry.input.wrappedValue)") }
+        Group {
+            if history.isEmpty {
+                EmptyStateView(
+                    icon: "clock",
+                    title: "emptyHistory.title",
+                    description: "emptyHistory.description"
                 )
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Menu {
-                    Button(role: .destructive, action: deleteHistory) {
-                        Label("Delete history", systemImage: "trash")
+            } else {
+                List {
+                    ForEach(Array(history.indices), id: \.self) { idx in
+                        let entry = $history[idx]
+                        NavigationLink(
+                            destination: { destination(entry.input.wrappedValue) },
+                            label: { Text("\(entry.input.wrappedValue)") }
+                        )
                     }
-                } label: {
-                    Image(systemName: "ellipsis")
-                        .font(.system(size: 18))
+                }
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Menu {
+                            Button(role: .destructive, action: deleteHistory) {
+                                Label("Delete history", systemImage: "trash")
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis")
+                                .font(.system(size: 18))
+                        }
+                    }
                 }
             }
         }
         .navigationTitle("History")
     }
-}
-
-#Preview {
-//    SearchHistoryScreen()
 }
