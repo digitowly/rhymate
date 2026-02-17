@@ -19,26 +19,17 @@ struct CompositionListView: View {
     var body: some View {
         VStack {
             if compositions.isEmpty {
-                Text("No Projects yet")
-                VStack(spacing: 12) {
-                    Image(systemName: "music.note.list")
-                        .font(.system(size: 64))
-                        .foregroundStyle(.accent)
-                    
+                EmptyStateView(
+                    icon: "music.note.list",
+                    title: "emptyCompositions.title",
+                    description: "emptyCompositions.description"
+                ) {
                     Button(action: createComposition) {
-                        Label("Create Your First Project", systemImage: "plus")
+                        Label("emptyCompositions.action", systemImage: "plus")
                             .font(.headline)
-                            .padding(.horizontal, 24)
-                            .padding(.vertical, 10)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .fill(Color.accentColor.opacity(0.15))
-                            )
                     }
-                    .buttonStyle(.plain)
-                    .foregroundStyle(.accent)
+                    .buttonStyle(.borderedProminent)
                 }
-                .padding(.top, 12)
             } else {
                 List(selection: $selectedComposition) {
                     ForEach(compositions) { composition in

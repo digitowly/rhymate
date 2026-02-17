@@ -30,20 +30,83 @@
     "close" : {
 
     },
-    "Create Your First Project" : {
+    "Datamuse API" : {
 
     },
-    "Datamuse API" : {
+    "Delete" : {
+
+    },
+    "Delete Folder" : {
 
     },
     "Delete history" : {
 
     },
-    "Done" : {
-
+    "emptyCompositions.action" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Composition"
+          }
+        }
+      }
     },
-    "Edit" : {
-
+    "emptyCompositions.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start writing by creating your first composition."
+          }
+        }
+      }
+    },
+    "emptyCompositions.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Compositions"
+          }
+        }
+      }
+    },
+    "emptyFolders.action" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Folder"
+          }
+        }
+      }
+    },
+    "emptyFolders.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create a folder to organize your compositions."
+          }
+        }
+      }
+    },
+    "emptyFolders.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Projects"
+          }
+        }
+      }
     },
     "fallbackFavoritesText" : {
       "extractionState" : "manual",
@@ -154,9 +217,6 @@
     "New Folder" : {
 
     },
-    "No Projects yet" : {
-
-    },
     "No rhymes yet" : {
 
     },
@@ -173,6 +233,9 @@
           }
         }
       }
+    },
+    "Rename" : {
+
     },
     "Rename Folder" : {
 
@@ -210,6 +273,9 @@
 
     },
     "Show all" : {
+
+    },
+    "This will permanently delete the folder and all its compositions." : {
 
     },
     "Title" : {

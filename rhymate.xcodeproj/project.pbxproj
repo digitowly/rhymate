@@ -55,6 +55,7 @@
 		ECA8F6E52E0448EE009212D0 /* GrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6E42E0448EE009212D0 /* GrowingTextView.swift */; };
 		ECA8F6E82E0458C7009212D0 /* hideKeyboardOnTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6E72E0458BD009212D0 /* hideKeyboardOnTap.swift */; };
 		ECA8F6EA2E045CC4009212D0 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6E92E045CC4009212D0 /* RoundedCorners.swift */; };
+		EC0E5A202E33A1B0009212D0 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E5A1F2E33A1B0009212D0 /* EmptyStateView.swift */; };
 		ECA8F6EC2E045D26009212D0 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6EB2E045D26009212D0 /* KeyboardObserver.swift */; };
 		ECA8F6F02E05A100009212D0 /* WordRecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6EF2E05A100009212D0 /* WordRecommendationView.swift */; };
 		ECA8F6F32E09C9BE009212D0 /* Compositon.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6F22E09C9BE009212D0 /* Compositon.swift */; };
@@ -158,6 +159,7 @@
 		ECA8F6E42E0448EE009212D0 /* GrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingTextView.swift; sourceTree = "<group>"; };
 		ECA8F6E72E0458BD009212D0 /* hideKeyboardOnTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hideKeyboardOnTap.swift; sourceTree = "<group>"; };
 		ECA8F6E92E045CC4009212D0 /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
+		EC0E5A1F2E33A1B0009212D0 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		ECA8F6EB2E045D26009212D0 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		ECA8F6EF2E05A100009212D0 /* WordRecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRecommendationView.swift; sourceTree = "<group>"; };
 		ECA8F6F22E09C9BE009212D0 /* Compositon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compositon.swift; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 		ECBD84582C45138C00193BA2 /* UIUtils */ = {
 			isa = PBXGroup;
 			children = (
+				EC0E5A1F2E33A1B0009212D0 /* EmptyStateView.swift */,
 				ECBD84592C4513BE00193BA2 /* FadeInOutRow.swift */,
 				ECBDC3D32C46AB4200943D83 /* HTMLContentView.swift */,
 				EC81FCFA2DFB2186008512CF /* LoadingSpinner.swift */,
@@ -751,6 +754,7 @@
 				EC7304562C538C72006BCEAA /* WiktionaryDefinitionsStorage.swift in Sources */,
 				ECB1A5DD2C3C744A0087EDF9 /* JSONable.swift in Sources */,
 				EC5A28C52C3FC6EE00DEDFFF /* FavoritesDetail.swift in Sources */,
+				EC0E5A202E33A1B0009212D0 /* EmptyStateView.swift in Sources */,
 				ECBD845A2C4513BE00193BA2 /* FadeInOutRow.swift in Sources */,
 				EC37ABBA2C639ED300B28B58 /* FavoritesGrid.swift in Sources */,
 				ECA551932E0321AA009DD4A5 /* ComposeEditor.swift in Sources */,
