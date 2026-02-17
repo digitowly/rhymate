@@ -40,13 +40,12 @@ struct SearchOverlayPreview: View {
             input: "test",
             timestamp: Date().timeIntervalSinceReferenceDate)
     ]
-    @State var favorites: FavoriteRhymes = .init()
-    
+
     var body: some View{
         SearchHistoryList(
             history: $searchHistory,
             destination: { entry in
-                RhymesView(word: entry,favorites: $favorites)
+                RhymesView(word: entry)
             }
         )
     }

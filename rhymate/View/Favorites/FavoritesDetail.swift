@@ -1,9 +1,16 @@
 import Foundation
 import SwiftUI
+import SwiftData
 
 struct FavoritesDetail: View {
     let word: String
-    @Binding var favorites: FavoriteRhymes
+
+    @Query private var allFavorites: [FavoriteRhyme]
+
+    private var rhymes: [String] {
+        let normalized = Formatter.normalize(word)
+        return allFavorites.filter { $0.word == normalized }.map(\.rhyme)
+    }
 
     var body: some View {
         VStack(alignment: .leading){
@@ -17,24 +24,13 @@ struct FavoritesDetail: View {
                 RhymesGrid(
                     layout: .favorite,
                     word: word,
-                    rhymes: favorites[word]?.rhymes ?? [],
-                    favorites: $favorites
+                    rhymes: rhymes
                 )
             }
         }
     }
 }
 
-struct PreviewFavoritesDetail: View {
-    @State var favorites = FavoriteRhymesStorage().getFavoriteRhymes()
-    var body: some View{
-        FavoritesDetail(
-            word: "Test",
-            favorites: $favorites,
-        )
-    }
-}
-
 #Preview {
-    PreviewFavoritesDetail()
+    FavoritesDetail(word: "Test")
 }

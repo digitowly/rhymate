@@ -6,9 +6,8 @@ struct SearchResultManager: View {
     @Binding var searchError: SearchError?
     @Binding var searchHistory: [SearchHistoryEntry]
     @Binding var suggestions: [DatamuseSuggestion]
-    @Binding var favorites: FavoriteRhymes
     var onRhymesViewDisappear: ((String) -> Void)?
-    
+
     var body: some View {
         VStack {
             if isLoading {
@@ -24,12 +23,12 @@ struct SearchResultManager: View {
                             NavigationLink(destination: SearchHistoryScreen(
                                 history: $searchHistory,
                                 destination: { entry in
-                                    RhymesView(word: entry,favorites: $favorites)
+                                    RhymesView(word: entry)
                                 }
                             ), label: {
                                 Label("History", systemImage: "clock")
                             })
-                            NavigationLink(destination: FavoritesScreen(favorites: $favorites), label: {
+                            NavigationLink(destination: FavoritesScreen(), label: {
                                 Label("Favorites", systemImage: "suit.heart")
                             })
                         }
@@ -43,7 +42,6 @@ struct SearchResultManager: View {
                         NavigationLink(
                             destination: RhymesView(
                                 word: suggestion.word,
-                                favorites: $favorites,
                                 onDisappear: onRhymesViewDisappear
                             ),
                             label: { Text(suggestion.word)}

@@ -2,27 +2,26 @@ import SwiftUI
 
 struct LyricAssistantView: View {
     @Binding var text: String;
-    @Binding var favorites: FavoriteRhymes;
     var hasAutoSubmit = false
-    
+
     @State private var height: CGFloat = 18
     @State private var corners: UIRectCorner = .allCorners
-    
+
     @State private var searchText: String = ""
     @FocusState private var hasFocus: Bool
     @StateObject private var keyboard = KeyboardObserver()
-    
+
     private func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
-    
+
     var body: some View {
         VStack {
             ScrollView{
                 if searchText.isEmpty {
                     LyricAssistantEmptyView()
                 } else {
-                    RhymesView(word: searchText, favorites: $favorites)
+                    RhymesView(word: searchText)
                 }
             }
             Spacer()
@@ -57,8 +56,8 @@ struct LyricAssistantView: View {
                     }
                 }.padding(.horizontal)
             }
-            
-            
+
+
         }
         .hideKeyboardOnTap()
         .onAppear() {
@@ -72,10 +71,9 @@ struct LyricAssistantView: View {
 
 private struct LyricAssistantPreview: View {
     @State var text: String = "Hello World"
-    @State var favorites = FavoriteRhymesStorage().getFavoriteRhymes()
-    
+
     var body: some View {
-        LyricAssistantView(text: $text, favorites: $favorites)
+        LyricAssistantView(text: $text)
     }
 }
 

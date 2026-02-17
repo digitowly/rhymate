@@ -3,10 +3,9 @@ import SwiftData
 
 struct CompositionView: View {
     @Bindable var composition: Composition
-    @Binding var favorites: FavoriteRhymes
-    
+
     @State var isMoveSheetVisible: Bool = false
-    
+
     var body: some View {
         Group {
             ScrollView {
@@ -25,7 +24,6 @@ struct CompositionView: View {
                             get: { composition.content },
                             set: { composition.content = $0 }
                         ),
-                        favorites: $favorites,
                         onChange: { composition.updatedAt = Date.now }
                     )
                 }
@@ -60,6 +58,3 @@ struct CompositionView: View {
         }
     }
 }
-//#Preview {
-//    CompositionView()
-//}

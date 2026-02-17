@@ -2,15 +2,14 @@ import SwiftUI
 
 struct RootView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    
-    @State private var favorites = FavoriteRhymesStorage().getFavoriteRhymes()
+
     @State private var selectedComposition: Composition?
     @State private var selectedCollection: CompositionCollection?
 
     var body: some View {
         TabView {
             NavigationStack {
-                SearchScreen(favorites: $favorites)
+                SearchScreen()
             }.tabItem {
                 Image(systemName: "character.book.closed.fill")
                 Text("Rhymes")
@@ -22,15 +21,14 @@ struct RootView: View {
                 if let collection = selectedCollection {
                     CompositionListView(
                         selectedCollection: collection,
-                        selectedComposition: $selectedComposition,
-                        favorites: $favorites
+                        selectedComposition: $selectedComposition
                     )
                 } else {
                     Text("Select something")
                 }
             } detail: {
                 if let composition = selectedComposition {
-                    CompositionView(composition: composition, favorites: $favorites)
+                    CompositionView(composition: composition)
                 } else {
                     Text("Select a composition")
                 }

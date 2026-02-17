@@ -3,7 +3,6 @@ import SwiftUI
 struct ComposeEditor: View {
     var key: String;
     @Binding var text: String
-    @Binding var favorites: FavoriteRhymes
     var onChange: (() -> Void)?
 
     @State private var isAssistantVisible = false
@@ -71,7 +70,6 @@ struct ComposeEditor: View {
             NavigationStack {
                 LyricAssistantView(
                     text: $selected,
-                    favorites: $favorites,
                     hasAutoSubmit: true
                 ).toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
@@ -86,7 +84,7 @@ struct ComposeEditor: View {
             .presentationDetents([.medium, .large])
         })
     }
-    
+
     private func updateText(_ updatedText: NSAttributedString) {
         DispatchQueue.main.async {
             self.text = MarkdownConverter.toMarkdown(updatedText)

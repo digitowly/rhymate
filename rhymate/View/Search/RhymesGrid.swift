@@ -1,39 +1,35 @@
 import Foundation
 import SwiftUI
+import SwiftData
 
 struct RhymesGrid: View {
     var layout: RhymeItemLayout = .grid
     var word: String
     var rhymes: [String]
-    @Binding var favorites: FavoriteRhymes
-    
+
+    @Query private var allFavorites: [FavoriteRhyme]
+    @Environment(\.modelContext) private var modelContext
+
     @State private var sheetDetail: RhymeItem?
-    
+
     @State private var navigationRhyme: String = ""
     @State private var shouldNavigate: Bool = false
-    
+
+    private var normalizedWord: String { Formatter.normalize(word) }
+
     func toggleFavorite(_ rhyme: String) {
-        do {
-            try FavoriteRhymesStorage().mutate(
-                isFavorite(rhyme) ? .remove : .add,
-                key: word,
-                rhyme
-            )
-        } catch {
-            print(error)
+        if let existing = allFavorites.first(where: { $0.word == normalizedWord && $0.rhyme == rhyme }) {
+            modelContext.delete(existing)
+        } else {
+            modelContext.insert(FavoriteRhyme(word: normalizedWord, rhyme: rhyme))
         }
-        favorites = FavoritesOrganizer().mutate(
-            favorites,
-            isFavorite(rhyme) ? .remove : .add,
-            data: rhyme,
-            key: word
-        )
+        try? modelContext.save()
     }
-    
+
     func isFavorite(_ rhyme: String) -> Bool {
-        return favorites[word]?.rhymes.contains(rhyme) ?? false
+        allFavorites.contains { $0.word == normalizedWord && $0.rhyme == rhyme }
     }
-    
+
     var body: some View {
         LazyVGrid(
             columns:[GridItem(
@@ -65,7 +61,6 @@ struct RhymesGrid: View {
                 .detail,
                 word: word,
                 rhyme: $navigationRhyme.wrappedValue,
-                favorites: $favorites,
                 isFavorite: isFavorite($navigationRhyme.wrappedValue),
                 toggleFavorite: { toggleFavorite($navigationRhyme.wrappedValue) },
                 onDismiss: {sheetDetail = nil}
@@ -80,7 +75,6 @@ struct RhymesGrid: View {
                 .detail,
                 word: word,
                 rhyme: item.rhyme,
-                favorites: $favorites,
                 isFavorite: isFavorite(item.rhyme),
                 toggleFavorite: { toggleFavorite(item.rhyme) },
                 onDismiss: {sheetDetail = nil}
@@ -92,14 +86,6 @@ struct RhymesGrid: View {
     }
 }
 
-struct PreviewRhymesGrid: View {
-    @State var rhymes = ["west", "best", "chest"]
-    @State var favorites = FavoriteRhymesStorage().getFavoriteRhymes()
-    var body: some View {
-        RhymesGrid(word: "test", rhymes: rhymes, favorites: $favorites)
-    }
-}
-
 #Preview {
-    PreviewRhymesGrid()
+    RhymesGrid(word: "test", rhymes: ["west", "best", "chest"])
 }

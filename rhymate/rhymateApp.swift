@@ -11,12 +11,14 @@ struct rhymateApp: App {
         )
         do {
             container = try ModelContainer(
-                for: Composition.self, CompositionCollection.self,
+                for: Composition.self, CompositionCollection.self, FavoriteRhyme.self,
                 configurations: config
             )
         } catch {
             fatalError("Failed to initialize ModelContainer: \(error)")
         }
+
+        FavoritesMigrator(container: container).migrateFromUserDefaults()
     }
 
     var body: some Scene {

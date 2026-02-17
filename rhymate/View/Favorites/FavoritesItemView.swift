@@ -7,36 +7,33 @@ enum FavoritesItemLayout {
 
 struct FavoritesItemView: View {
     @Environment(\.colorScheme) var colorScheme
-    
+
     @State var definitions: [String] = []
     @State var isLoading: Bool = true
     let layout: FavoritesItemLayout
     let word: String
     let rhyme: String
-    @Binding var favorites: FavoriteRhymes
     var isFavorite: Bool
     var toggleFavorite: () -> Void
     var onDismiss: () -> Void
-    
+
     init(
         _ layout: FavoritesItemLayout,
         word: String,
         rhyme: String,
-        favorites: Binding<FavoriteRhymes>,
         isFavorite: Bool,
         toggleFavorite: @escaping () -> Void,
         onDismiss: @escaping () -> Void
-        
+
     ) {
         self.layout = layout
         self.word = word
         self.rhyme = rhyme
-        self._favorites = favorites
         self.isFavorite = isFavorite
         self.onDismiss = onDismiss
         self.toggleFavorite = toggleFavorite
     }
-    
+
     var body: some View {
         switch layout {
         case .detail:
@@ -67,12 +64,12 @@ struct FavoritesItemView: View {
                 .padding(.horizontal,20)
                 .padding(.top, 20)
                 .padding(.bottom, 15)
-                
+
                 Text(rhyme)
                     .font(.title)
                     .fontWeight(.bold)
                     .padding(.bottom, 15)
-                
+
                 VStack{
                     if isLoading {
                         ProgressView()
@@ -118,7 +115,7 @@ struct FavoritesItemView: View {
                     action: toggleFavorite,
                     isActivated: isFavorite)
                 .padding(.horizontal, 12)
-                
+
             }
             .padding(.vertical, 12)
             .background(.quinary)
@@ -128,31 +125,6 @@ struct FavoritesItemView: View {
             )
             .cornerRadius(.infinity)
         }
-        
+
     }
 }
-
-//struct PreviewFavoritesItemView: View {
-//    let layout: FavoritesItemLayout
-//    @State var favorites = FavoriteRhymesStorage().getFavoriteRhymes()
-//    var body: some View{
-//        FavoritesItemView(
-//            layout,
-//            word: "test",
-//            rhyme: "best",
-//            favorites: $favorites,
-//            isFavorite: favorites["test"]?.rhymes.contains("best") ?? false ,
-//            onDismiss: {print("dismiss")})
-//    }
-//}
-//
-//#Preview {
-//    VStack{
-//        Spacer()
-//        PreviewFavoritesItemView(layout: .list)
-//        Spacer()
-//        PreviewFavoritesItemView(layout: .detail)
-//        Spacer()
-//
-//    }
-//}

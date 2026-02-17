@@ -1,42 +1,29 @@
 import Foundation
 import SwiftUI
-
-
+import SwiftData
 
 struct FavoritesScreen: View {
     @Environment(\.colorScheme) var colorScheme
-    @Binding var favorites: FavoriteRhymes
-    
-    private func hasFavoritesWithRhymes() -> Bool {
-        var hasFavorite: Bool = false
-        for favorite in favorites {
-            if favorite.value.rhymes.isEmpty {
-                continue
-            } else {
-                hasFavorite = true
-            }
-        }
-        return hasFavorite
-    }
-    
+    @Query private var favorites: [FavoriteRhyme]
+
     var body :some View {
         NavigationStack{
             // if user has no stored favortes, display a default message
-            if !hasFavoritesWithRhymes() {
+            if favorites.isEmpty {
                 VStack(alignment: .center){
                     Spacer()
                     Text("fallbackFavoritesTitle")
                         .font(.system(.headline))
-                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .fontWeight(.bold)
                         .padding(.bottom, 10)
                     Text("fallbackFavoritesText")
                         .padding(.bottom, 10)
                     Image(systemName: "heart.fill").foregroundColor(.accentColor)
                 }.padding(.horizontal, 50)
             }
-            
+
             ScrollView{
-                FavoritesGrid(favorites: $favorites)
+                FavoritesGrid()
                     .padding()
             }
             .navigationTitle("favorites")
@@ -44,16 +31,6 @@ struct FavoritesScreen: View {
     }
 }
 
-struct PreviewFavoritesView: View {
-    @State var favorites = FavoriteRhymesStorage().getFavoriteRhymes()
-    var body: some View {
-        FavoritesScreen(favorites: $favorites)
-    }
-}
-
 #Preview {
-    PreviewFavoritesView()
+    FavoritesScreen()
 }
-
-
-

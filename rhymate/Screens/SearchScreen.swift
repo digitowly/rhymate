@@ -6,7 +6,7 @@ struct SearchScreen: View {
 
     private let fetcher = DatamuseFetcher()
     private var historyStorage: SearchHistoryStorage
-    
+
     @State var suggestions: [DatamuseSuggestion] = []
     @State var isLoading: Bool = false
     @State var input: String = ""
@@ -14,15 +14,12 @@ struct SearchScreen: View {
     @State var searchHistory: [SearchHistoryEntry]
     @State private var navigateToResults: Bool = false
     @State private var debounceTask: Task<Void, Never>? = nil
-    
-    @Binding var favorites: FavoriteRhymes
-    
-    init(favorites: Binding<FavoriteRhymes>) {
+
+    init() {
         self.historyStorage = SearchHistoryStorage()
-        self._favorites = favorites
         self.searchHistory = self.historyStorage.get()
     }
-    
+
     private func storeSearchTerm(_ searchTerm: String) {
         do {
             try historyStorage.mutate(.add, searchTerm)
@@ -31,7 +28,7 @@ struct SearchScreen: View {
             print(error)
         }
     }
-    
+
     private func search(searchTerm: String) async {
         let term = Formatter.normalize(searchTerm)
         if term == "" {
@@ -40,7 +37,7 @@ struct SearchScreen: View {
         if term.count < 3 {
             return withAnimation{isLoading = false; searchError = .noResults; suggestions = [] }
         }
-        
+
         do {
             withAnimation{ isLoading = true }
             let suggestionsResponse = try await fetcher.getSuggestions(forWord: term)
@@ -57,11 +54,11 @@ struct SearchScreen: View {
             return withAnimation{
                 isLoading = false
                 searchError = SearchError.from(error)
-                suggestions = [] 
+                suggestions = []
             }
         }
     }
-    
+
     var body: some View {
         VStack{
             SearchResultManager(
@@ -70,20 +67,17 @@ struct SearchScreen: View {
                 searchError: $searchError,
                 searchHistory: $searchHistory,
                 suggestions: $suggestions,
-                favorites: $favorites,
                 onRhymesViewDisappear: storeSearchTerm
             )
             .navigationDestination(isPresented: $navigateToResults) {
                 RhymesView(
                     word: Formatter.normalize(input),
-                    favorites: $favorites,
                     onDisappear: storeSearchTerm
                 )
-                
+
                 .navigationDestination(isPresented: $navigateToResults) {
                     RhymesView(
                         word: Formatter.normalize(input),
-                        favorites: $favorites,
                         onDisappear: storeSearchTerm
                     )
                 }
@@ -109,13 +103,6 @@ struct SearchScreen: View {
     }
 }
 
-struct PreviewSearchView: View {
-    @State var favorites = FavoriteRhymesStorage().getFavoriteRhymes()
-    var body: some View {
-        SearchScreen(favorites: $favorites)
-    }
-}
-
 #Preview {
-    PreviewSearchView()
+    SearchScreen()
 }
