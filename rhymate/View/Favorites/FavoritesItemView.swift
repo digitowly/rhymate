@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 enum FavoritesItemLayout {
     case list
@@ -7,31 +8,48 @@ enum FavoritesItemLayout {
 
 struct FavoritesItemView: View {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.modelContext) private var modelContext
+    @Query private var allFavorites: [FavoriteRhyme]
 
     @State var definitions: [String] = []
     @State var isLoading: Bool = true
     let layout: FavoritesItemLayout
     let word: String
     let rhyme: String
-    var isFavorite: Bool
-    var toggleFavorite: () -> Void
     var onDismiss: () -> Void
+
+    private var normalizedWord: String { Formatter.normalize(word) }
+
+    private var isFavorite: Bool {
+        allFavorites.contains { $0.word == normalizedWord && $0.rhyme == rhyme }
+    }
+
+    private func toggleFavorite() {
+        let word = normalizedWord
+        let rhyme = self.rhyme
+        let descriptor = FetchDescriptor<FavoriteRhyme>(
+            predicate: #Predicate { $0.word == word && $0.rhyme == rhyme }
+        )
+        let existing = (try? modelContext.fetch(descriptor)) ?? []
+
+        if let first = existing.first {
+            for item in existing { modelContext.delete(item) }
+        } else {
+            modelContext.insert(FavoriteRhyme(word: word, rhyme: rhyme))
+        }
+        try? modelContext.save()
+    }
 
     init(
         _ layout: FavoritesItemLayout,
         word: String,
         rhyme: String,
-        isFavorite: Bool,
-        toggleFavorite: @escaping () -> Void,
         onDismiss: @escaping () -> Void
-
     ) {
         self.layout = layout
         self.word = word
         self.rhyme = rhyme
-        self.isFavorite = isFavorite
         self.onDismiss = onDismiss
-        self.toggleFavorite = toggleFavorite
     }
 
     var body: some View {
@@ -94,7 +112,7 @@ struct FavoritesItemView: View {
                     }
                 }
                 .frame(
-                    minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
+                    minHeight: 0,
                     maxHeight: .infinity
                 )
                 .onAppear(perform: {
@@ -120,7 +138,7 @@ struct FavoritesItemView: View {
             .padding(.vertical, 12)
             .background(.quinary)
             .frame(
-                minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
+                minWidth: 0,
                 maxWidth: .infinity
             )
             .cornerRadius(.infinity)

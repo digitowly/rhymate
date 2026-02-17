@@ -5,6 +5,7 @@ import SwiftData
 struct FavoritesDetail: View {
     let word: String
 
+    @Environment(\.dismiss) private var dismiss
     @Query private var allFavorites: [FavoriteRhyme]
 
     private var rhymes: [String] {
@@ -27,6 +28,9 @@ struct FavoritesDetail: View {
                     rhymes: rhymes
                 )
             }
+        }
+        .onChange(of: rhymes) { _, newValue in
+            if newValue.isEmpty { dismiss() }
         }
     }
 }

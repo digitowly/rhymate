@@ -10,10 +10,9 @@ struct RhymeItemView: View {
     let onPress: () -> Void
     private var rhyme: String
     private var word: String
-    @State private var sheetDetail: RhymeItem?
     var isFavorite: Bool
     var toggleFavorite: () -> Void
-    
+
     init(
         _ layout: RhymeItemLayout = .grid,
         onPress: @escaping () -> Void,
@@ -26,11 +25,10 @@ struct RhymeItemView: View {
         self.onPress = onPress
         self.rhyme = rhyme
         self.word = word
-        self.sheetDetail = nil
         self.isFavorite = isFavorite
         self.toggleFavorite = toggleFavorite
     }
-    
+
     var body:some View {
         HStack{
             if layout == .grid {
@@ -59,16 +57,3 @@ struct RhymeItemView: View {
         }
     }
 }
-
-//struct PreviewRhymeItemView: View {
-//    @State var favorites = FavoriteRhymesStorage().getFavoriteRhymes()
-//
-//    var body: some View {
-//        RhymeItemView(onPress: {}, rhyme: "best", word: "test", favorites: $favorites)
-//        RhymeItemView(.favorite,onPress: {}, rhyme: "best", word: "test", favorites: $favorites)
-//    }
-//}
-//
-//#Preview {
-//    PreviewRhymeItemView()
-//}

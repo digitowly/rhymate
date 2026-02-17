@@ -74,13 +74,6 @@ struct SearchScreen: View {
                     word: Formatter.normalize(input),
                     onDisappear: storeSearchTerm
                 )
-
-                .navigationDestination(isPresented: $navigateToResults) {
-                    RhymesView(
-                        word: Formatter.normalize(input),
-                        onDisappear: storeSearchTerm
-                    )
-                }
             }
         }
         .searchable(

@@ -18,10 +18,16 @@ struct RhymesGrid: View {
     private var normalizedWord: String { Formatter.normalize(word) }
 
     func toggleFavorite(_ rhyme: String) {
-        if let existing = allFavorites.first(where: { $0.word == normalizedWord && $0.rhyme == rhyme }) {
-            modelContext.delete(existing)
+        let word = normalizedWord
+        let descriptor = FetchDescriptor<FavoriteRhyme>(
+            predicate: #Predicate { $0.word == word && $0.rhyme == rhyme }
+        )
+        let existing = (try? modelContext.fetch(descriptor)) ?? []
+
+        if let first = existing.first {
+            for item in existing { modelContext.delete(item) }
         } else {
-            modelContext.insert(FavoriteRhyme(word: normalizedWord, rhyme: rhyme))
+            modelContext.insert(FavoriteRhyme(word: word, rhyme: rhyme))
         }
         try? modelContext.save()
     }
@@ -61,9 +67,7 @@ struct RhymesGrid: View {
                 .detail,
                 word: word,
                 rhyme: $navigationRhyme.wrappedValue,
-                isFavorite: isFavorite($navigationRhyme.wrappedValue),
-                toggleFavorite: { toggleFavorite($navigationRhyme.wrappedValue) },
-                onDismiss: {sheetDetail = nil}
+                onDismiss: { shouldNavigate = false }
             )
         }
         .sheet(
@@ -75,8 +79,6 @@ struct RhymesGrid: View {
                 .detail,
                 word: word,
                 rhyme: item.rhyme,
-                isFavorite: isFavorite(item.rhyme),
-                toggleFavorite: { toggleFavorite(item.rhyme) },
                 onDismiss: {sheetDetail = nil}
             )
             .presentationDetents([.medium, .large])

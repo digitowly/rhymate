@@ -15,19 +15,28 @@ struct FavoritesMigrator {
 
         let context = ModelContext(container)
 
+        let existingFavorites = (try? context.fetch(FetchDescriptor<FavoriteRhyme>())) ?? []
+        let existingKeys = Set(existingFavorites.map { "\($0.word):\($0.rhyme)" })
+
         for (_, entry) in legacy {
             let word = Formatter.normalize(entry.word)
-            for rhyme in entry.rhymes {
+            for rhyme in entry.rhymes where !rhyme.isEmpty {
+                let key = "\(word):\(rhyme)"
+                guard !existingKeys.contains(key) else { continue }
                 context.insert(FavoriteRhyme(word: word, rhyme: rhyme))
             }
         }
 
-        try? context.save()
-        defaults.removeObject(forKey: key)
+        do {
+            try context.save()
+            defaults.removeObject(forKey: key)
+        } catch {
+            print("Favorites migration failed, will retry next launch: \(error)")
+        }
     }
 }
 
-private struct LegacyRhymeWithFavorites: Decodable {
+struct LegacyRhymeWithFavorites: Codable {
     let word: String
     var rhymes: [String]
 }

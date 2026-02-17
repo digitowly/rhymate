@@ -5,8 +5,8 @@ import SwiftData
 struct FavoritesScreen: View {
     @Query private var favorites: [FavoriteRhyme]
 
-    var body :some View {
-        NavigationStack{
+    var body: some View {
+        Group {
             if favorites.isEmpty {
                 EmptyStateView(
                     icon: "heart",
@@ -14,7 +14,7 @@ struct FavoritesScreen: View {
                     description: "emptyFavorites.description"
                 )
             } else {
-                ScrollView{
+                ScrollView {
                     FavoritesGrid()
                         .padding()
                 }
