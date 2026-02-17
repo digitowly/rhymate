@@ -11,16 +11,44 @@ final class TextEditorViewController: UIViewController, UITextViewDelegate {
     var onTextChange: ((NSAttributedString) -> Void)?
     var onSelectionChange: ((String, NSRange) -> Void)?
     var onHeightChange: ((CGFloat) -> Void)?
+    var onAssistantTap: (() -> Void)?
     
+    var onKeyboardVisibilityChange: ((Bool) -> Void)?
+
+    private lazy var accessoryBar: UIToolbar = {
+        let bar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 52))
+        bar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+        bar.setShadowImage(UIImage(), forToolbarPosition: .any)
+        bar.items = [
+            UIBarButtonItem.flexibleSpace(),
+            assistantButton
+        ]
+        return bar
+    }()
+
+    private lazy var assistantButton: UIBarButtonItem = {
+        UIBarButtonItem(
+            image: UIImage(systemName: "character.book.closed"),
+            style: .plain,
+            target: self,
+            action: #selector(assistantButtonTapped)
+        )
+    }()
+
+    @objc private func assistantButtonTapped() {
+        onAssistantTap?()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         textView.delegate = self
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.isEditable = true
         textView.isSelectable = true
         textView.isScrollEnabled = false
-        
+        textView.inputAccessoryView = accessoryBar
+
         view.addSubview(textView)
         NSLayoutConstraint.activate([
             textView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -28,15 +56,26 @@ final class TextEditorViewController: UIViewController, UITextViewDelegate {
             textView.topAnchor.constraint(equalTo: view.topAnchor),
             textView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
+
         DispatchQueue.main.async { [weak self] in
             self?.recalculateHeight()
         }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
-    
+
+    @objc private func keyboardDidShow() {
+        onKeyboardVisibilityChange?(true)
+    }
+
+    @objc private func keyboardDidHide() {
+        onKeyboardVisibilityChange?(false)
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         if textView.text.isEmpty {
             applyDefaultTypingAttributesIfNeeded()
         }

@@ -5,14 +5,15 @@ struct ComposeEditor: View {
     @Binding var text: String
     var onChange: (() -> Void)?
 
-    @State private var isAssistantVisible = false
-    @State private var selected = ""
-    @State private var height: CGFloat = 400
+    @Binding var isAssistantVisible: Bool
+    @Binding var selectedWord: String
 
+    @State private var height: CGFloat = 400
     @State private var coordinator: TextEditorContainer.Coordinator? = nil
+    @State private var isKeyboardVisible = false
 
     var body: some View {
-        ZStack() {
+        ZStack {
             TextEditorContainer(
                 initialText: MarkdownConverter.toAttributedString(text),
                 initialHeight: height,
@@ -22,12 +23,22 @@ struct ComposeEditor: View {
                 onSelectionChange: { selection, range in
                     DispatchQueue.main.async {
                         withAnimation {
-                            self.selected = selection
+                            self.selectedWord = selection
                         }
                     }
                 },
                 onHeightChange: { updatedHeight in
                     self.height = max(updatedHeight, 600)
+                },
+                onAssistantTap: {
+                    withAnimation(.spring(duration: 0.35, bounce: 0.1)) {
+                        isAssistantVisible = true
+                    }
+                },
+                onKeyboardVisibilityChange: { visible in
+                    withAnimation {
+                        isKeyboardVisible = visible
+                    }
                 },
                 coordinatorRef: $coordinator
             )
@@ -35,12 +46,12 @@ struct ComposeEditor: View {
             .frame(height: height)
         }
         .toolbar {
-            ToolbarItemGroup(
-                placement: .navigation
-            ) {
-                if $selected.wrappedValue.count >= 1 {
+            ToolbarItemGroup(placement: .navigation) {
+                if !isKeyboardVisible {
                     Button {
-                        isAssistantVisible.toggle()
+                        withAnimation(.spring(duration: 0.35, bounce: 0.1)) {
+                            isAssistantVisible = true
+                        }
                     } label: {
                         Image(systemName: "character.book.closed")
                     }
@@ -63,26 +74,8 @@ struct ComposeEditor: View {
                 } label: {
                     Image(systemName: "textformat")
                 }
-
             }
         }
-        .sheet(isPresented: $isAssistantVisible, content: {
-            NavigationStack {
-                LyricAssistantView(
-                    text: $selected,
-                    hasAutoSubmit: true
-                ).toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            isAssistantVisible.toggle()
-                        } label: {
-                            Image(systemName: "xmark")
-                        }
-                    }
-                }
-            }
-            .presentationDetents([.medium, .large])
-        })
     }
 
     private func updateText(_ updatedText: NSAttributedString) {

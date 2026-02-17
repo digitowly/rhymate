@@ -6,7 +6,9 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         var onTextChange: ((NSAttributedString) -> Void)?
         var onSelectionChange: ((String, NSRange) -> Void)?
         var onHeightChange: ((CGFloat) -> Void)?
-        
+        var onAssistantTap: (() -> Void)?
+        var onKeyboardVisibilityChange: ((Bool) -> Void)?
+
         func toggleTrait(_ type: TraitType) -> NSAttributedString? {
             return controller?.toggleTraitAtCurrentSelection(type)
         }
@@ -17,6 +19,8 @@ struct TextEditorContainer: UIViewControllerRepresentable {
     var onTextChange: ((NSAttributedString) -> Void)? = nil
     var onSelectionChange: ((String, NSRange) -> Void)? = nil
     var onHeightChange: ((CGFloat) -> Void)? = nil
+    var onAssistantTap: (() -> Void)? = nil
+    var onKeyboardVisibilityChange: ((Bool) -> Void)? = nil
     @Binding var coordinatorRef: TextEditorContainer.Coordinator?
 
     func makeCoordinator() -> Coordinator {
@@ -24,6 +28,8 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         coordinator.onTextChange = onTextChange
         coordinator.onSelectionChange = onSelectionChange
         coordinator.onHeightChange = onHeightChange
+        coordinator.onAssistantTap = onAssistantTap
+        coordinator.onKeyboardVisibilityChange = onKeyboardVisibilityChange
         return coordinator
     }
 
@@ -32,6 +38,8 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         vc.onTextChange = context.coordinator.onTextChange
         vc.onSelectionChange = context.coordinator.onSelectionChange
         vc.onHeightChange = context.coordinator.onHeightChange
+        vc.onAssistantTap = context.coordinator.onAssistantTap
+        vc.onKeyboardVisibilityChange = context.coordinator.onKeyboardVisibilityChange
         context.coordinator.controller = vc
         
         vc.textView.attributedText = ensureFont(in: initialText)

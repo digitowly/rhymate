@@ -75,6 +75,28 @@
         }
       }
     },
+    "emptyFavorites.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap the heart icon on any rhyme to save it here."
+          }
+        }
+      }
+    },
+    "emptyFavorites.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Favorites"
+          }
+        }
+      }
+    },
     "emptyFolders.action" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -108,24 +130,13 @@
         }
       }
     },
-    "emptyFavorites.title" : {
+    "emptyHistory.description" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No Favorites"
-          }
-        }
-      }
-    },
-    "emptyFavorites.description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tap the heart icon on any rhyme to save it here."
+            "value" : "Your recent searches will appear here."
           }
         }
       }
@@ -137,17 +148,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No History"
-          }
-        }
-      }
-    },
-    "emptyHistory.description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your recent searches will appear here."
           }
         }
       }
@@ -213,6 +213,9 @@
     "Find a rhyme" : {
 
     },
+    "Find Rhymes" : {
+
+    },
     "History" : {
 
     },
@@ -256,6 +259,9 @@
         }
       }
     },
+    "Recent Searches" : {
+
+    },
     "Rename" : {
 
     },
@@ -269,6 +275,12 @@
 
     },
     "Save" : {
+
+    },
+    "Search" : {
+
+    },
+    "Search for a word to discover rhymes, favorites, and more." : {
 
     },
     "searchInput" : {
@@ -291,9 +303,6 @@
     "Select something" : {
 
     },
-    "Send" : {
-
-    },
     "Show all" : {
 
     },
@@ -304,6 +313,9 @@
 
     },
     "Type a word or phrase below to get started" : {
+
+    },
+    "Type a word…" : {
 
     },
     "Wiktionary API" : {
