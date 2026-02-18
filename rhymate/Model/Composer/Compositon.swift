@@ -13,6 +13,18 @@ class Composition {
 
     var collection: CompositionCollection?
 
+    var displayTitle: String {
+        let firstLine = content
+            .split(separator: "\n", omittingEmptySubsequences: true)
+            .first
+            .map(String.init)?
+            .trimmingCharacters(in: .whitespaces)
+            .replacingOccurrences(of: "^#{1,6}\\s*", with: "", options: .regularExpression)
+            .trimmingCharacters(in: .whitespaces)
+        guard let firstLine, !firstLine.isEmpty else { return "New Song" }
+        return firstLine
+    }
+
     init(
         title: String = "",
         content: String = "",

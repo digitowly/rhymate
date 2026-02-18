@@ -6,30 +6,17 @@ struct CompositionView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    @FocusState private var isTitleFocused: Bool
     @State var isMoveSheetVisible: Bool = false
     @State private var isAssistantVisible = false
     @State private var selectedWord = ""
     @State private var dragOffset: CGFloat = 0
     @State private var assistantSearchTerm = ""
-    @State private var editorCoordinator: TextEditorContainer.Coordinator?
 
     var body: some View {
         ZStack(alignment: .bottom) {
             ScrollView {
                 VStack(alignment: .leading) {
                     Spacer(minLength: 32)
-                    TextField("Title", text: Binding(
-                        get: { composition.title },
-                        set: { composition.title = $0 }
-                    ))
-                    .focused($isTitleFocused)
-                    .onSubmit {
-                        editorCoordinator?.focus()
-                    }
-                    .font(.title)
-                    .fontWeight(.bold)
-                    Spacer(minLength: 24)
                     ComposeEditor(
                         key: composition.id.uuidString,
                         text: Binding(
@@ -38,8 +25,7 @@ struct CompositionView: View {
                         ),
                         onChange: { composition.updatedAt = Date.now },
                         isAssistantVisible: $isAssistantVisible,
-                        selectedWord: $selectedWord,
-                        coordinatorRef: $editorCoordinator
+                        selectedWord: $selectedWord
                     )
                 }
                 .padding(.horizontal)
@@ -82,15 +68,8 @@ struct CompositionView: View {
                     )
                 }
             }
-            .navigationTitle(
-                composition.title.isEmpty ? "New Song" : composition.title
-            )
+            .navigationTitle(composition.displayTitle)
             .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                if composition.title.isEmpty {
-                    isTitleFocused = true
-                }
-            }
 
             if isAssistantVisible {
                 Color.black.opacity(0.15)

@@ -33,7 +33,7 @@ struct CompositionListView: View {
                 List(selection: $selectedComposition) {
                     ForEach(compositions) { composition in
                         VStack(alignment: .leading) {
-                            Text(composition.title)
+                            Text(composition.displayTitle)
                                 .font(.headline)
                             Text(composition.updatedAt.formatted(date: .abbreviated, time: .omitted))
                                 .font(.caption)
@@ -83,7 +83,7 @@ struct CompositionListView: View {
     private func createComposition() {
         guard let collection = selectedCollection else { return }
         let newComposition = Composition(
-            title: "",
+            content: "# ",
             collection: collection
         )
         modelContext.insert(newComposition)

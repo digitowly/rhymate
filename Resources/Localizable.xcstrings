@@ -24,7 +24,7 @@
     "Back" : {
 
     },
-    "bold" : {
+    "Bold" : {
 
     },
     "Cancel" : {
@@ -225,6 +225,9 @@
     "Find Rhymes" : {
 
     },
+    "Heading" : {
+
+    },
     "History" : {
 
     },
@@ -242,7 +245,7 @@
         }
       }
     },
-    "italic" : {
+    "Italic" : {
 
     },
     "Move" : {
@@ -325,9 +328,6 @@
 
     },
     "This will permanently delete the folder and all its compositions." : {
-
-    },
-    "Title" : {
 
     },
     "Type a word or phrase below to get started" : {

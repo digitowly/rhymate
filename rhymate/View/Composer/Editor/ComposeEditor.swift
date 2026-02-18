@@ -7,7 +7,7 @@ struct ComposeEditor: View {
 
     @Binding var isAssistantVisible: Bool
     @Binding var selectedWord: String
-    @Binding var coordinatorRef: TextEditorContainer.Coordinator?
+    @State private var coordinatorRef: TextEditorContainer.Coordinator?
 
     @State private var height: CGFloat = 400
     @State private var isKeyboardVisible = false
@@ -16,6 +16,7 @@ struct ComposeEditor: View {
         ZStack {
             TextEditorContainer(
                 initialText: MarkdownConverter.toAttributedString(text),
+                initialFirstLineIsHeading: text.hasPrefix("# "),
                 initialHeight: height,
                 onTextChange: { updatedText in
                     updateText(updatedText)
@@ -58,18 +59,25 @@ struct ComposeEditor: View {
                 }
                 Menu {
                     Button {
+                        if let updatedText = coordinatorRef?.toggleHeading() {
+                            updateText(updatedText)
+                        }
+                    } label: {
+                        Label("Heading", systemImage: "number")
+                    }
+                    Button {
                         if let updatedText = coordinatorRef?.toggleTrait(.bold) {
                             updateText(updatedText)
                         }
                     } label: {
-                        Label("bold", systemImage: "bold")
+                        Label("Bold", systemImage: "bold")
                     }
                     Button {
                         if let updatedText = coordinatorRef?.toggleTrait(.italic) {
                             updateText(updatedText)
                         }
                     } label: {
-                        Label("italic", systemImage: "italic")
+                        Label("Italic", systemImage: "italic")
                     }
                 } label: {
                     Image(systemName: "textformat")

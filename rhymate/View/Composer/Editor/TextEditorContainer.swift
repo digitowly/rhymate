@@ -13,12 +13,17 @@ struct TextEditorContainer: UIViewControllerRepresentable {
             return controller?.toggleTraitAtCurrentSelection(type)
         }
 
+        func toggleHeading() -> NSAttributedString? {
+            return controller?.toggleHeadingOnFirstLine()
+        }
+
         func focus() {
             controller?.textView.becomeFirstResponder()
         }
     }
 
     let initialText: NSAttributedString
+    let initialFirstLineIsHeading: Bool
     let initialHeight: CGFloat
     var onTextChange: ((NSAttributedString) -> Void)? = nil
     var onSelectionChange: ((String, NSRange) -> Void)? = nil
@@ -45,23 +50,32 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         vc.onAssistantTap = context.coordinator.onAssistantTap
         vc.onKeyboardVisibilityChange = context.coordinator.onKeyboardVisibilityChange
         context.coordinator.controller = vc
-        
-        vc.textView.attributedText = ensureFont(in: initialText)
-        
+
+        let prepared = ensureFont(in: initialText)
+        vc.textView.attributedText = prepared
+
+        // Detect heading from attributed content or from the flag (for empty docs)
+        if prepared.length > 0 {
+            let font = prepared.attribute(.font, at: 0, effectiveRange: nil) as? UIFont
+            vc.firstLineIsHeading = (font?.pointSize ?? DEFAULT_FONT_SIZE) >= HEADING_FONT_SIZE
+        } else {
+            vc.firstLineIsHeading = initialFirstLineIsHeading
+        }
+
         DispatchQueue.main.async {
             self.coordinatorRef = context.coordinator
         }
-        
+
         return vc
     }
-    
+
     private func ensureFont(
         in attributed: NSAttributedString,
         defaultFont: UIFont = .systemFont(ofSize: DEFAULT_FONT_SIZE)
     ) -> NSAttributedString {
         let mutable = NSMutableAttributedString(attributedString: attributed)
         let fullRange = NSRange(location: 0, length: mutable.length)
-        
+
         mutable.enumerateAttribute(.font, in: fullRange, options: []) { value, range, _ in
             if value == nil {
                 mutable.addAttribute(.font, value: defaultFont, range: range)
@@ -70,7 +84,7 @@ struct TextEditorContainer: UIViewControllerRepresentable {
 
         return mutable
     }
-    
+
 
     func updateUIViewController(_ uiViewController: TextEditorViewController, context: Context) {
         // do nothing to prevent re-renders via SwiftUI
