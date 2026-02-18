@@ -1,6 +1,5 @@
 import Foundation
 
-let ACCENT_COLOR = "#2ABF91"
 let DEFAULT_FONT_SIZE = CGFloat(17)
 
 // API URLs

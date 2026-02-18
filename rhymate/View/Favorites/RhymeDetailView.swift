@@ -107,7 +107,6 @@ struct RhymeDetailView: View {
                             linkOptions: HTMLContentLinkOptions(
                                 baseUrl: "https://en.wiktionary.org/",
                                 target: "_blank",
-                                color: ACCENT_COLOR
                             )
                         )
                     }
@@ -142,7 +141,6 @@ struct RhymeDetailView: View {
                             linkOptions: HTMLContentLinkOptions(
                                 baseUrl: "https://en.wiktionary.org/",
                                 target: "_blank",
-                                color: ACCENT_COLOR
                             )
                         )
                     }

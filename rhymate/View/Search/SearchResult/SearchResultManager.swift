@@ -68,6 +68,8 @@ struct SearchResultManager: View {
                 aboutSection
             }
             .padding()
+            .frame(maxWidth: 700)
+            .frame(maxWidth: .infinity)
         }
     }
 
@@ -128,16 +130,10 @@ struct SearchResultManager: View {
 
     private var aboutSection: some View {
         NavigationLink(destination: AboutScreen()) {
-            HStack {
-                Label("About", systemImage: "info.circle")
-                    .foregroundColor(.primary)
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.secondary)
-            }
-            .padding()
-            .background(.quinary)
-            .cornerRadius(12)
+            Label("About", systemImage: "info.circle")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
         }
+        .frame(maxWidth: .infinity, alignment: .center)
     }
 }
