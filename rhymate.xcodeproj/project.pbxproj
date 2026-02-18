@@ -90,6 +90,8 @@
 		ECE8AB392E15C47A007F08D4 /* CompositionMoveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8AB382E15C47A007F08D4 /* CompositionMoveView.swift */; };
 		ECF4C9342C52EC7D001E6B55 /* WiktionaryFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF4C9332C52EC7D001E6B55 /* WiktionaryFetcherTests.swift */; };
 		ECF4C9392C52F2AB001E6B55 /* WiktionaryDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF4C9382C52F2AB001E6B55 /* WiktionaryDefinitions.swift */; };
+		AA0000000000000000000002 /* WhatsNewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000001 /* WhatsNewContent.swift */; };
+		AA0000000000000000000004 /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000003 /* WhatsNewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,6 +200,8 @@
 		ECE8AB382E15C47A007F08D4 /* CompositionMoveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionMoveView.swift; sourceTree = "<group>"; };
 		ECF4C9332C52EC7D001E6B55 /* WiktionaryFetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiktionaryFetcherTests.swift; sourceTree = "<group>"; };
 		ECF4C9382C52F2AB001E6B55 /* WiktionaryDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiktionaryDefinitions.swift; sourceTree = "<group>"; };
+		AA0000000000000000000001 /* WhatsNewContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewContent.swift; sourceTree = "<group>"; };
+		AA0000000000000000000003 /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,9 +332,19 @@
 			path = FavoriteGrid;
 			sourceTree = "<group>";
 		};
+		AA0000000000000000000005 /* WhatsNew */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000001 /* WhatsNewContent.swift */,
+				AA0000000000000000000003 /* WhatsNewView.swift */,
+			);
+			path = WhatsNew;
+			sourceTree = "<group>";
+		};
 		EC7782DC2C39C904008E9884 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AA0000000000000000000005 /* WhatsNew */,
 				ECA8F6EE2E0530B6009212D0 /* LyricAsisstant */,
 				ECA8F6ED2E046191009212D0 /* Editor */,
 				ECA5518F2E032128009DD4A5 /* Composer */,
@@ -783,6 +797,8 @@
 				EC238A8E2C3363A000829799 /* RhymesGrid.swift in Sources */,
 				ECD720F02C5C0366007CE080 /* SearchHistoryStorage.swift in Sources */,
 				ECB1A5DF2C3C84730087EDF9 /* Storage.swift in Sources */,
+				AA0000000000000000000002 /* WhatsNewContent.swift in Sources */,
+				AA0000000000000000000004 /* WhatsNewView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

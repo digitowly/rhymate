@@ -33,6 +33,12 @@
     "close" : {
 
     },
+    "Composition Editor" : {
+
+    },
+    "Continue" : {
+
+    },
     "Datamuse API" : {
 
     },
@@ -222,6 +228,9 @@
     "History" : {
 
     },
+    "iCloud Favorites" : {
+
+    },
     "info" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -321,6 +330,9 @@
     "Type a word…" : {
 
     },
+    "What's New" : {
+
+    },
     "Wiktionary API" : {
 
     },
@@ -345,6 +357,12 @@
           }
         }
       }
+    },
+    "Write lyrics in a full editor with an inline rhyme assistant — find the perfect rhyme without leaving your flow. Syncs safely across devices via iCloud." : {
+
+    },
+    "Your favorite rhymes now sync across all your devices with iCloud." : {
+
     }
   },
   "version" : "1.0"

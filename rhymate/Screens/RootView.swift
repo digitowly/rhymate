@@ -3,6 +3,9 @@ import SwiftUI
 struct RootView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
+    @AppStorage("whatsNewLastSeenVersion") private var lastSeenVersion = ""
+    @State private var showWhatsNew = false
+
     @State private var selectedComposition: Composition?
     @State private var selectedCollection: CompositionCollection?
 
@@ -35,6 +38,20 @@ struct RootView: View {
             }.tabItem {
                 Image(systemName: "music.pages.fill")
                 Text("Projects")
+            }
+        }
+        .onAppear {
+            if let latest = WhatsNewContent.releases.last,
+               latest.version != lastSeenVersion {
+                showWhatsNew = true
+            }
+        }
+        .sheet(isPresented: $showWhatsNew) {
+            if let latest = WhatsNewContent.releases.last {
+                WhatsNewView(release: latest)
+                    .onDisappear {
+                        lastSeenVersion = latest.version
+                    }
             }
         }
     }
