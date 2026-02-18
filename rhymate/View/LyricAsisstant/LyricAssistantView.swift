@@ -44,7 +44,7 @@ struct LyricAssistantView: View {
                 .padding(.horizontal)
                 .padding(.top, 8)
 
-                FavoritesItemView(
+                RhymeDetailView(
                     .embedded,
                     word: selected.word,
                     rhyme: selected.rhyme,

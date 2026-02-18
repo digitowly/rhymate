@@ -66,7 +66,7 @@ struct RhymesGrid: View {
             }
         }
         .navigationDestination(isPresented: $shouldNavigate) {
-            FavoritesItemView(
+            RhymeDetailView(
                 .detail,
                 word: word,
                 rhyme: $navigationRhyme.wrappedValue,
@@ -78,7 +78,7 @@ struct RhymesGrid: View {
             onDismiss: {sheetDetail = nil}
         )
         { item in
-            FavoritesItemView(
+            RhymeDetailView(
                 .detail,
                 word: word,
                 rhyme: item.rhyme,

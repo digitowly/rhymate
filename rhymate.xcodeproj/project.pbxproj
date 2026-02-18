@@ -28,7 +28,7 @@
 		EC4313D82DFC56910023D835 /* SearchHistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4313D72DFC56910023D835 /* SearchHistoryScreen.swift */; };
 		EC57075C2E7ABC3E00839CD6 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = EC57075B2E7ABC3E00839CD6 /* AppIcon.icon */; };
 		EC5A28C52C3FC6EE00DEDFFF /* FavoritesDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5A28C42C3FC6EE00DEDFFF /* FavoritesDetail.swift */; };
-		EC5A28C72C404C9C00DEDFFF /* FavoritesItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5A28C62C404C9C00DEDFFF /* FavoritesItemView.swift */; };
+		EC5A28C72C404C9C00DEDFFF /* RhymeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5A28C62C404C9C00DEDFFF /* RhymeDetailView.swift */; };
 		EC5A28CC2C40555100DEDFFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EC5A28CB2C40555100DEDFFF /* README.md */; };
 		EC7304562C538C72006BCEAA /* WiktionaryDefinitionsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7304552C538C72006BCEAA /* WiktionaryDefinitionsStorage.swift */; };
 		EC7782E02C39CAE7008E9884 /* StorageHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7782DA2C39B2AB008E9884 /* StorageHandlerTests.swift */; };
@@ -134,7 +134,7 @@
 		EC4313D72DFC56910023D835 /* SearchHistoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryScreen.swift; sourceTree = "<group>"; };
 		EC57075B2E7ABC3E00839CD6 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		EC5A28C42C3FC6EE00DEDFFF /* FavoritesDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesDetail.swift; sourceTree = "<group>"; };
-		EC5A28C62C404C9C00DEDFFF /* FavoritesItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesItemView.swift; sourceTree = "<group>"; };
+		EC5A28C62C404C9C00DEDFFF /* RhymeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhymeDetailView.swift; sourceTree = "<group>"; };
 		EC5A28CB2C40555100DEDFFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EC5BA1AB2F0F03B70090987A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EC7304552C538C72006BCEAA /* WiktionaryDefinitionsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiktionaryDefinitionsStorage.swift; sourceTree = "<group>"; };
@@ -560,7 +560,7 @@
 			children = (
 				EC37ABBB2C63A01A00B28B58 /* FavoriteGrid */,
 				EC5A28C42C3FC6EE00DEDFFF /* FavoritesDetail.swift */,
-				EC5A28C62C404C9C00DEDFFF /* FavoritesItemView.swift */,
+				EC5A28C62C404C9C00DEDFFF /* RhymeDetailView.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -762,7 +762,7 @@
 				EC7782E62C3B1BE8008E9884 /* Datamuse.swift in Sources */,
 				ECA8F6EC2E045D26009212D0 /* KeyboardObserver.swift in Sources */,
 				ECA8F6E52E0448EE009212D0 /* GrowingTextView.swift in Sources */,
-				EC5A28C72C404C9C00DEDFFF /* FavoritesItemView.swift in Sources */,
+				EC5A28C72C404C9C00DEDFFF /* RhymeDetailView.swift in Sources */,
 				ECA8F6F52E09CB9A009212D0 /* CompositionListView.swift in Sources */,
 				ECA8F6E82E0458C7009212D0 /* hideKeyboardOnTap.swift in Sources */,
 				ECBD84462C42678C00193BA2 /* Fetcher.swift in Sources */,

@@ -1,20 +1,20 @@
 import SwiftUI
 import SwiftData
 
-enum FavoritesItemLayout {
+enum RhymeDetailLayout {
     case list
     case detail
     case embedded
 }
 
-struct FavoritesItemView: View {
+struct RhymeDetailView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.modelContext) private var modelContext
     @Query private var allFavorites: [FavoriteRhyme]
 
     @State var definitions: [String] = []
     @State var isLoading: Bool = true
-    let layout: FavoritesItemLayout
+    let layout: RhymeDetailLayout
     let word: String
     let rhyme: String
     var onDismiss: () -> Void
@@ -42,7 +42,7 @@ struct FavoritesItemView: View {
     }
 
     init(
-        _ layout: FavoritesItemLayout,
+        _ layout: RhymeDetailLayout,
         word: String,
         rhyme: String,
         onDismiss: @escaping () -> Void
