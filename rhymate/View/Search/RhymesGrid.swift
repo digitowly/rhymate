@@ -37,8 +37,9 @@ struct RhymesGrid: View {
         allFavorites.contains { $0.word == normalizedWord && $0.rhyme == rhyme }
     }
 
-    var body: some View {
-        LazyVGrid(
+    @ViewBuilder
+    private var grid: some View {
+        let content = LazyVGrid(
             columns:[GridItem(
                 .adaptive(minimum: 400),
                 spacing: 32
@@ -65,15 +66,24 @@ struct RhymesGrid: View {
                 )
             }
         }
-        .navigationDestination(isPresented: $shouldNavigate) {
-            RhymeDetailView(
-                .detail,
-                word: word,
-                rhyme: $navigationRhyme.wrappedValue,
-                onDismiss: { shouldNavigate = false }
-            )
+
+        if onRhymeTap == nil {
+            content.navigationDestination(isPresented: $shouldNavigate) {
+                RhymeDetailView(
+                    .detail,
+                    word: word,
+                    rhyme: $navigationRhyme.wrappedValue,
+                    onDismiss: { shouldNavigate = false }
+                )
+            }
+        } else {
+            content
         }
-        .sheet(
+    }
+
+    var body: some View {
+        grid
+            .sheet(
             item: $sheetDetail,
             onDismiss: {sheetDetail = nil}
         )

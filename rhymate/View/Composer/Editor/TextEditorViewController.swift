@@ -13,7 +13,7 @@ final class TextEditorViewController: UIViewController, UITextViewDelegate {
     var onHeightChange: ((CGFloat) -> Void)?
     var onAssistantTap: (() -> Void)?
 
-    var onKeyboardVisibilityChange: ((Bool) -> Void)?
+    var onKeyboardVisibilityChange: ((Bool, CGFloat) -> Void)?
 
     /// Tracks whether the first line should use heading style.
     /// Set during initial load from the attributed string's font.
@@ -65,16 +65,44 @@ final class TextEditorViewController: UIViewController, UITextViewDelegate {
             self?.recalculateHeight()
         }
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: UIResponder.keyboardDidHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(_:)), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
 
-    @objc private func keyboardDidShow() {
-        onKeyboardVisibilityChange?(true)
+    @objc private func keyboardDidShow(_ notification: Notification) {
+        let height: CGFloat
+        if let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+            height = frame.height
+        } else {
+            height = 0
+        }
+        onKeyboardVisibilityChange?(true, height)
     }
 
-    @objc private func keyboardDidHide() {
-        onKeyboardVisibilityChange?(false)
+    @objc private func keyboardDidHide(_ notification: Notification) {
+        onKeyboardVisibilityChange?(false, 0)
+        if assistantAccessoryView != nil {
+            hideAssistantAccessory()
+        }
+    }
+
+    // MARK: - Assistant Accessory
+
+    private var assistantAccessoryView: AssistantAccessoryView?
+
+    func showAssistantAccessory(model: AccessoryAssistantPanelModel, modelContainer: Any) {
+        let accessory = AssistantAccessoryView(model: model, modelContainer: modelContainer)
+        assistantAccessoryView = accessory
+        textView.inputAccessoryView = accessory
+        textView.reloadInputViews()
+    }
+
+    func hideAssistantAccessory() {
+        assistantAccessoryView?.tearDown()
+        assistantAccessoryView = nil
+        textView.inputAccessoryView = accessoryBar
+        textView.reloadInputViews()
+        textView.becomeFirstResponder()
     }
 
     override func viewWillAppear(_ animated: Bool) {

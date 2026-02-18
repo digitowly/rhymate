@@ -9,8 +9,16 @@ struct ComposeEditor: View {
     @Binding var selectedWord: String
     @State private var coordinatorRef: TextEditorContainer.Coordinator?
 
+    @Environment(\.modelContext) private var modelContext
     @State private var height: CGFloat = 400
     @State private var isKeyboardVisible = false
+    @State private var keyboardHeight: CGFloat = 0
+
+    private var useAccessoryMode: Bool {
+        guard isKeyboardVisible, keyboardHeight > 0 else { return false }
+        let availableHeight = UIScreen.main.bounds.height - keyboardHeight
+        return availableHeight < 420
+    }
 
     var body: some View {
         ZStack {
@@ -32,22 +40,40 @@ struct ComposeEditor: View {
                     self.height = max(updatedHeight, 600)
                 },
                 onAssistantTap: {
-                    withAnimation(.spring(duration: 0.35, bounce: 0.1)) {
-                        isAssistantVisible = true
+                    if useAccessoryMode {
+                        coordinatorRef?.showAccessoryAssistant(selectedWord: selectedWord, modelContainer: modelContext.container)
+                    } else {
+                        withAnimation(.spring(duration: 0.35, bounce: 0.1)) {
+                            isAssistantVisible = true
+                        }
                     }
                 },
-                onKeyboardVisibilityChange: { visible in
+                onKeyboardVisibilityChange: { visible, height in
                     withAnimation {
                         isKeyboardVisible = visible
                     }
+                    keyboardHeight = height
                 },
+                onAccessoryAssistantDismissed: { },
                 coordinatorRef: $coordinatorRef
             )
             .id(key)
             .frame(height: height)
+            .onChange(of: selectedWord) { _, newValue in
+                if coordinatorRef?.panelModel != nil {
+                    coordinatorRef?.updateAccessorySelectedWord(newValue)
+                }
+            }
+            .onChange(of: isAssistantVisible) { _, visible in
+                if !visible {
+                    DispatchQueue.main.asyncAfter(deadline: .now() ) {
+                        coordinatorRef?.focus()
+                    }
+                }
+            }
         }
         .toolbar {
-            ToolbarItemGroup(placement: .navigation) {
+            ToolbarItemGroup(placement: .topBarTrailing) {
                 if !isKeyboardVisible {
                     Button {
                         withAnimation(.spring(duration: 0.35, bounce: 0.1)) {

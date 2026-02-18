@@ -4,6 +4,7 @@ import SwiftData
 struct LyricAssistantView: View {
     @Binding var text: String
     var hasAutoSubmit = false
+    var suppressAutoFocus = false
     var onSearchTermChange: ((String) -> Void)?
 
     @State private var searchText: String = ""
@@ -72,7 +73,9 @@ struct LyricAssistantView: View {
                 searchText = word
                 onSearchTermChange?(word)
             }
-            isInputFocused = true
+            if !suppressAutoFocus {
+                isInputFocused = true
+            }
         }
     }
 

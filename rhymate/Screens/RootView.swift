@@ -54,12 +54,16 @@ struct RootView: View {
         }
         .onChange(of: selectedCollection) {
             if let collection = selectedCollection {
-                if selectedComposition?.collection?.id != collection.id {
-                    selectedComposition = collection.compositions?
-                        .sorted(by: { $0.updatedAt > $1.updatedAt })
-                        .first
+                if horizontalSizeClass == .regular {
+                    if selectedComposition?.collection?.id != collection.id {
+                        selectedComposition = collection.compositions?
+                            .sorted(by: { $0.updatedAt > $1.updatedAt })
+                            .first
+                    }
+                    columnVisibility = .doubleColumn
+                } else {
+                    selectedComposition = nil
                 }
-                columnVisibility = .doubleColumn
             }
         }
         .onChange(of: selectedComposition) {}

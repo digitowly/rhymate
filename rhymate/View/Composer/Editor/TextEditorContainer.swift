@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct TextEditorContainer: UIViewControllerRepresentable {
     class Coordinator {
@@ -7,7 +8,10 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         var onSelectionChange: ((String, NSRange) -> Void)?
         var onHeightChange: ((CGFloat) -> Void)?
         var onAssistantTap: (() -> Void)?
-        var onKeyboardVisibilityChange: ((Bool) -> Void)?
+        var onKeyboardVisibilityChange: ((Bool, CGFloat) -> Void)?
+        var onAccessoryAssistantDismissed: (() -> Void)?
+
+        var panelModel: AccessoryAssistantPanelModel?
 
         func toggleTrait(_ type: TraitType) -> NSAttributedString? {
             return controller?.toggleTraitAtCurrentSelection(type)
@@ -20,6 +24,25 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         func focus() {
             controller?.textView.becomeFirstResponder()
         }
+
+        func showAccessoryAssistant(selectedWord: String, modelContainer: ModelContainer) {
+            let model = AccessoryAssistantPanelModel(selectedWord: selectedWord)
+            model.onClose = { [weak self] in
+                self?.hideAccessoryAssistant()
+            }
+            panelModel = model
+            controller?.showAssistantAccessory(model: model, modelContainer: modelContainer)
+        }
+
+        func hideAccessoryAssistant() {
+            controller?.hideAssistantAccessory()
+            panelModel = nil
+            onAccessoryAssistantDismissed?()
+        }
+
+        func updateAccessorySelectedWord(_ word: String) {
+            panelModel?.selectedWord = word
+        }
     }
 
     let initialText: NSAttributedString
@@ -29,7 +52,8 @@ struct TextEditorContainer: UIViewControllerRepresentable {
     var onSelectionChange: ((String, NSRange) -> Void)? = nil
     var onHeightChange: ((CGFloat) -> Void)? = nil
     var onAssistantTap: (() -> Void)? = nil
-    var onKeyboardVisibilityChange: ((Bool) -> Void)? = nil
+    var onKeyboardVisibilityChange: ((Bool, CGFloat) -> Void)? = nil
+    var onAccessoryAssistantDismissed: (() -> Void)? = nil
     @Binding var coordinatorRef: TextEditorContainer.Coordinator?
 
     func makeCoordinator() -> Coordinator {
@@ -39,6 +63,7 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         coordinator.onHeightChange = onHeightChange
         coordinator.onAssistantTap = onAssistantTap
         coordinator.onKeyboardVisibilityChange = onKeyboardVisibilityChange
+        coordinator.onAccessoryAssistantDismissed = onAccessoryAssistantDismissed
         return coordinator
     }
 

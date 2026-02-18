@@ -80,7 +80,7 @@ struct CompositionView: View {
 
                 assistantPanel
                     .padding(.bottom, 60)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                    .transition(.move(edge: .bottom))
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)) { notification in
@@ -97,7 +97,6 @@ struct CompositionView: View {
     }
 
     private func closeAssistant() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         withAnimation(.spring(duration: 0.3, bounce: 0.05)) {
             isAssistantVisible = false
         }

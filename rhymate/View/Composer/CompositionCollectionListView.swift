@@ -11,6 +11,7 @@ struct CompositionCollectionListView: View {
 
     @Query(sort: \CompositionCollection.sortOrder)
     private var collections: [CompositionCollection]
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.modelContext) private var modelContext
     @Environment(\.editMode) private var editMode
 
@@ -59,7 +60,8 @@ struct CompositionCollectionListView: View {
             }
         }
         .onAppear {
-            if selectedCollection == nil, let first = collections.first {
+            if horizontalSizeClass == .regular,
+               selectedCollection == nil, let first = collections.first {
                 selectedCollection = first
             }
         }

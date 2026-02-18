@@ -49,6 +49,7 @@
 		ECA551932E0321AA009DD4A5 /* ComposeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA551922E0321AA009DD4A5 /* ComposeEditor.swift */; };
 		ECA8F6D22E0328BD009212D0 /* TextEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6D12E0328BD009212D0 /* TextEditorViewController.swift */; };
 		ECA8F6D42E0328D9009212D0 /* TextEditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6D32E0328D9009212D0 /* TextEditorContainer.swift */; };
+		EC1234570000000000000001 /* AssistantAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1234560000000000000001 /* AssistantAccessoryView.swift */; };
 		ECA8F6D62E036C92009212D0 /* LyricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6D52E036C92009212D0 /* LyricService.swift */; };
 		ECA8F6D82E03FF07009212D0 /* LyricType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6D72E03FEA7009212D0 /* LyricType.swift */; };
 		ECA8F6DB2E042C3C009212D0 /* LyricTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6DA2E042C3C009212D0 /* LyricTypeTest.swift */; };
@@ -158,6 +159,7 @@
 		ECA551922E0321AA009DD4A5 /* ComposeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeEditor.swift; sourceTree = "<group>"; };
 		ECA8F6D12E0328BD009212D0 /* TextEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorViewController.swift; sourceTree = "<group>"; };
 		ECA8F6D32E0328D9009212D0 /* TextEditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorContainer.swift; sourceTree = "<group>"; };
+		EC1234560000000000000001 /* AssistantAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantAccessoryView.swift; sourceTree = "<group>"; };
 		ECA8F6D52E036C92009212D0 /* LyricService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricService.swift; sourceTree = "<group>"; };
 		ECA8F6D72E03FEA7009212D0 /* LyricType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricType.swift; sourceTree = "<group>"; };
 		ECA8F6DA2E042C3C009212D0 /* LyricTypeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricTypeTest.swift; sourceTree = "<group>"; };
@@ -585,6 +587,7 @@
 				ECA551922E0321AA009DD4A5 /* ComposeEditor.swift */,
 				ECA8F6D12E0328BD009212D0 /* TextEditorViewController.swift */,
 				ECA8F6D32E0328D9009212D0 /* TextEditorContainer.swift */,
+				EC1234560000000000000001 /* AssistantAccessoryView.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -790,6 +793,7 @@
 				ECBD845A2C4513BE00193BA2 /* FadeInOutRow.swift in Sources */,
 				EC37ABBA2C639ED300B28B58 /* FavoritesGrid.swift in Sources */,
 				ECA551932E0321AA009DD4A5 /* ComposeEditor.swift in Sources */,
+				EC1234570000000000000001 /* AssistantAccessoryView.swift in Sources */,
 				ECE8AB342E116E08007F08D4 /* CompositionCollectionListView.swift in Sources */,
 				EC324DEF2CE2A93500A245F4 /* SettingsView.swift in Sources */,
 				ECBDC3DA2C46D1D200943D83 /* WiktionaryFetcher.swift in Sources */,
