@@ -5,7 +5,7 @@ final class RhymesStorageTests: XCTestCase {
     var rhymesStorage: RhymesStorage!
     
     let testWord = "test"
-    let testRhymes: DatamuseRhymeResponse = [
+    let testRhymes: [DatamuseRhyme] = [
         DatamuseRhyme(word: "manifest", score: 2995, numSyllables: 3),
         DatamuseRhyme(word: "best", score: 2743, numSyllables: 1),
         DatamuseRhyme(word: "rest", score: 2366, numSyllables: 1),

@@ -1,7 +1,13 @@
 import SwiftUI
+import SwiftData
 
 struct FavoritesGrid: View {
-    @Binding var favorites: FavoriteRhymes
+    @Query(sort: \FavoriteRhyme.word) private var favorites: [FavoriteRhyme]
+
+    private var groupedByWord: [String: [FavoriteRhyme]] {
+        Dictionary(grouping: favorites, by: \.word)
+    }
+
     var body: some View {
         LazyVGrid(
             columns:[GridItem(
@@ -9,15 +15,14 @@ struct FavoritesGrid: View {
             )],
             spacing: 4
         ){
-            ForEach(Array($favorites.wrappedValue.keys), id: \.self) {key in
-                // check if favorite has rhymes
-                if !(favorites[key]?.rhymes.isEmpty ?? false) {
+            ForEach(Array(groupedByWord.keys.sorted()), id: \.self) { word in
+                if let entries = groupedByWord[word], !entries.isEmpty {
                     NavigationLink(
-                        destination: FavoritesDetail(word: key, favorites: $favorites),
+                        destination: FavoritesDetail(word: word),
                         label: {
                         FavoritesGridItem(
-                            rhymes: $favorites.wrappedValue[key]?.rhymes ?? [],
-                            word: key,
+                            rhymes: entries.map(\.rhyme),
+                            word: word,
                         )
                     })
                 }
@@ -26,15 +31,6 @@ struct FavoritesGrid: View {
     }
 }
 
-struct PreviewFavoritesGrid: View {
-    @State var favorites = FavoriteRhymesStorage().getFavoriteRhymes()
-    var body: some View{
-        FavoritesGrid(favorites: $favorites)
-    }
-}
-
 #Preview {
-    PreviewFavoritesGrid()
+    FavoritesGrid()
 }
-
-

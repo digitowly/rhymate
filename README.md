@@ -1,15 +1,20 @@
 # Rhymate
 
-Rhymate is a swift based client for the [Datamuse API](https://www.datamuse.com/api/).
+Rhymate is a Swift-based app for songwriters and lyricists. It helps you organize lyrics, find rhymes and synonyms, and enhance your writing with AI assistance.
 
 ### Features
 
-- Save favorite rhymes
-- View Wiktionary definitions for words
+- Organize and manage your lyrics in dedicated projects
+- Instantly find rhymes, synonyms, and related words
+- Enhance your lyrics with AI-powered suggestions and improvements
+- Save and access your favorite rhymes for quick reference
+- View detailed Wiktionary definitions and word information
+- Seamlessly sync across iOS, iPadOS, and macOS devices
 
 ### Supported Platforms
 
-- [x] iOS
-- [x] iPadOS
-- [x] macOS
-- [ ] watchOS (planned)
+| Platform | Status       |
+| -------- | ------------ |
+| iOS      | ✅ Supported |
+| iPadOS   | ✅ Supported |
+| macOS    | ✅ Supported |

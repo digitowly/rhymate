@@ -1,6 +1,7 @@
 import Foundation
 
-let ACCENT_COLOR = "#2ABF91"
+let DEFAULT_FONT_SIZE = CGFloat(17)
+let HEADING_FONT_SIZE = CGFloat(28)
 
 // API URLs
 let DATAMUSE_API_URL = URL(string: "https://api.datamuse.com")!

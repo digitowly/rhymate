@@ -5,9 +5,3 @@ struct SearchHistoryEntry: JSONable & Identifiable {
     let timestamp: TimeInterval
     var id: String { input + timestamp.description }
 }
-
-enum SearchError {
-    case noResults
-    case generic
-    case network
-}

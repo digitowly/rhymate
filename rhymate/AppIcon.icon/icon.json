@@ -4,7 +4,7 @@
       "value" : {
         "linear-gradient" : [
           "extended-gray:1.00000,1.00000",
-          "display-p3:0.90481,1.00000,0.98376,1.00000"
+          "display-p3:0.86093,1.00000,0.91899,1.00000"
         ]
       }
     },
@@ -21,77 +21,17 @@
   "groups" : [
     {
       "blend-mode" : "normal",
-      "blur-material" : null,
+      "blur-material" : 1,
       "hidden" : false,
       "layers" : [
         {
-          "blend-mode" : "overlay",
-          "fill" : {
-            "solid" : "display-p3:0.34252,0.45437,0.39967,0.43000"
-          },
-          "glass" : true,
-          "hidden" : false,
-          "image-name" : "Vector (1).svg",
-          "name" : "Vector (1)"
-        },
-        {
-          "fill-specializations" : [
-            {
-              "value" : {
-                "solid" : "display-p3:0.11035,0.18929,0.17338,1.00000"
-              }
-            },
-            {
-              "appearance" : "dark",
-              "value" : {
-                "solid" : "display-p3:0.20645,0.35882,0.33206,1.00000"
-              }
-            }
-          ],
-          "glass" : true,
-          "hidden" : false,
-          "image-name" : "Vector (1).svg",
-          "name" : "Vector (1)",
-          "position" : {
-            "scale" : 1,
-            "translation-in-points" : [
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "fill" : {
-            "solid" : "display-p3:0.11035,0.18929,0.17338,1.00000"
-          },
-          "glass" : true,
-          "hidden" : false,
-          "image-name" : "Group.svg",
-          "name" : "Group",
-          "position" : {
-            "scale" : 1,
-            "translation-in-points" : [
-              -68.39751995309373,
-              137.5600051301271
-            ]
-          }
-        },
-        {
+          "blend-mode" : "normal",
           "fill-specializations" : [
             {
               "value" : {
                 "linear-gradient" : [
-                  "display-p3:0.61650,0.89455,0.82749,1.00000",
-                  "display-p3:0.34996,0.60251,0.54614,1.00000"
-                ]
-              }
-            },
-            {
-              "appearance" : "light",
-              "value" : {
-                "linear-gradient" : [
-                  "display-p3:0.68917,1.00000,0.92504,1.00000",
-                  "display-p3:0.43256,0.74473,0.67505,1.00000"
+                  "display-p3:0.10951,0.27234,0.23951,1.00000",
+                  "display-p3:0.07623,0.23184,0.20047,1.00000"
                 ]
               }
             },
@@ -99,37 +39,113 @@
               "appearance" : "dark",
               "value" : {
                 "linear-gradient" : [
-                  "display-p3:0.68917,1.00000,0.92504,1.00000",
-                  "display-p3:0.41499,0.71185,0.65201,1.00000"
+                  "display-p3:0.08370,0.21569,0.18340,1.00000",
+                  "display-p3:0.07675,0.21864,0.18697,1.00000"
                 ]
               }
             }
           ],
-          "hidden" : false,
-          "image-name" : "Vector (3).svg",
-          "name" : "Vector (3)",
+          "glass" : true,
+          "image-name" : "rhymo_outline.svg",
+          "name" : "rhymo_outline"
+        },
+        {
+          "fill-specializations" : [
+            {
+              "value" : {
+                "linear-gradient" : [
+                  "display-p3:0.83566,1.00000,0.87792,1.00000",
+                  "display-p3:0.66777,1.00000,0.83980,0.90243"
+                ]
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "linear-gradient" : [
+                  "display-p3:0.83566,1.00000,0.87792,1.00000",
+                  "display-p3:0.58241,1.00000,0.87756,0.85060"
+                ]
+              }
+            }
+          ],
+          "hidden" : true,
+          "image-name" : "rhymo_background.svg",
+          "name" : "rhymo_background",
           "position" : {
             "scale" : 1,
             "translation-in-points" : [
-              -72.85342897291125,
-              104.83386197840822
+              -65.7985598983031,
+              100.0676836137603
             ]
           }
         }
       ],
       "position" : {
-        "scale" : 1.14,
+        "scale" : 1.15,
         "translation-in-points" : [
-          -3.3589771908035124,
-          -9.751144487014876
+          15.384326116009568,
+          -4.762874065953984
         ]
       },
       "shadow" : {
         "kind" : "neutral",
         "opacity" : 0.25
       },
+      "specular" : true,
       "translucency" : {
         "enabled" : false,
+        "value" : 0.5
+      }
+    },
+    {
+      "blur-material" : 0.5,
+      "hidden" : false,
+      "layers" : [
+        {
+          "fill-specializations" : [
+            {
+              "value" : {
+                "linear-gradient" : [
+                  "display-p3:0.83566,1.00000,0.87792,1.00000",
+                  "display-p3:0.54903,1.00000,0.78254,0.90243"
+                ]
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "linear-gradient" : [
+                  "display-p3:0.72251,1.00000,0.79387,1.00000",
+                  "display-p3:0.58241,1.00000,0.87756,0.80000"
+                ]
+              }
+            }
+          ],
+          "image-name" : "rhymo_background.svg",
+          "name" : "rhymo_background",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              -65.7985598983031,
+              100.0676836137603
+            ]
+          }
+        }
+      ],
+      "position" : {
+        "scale" : 1.15,
+        "translation-in-points" : [
+          18.34059952227711,
+          -5.175395091111443
+        ]
+      },
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
         "value" : 0.5
       }
     }

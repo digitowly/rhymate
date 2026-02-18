@@ -1,6 +1,6 @@
 import Foundation
 
-struct DatamuseFetcher {
+internal struct DatamuseFetcher {
     
     private let rhymesStorage = RhymesStorage()
     private let fetcher: Fetcher
@@ -16,7 +16,7 @@ struct DatamuseFetcher {
     
     /// Fetch Ryhmes from Datamuse API (https://api.datamuse.com/words?rel_rhy=word)
     func getRhymes(forWord: String) async throws -> [DatamuseRhyme] {
-        let word = Formatter().normalize(forWord)
+        let word = Formatter.normalize(forWord)
         
         // prefer local store if word already exists in UserDefaults
         if let localResult = rhymesStorage.get(word: word), !localResult.isEmpty {
@@ -46,7 +46,7 @@ struct DatamuseFetcher {
     
     /// Fetch rhyme suggestions from Datamuse API (https://api.datamuse.com/sug?s=word)
     func getSuggestions(forWord: String) async throws -> [DatamuseSuggestion] {
-        let word = Formatter().normalize(forWord)
+        let word = Formatter.normalize(forWord)
 
         var urlComponents = URLComponents(string: baseUrlSuggestions.absoluteString)!
         urlComponents.queryItems = [

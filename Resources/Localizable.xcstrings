@@ -21,33 +21,142 @@
     "About" : {
 
     },
+    "Back" : {
+
+    },
+    "Bold" : {
+
+    },
+    "Cancel" : {
+
+    },
     "close" : {
+
+    },
+    "Composition Editor" : {
+
+    },
+    "Continue" : {
 
     },
     "Datamuse API" : {
 
     },
+    "Delete" : {
+
+    },
+    "Delete Folder" : {
+
+    },
     "Delete history" : {
 
     },
-    "fallbackFavoritesText" : {
+    "emptyCompositions.action" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mark rhymes as favorites by toggling the heart icon."
+            "value" : "Create Composition"
           }
         }
       }
     },
-    "fallbackFavoritesTitle" : {
+    "emptyCompositions.description" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No favorites yet"
+            "value" : "Start writing by creating your first composition."
+          }
+        }
+      }
+    },
+    "emptyCompositions.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Compositions"
+          }
+        }
+      }
+    },
+    "emptyFavorites.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap the heart icon on any rhyme to save it here."
+          }
+        }
+      }
+    },
+    "emptyFavorites.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Favorites"
+          }
+        }
+      }
+    },
+    "emptyFolders.action" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Folder"
+          }
+        }
+      }
+    },
+    "emptyFolders.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create a folder to organize your compositions."
+          }
+        }
+      }
+    },
+    "emptyFolders.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Projects"
+          }
+        }
+      }
+    },
+    "emptyHistory.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your recent searches will appear here."
+          }
+        }
+      }
+    },
+    "emptyHistory.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No History"
           }
         }
       }
@@ -113,7 +222,16 @@
     "Find a rhyme" : {
 
     },
+    "Find Rhymes" : {
+
+    },
+    "Heading" : {
+
+    },
     "History" : {
+
+    },
+    "iCloud Favorites" : {
 
     },
     "info" : {
@@ -127,6 +245,30 @@
         }
       }
     },
+    "Italic" : {
+
+    },
+    "Move" : {
+
+    },
+    "Name" : {
+
+    },
+    "New Folder" : {
+
+    },
+    "No Composition Selected" : {
+
+    },
+    "No Project Selected" : {
+
+    },
+    "No rhymes yet" : {
+
+    },
+    "Projects" : {
+
+    },
     "recent" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -138,7 +280,28 @@
         }
       }
     },
+    "Recent Searches" : {
+
+    },
+    "Rename" : {
+
+    },
+    "Rename Folder" : {
+
+    },
     "Rhymate uses the Datamuse API to find rhyming words and Wiktionary for word definitions." : {
+
+    },
+    "Rhymes" : {
+
+    },
+    "Save" : {
+
+    },
+    "Search" : {
+
+    },
+    "Search for a word to discover rhymes, favorites, and more." : {
 
     },
     "searchInput" : {
@@ -152,7 +315,28 @@
         }
       }
     },
+    "Select a composition to start writing." : {
+
+    },
+    "Select a Folder" : {
+
+    },
+    "Select a project from the sidebar or create a new one to get started." : {
+
+    },
     "Show all" : {
+
+    },
+    "This will permanently delete the folder and all its compositions." : {
+
+    },
+    "Type a word or phrase below to get started" : {
+
+    },
+    "Type a word…" : {
+
+    },
+    "What's New" : {
 
     },
     "Wiktionary API" : {
@@ -179,6 +363,12 @@
           }
         }
       }
+    },
+    "Write lyrics in a full editor with an inline rhyme assistant — find the perfect rhyme without leaving your flow. Syncs safely across devices via iCloud." : {
+
+    },
+    "Your favorite rhymes now sync across all your devices with iCloud." : {
+
     }
   },
   "version" : "1.0"

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SearchHistoryList: View {
     @Binding var history: [SearchHistoryEntry]
-    let destination: (String) -> RhymesScreen
+    let destination: (String) -> RhymesView
     
     private let maxHistoryCount: Int = 4
     
@@ -40,13 +40,12 @@ struct SearchOverlayPreview: View {
             input: "test",
             timestamp: Date().timeIntervalSinceReferenceDate)
     ]
-    @State var favorites: FavoriteRhymes = .init()
-    
+
     var body: some View{
         SearchHistoryList(
             history: $searchHistory,
             destination: { entry in
-                RhymesScreen(word: entry,favorites: $favorites)
+                RhymesView(word: entry)
             }
         )
     }

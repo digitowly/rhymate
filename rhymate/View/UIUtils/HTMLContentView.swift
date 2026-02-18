@@ -1,10 +1,20 @@
 import SwiftUI
+import UIKit
 import WebKit
 
-struct HTMLContentLinkOptions{
+private extension UIColor {
+    func resolvedHex(for scheme: ColorScheme) -> String {
+        let style: UIUserInterfaceStyle = scheme == .dark ? .dark : .light
+        let resolved = resolvedColor(with: UITraitCollection(userInterfaceStyle: style))
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0
+        resolved.getRed(&r, green: &g, blue: &b, alpha: nil)
+        return String(format: "#%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255))
+    }
+}
+
+struct HTMLContentLinkOptions {
     let baseUrl: String
     let target: String
-    let color: String
 }
 
 struct HTMLContentView: UIViewRepresentable {
@@ -17,13 +27,14 @@ struct HTMLContentView: UIViewRepresentable {
         linkOptions: HTMLContentLinkOptions
     ) {
         let textColor = scheme == .dark ? "white" : "black"
-        
+        let accentHex = UIColor(named: "AccentColor")?.resolvedHex(for: scheme) ?? "#17A88A"
+
         var elements: String = ""
         for el in htmlElements {
             let elementWithWrapper = "<div class=\"element\">\(el)</div>"
             elements.append(elementWithWrapper)
         }
-        
+
         let wrapper = """
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,9 +50,9 @@ struct HTMLContentView: UIViewRepresentable {
                 animation: fadeInAnimation ease .3s;
                 margin: 0;
             }
-        
+
             a {
-                color: \(linkOptions.color);
+                color: \(accentHex);
             }
         
             .element {
@@ -120,8 +131,7 @@ struct HTMLContentView: UIViewRepresentable {
             scheme: .light,
             linkOptions: HTMLContentLinkOptions(
                 baseUrl: "https://en.wiktionary.org/",
-                target: "_target",
-                color: ACCENT_COLOR
+                target: "_target"
             )
         )
     }.frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -1,88 +1,97 @@
 import Foundation
 import SwiftUI
+import SwiftData
 
 struct RhymesGrid: View {
     var layout: RhymeItemLayout = .grid
     var word: String
-    var rhymes: [RhymeItem]
-    @Binding var favorites: FavoriteRhymes
-    
+    var rhymes: [String]
+    var onRhymeTap: ((String, String) -> Void)?
+
+    @Query private var allFavorites: [FavoriteRhyme]
+    @Environment(\.modelContext) private var modelContext
+
     @State private var sheetDetail: RhymeItem?
-    
+
     @State private var navigationRhyme: String = ""
     @State private var shouldNavigate: Bool = false
-    
+
+    private var normalizedWord: String { Formatter.normalize(word) }
+
     func toggleFavorite(_ rhyme: String) {
-        do {
-            try FavoriteRhymesStorage().mutate(
-                isFavorite(rhyme) ? .remove : .add,
-                key: word,
-                rhyme
-            )
-        } catch {
-            print(error)
-        }
-        favorites = FavoritesOrganizer().mutate(
-            favorites,
-            isFavorite(rhyme) ? .remove : .add,
-            data: rhyme,
-            key: word
+        let word = normalizedWord
+        let descriptor = FetchDescriptor<FavoriteRhyme>(
+            predicate: #Predicate { $0.word == word && $0.rhyme == rhyme }
         )
+        let existing = (try? modelContext.fetch(descriptor)) ?? []
+
+        if let first = existing.first {
+            for item in existing { modelContext.delete(item) }
+        } else {
+            modelContext.insert(FavoriteRhyme(word: word, rhyme: rhyme))
+        }
+        try? modelContext.save()
     }
-    
+
     func isFavorite(_ rhyme: String) -> Bool {
-        return favorites[word]?.rhymes.contains(rhyme) ?? false
+        allFavorites.contains { $0.word == normalizedWord && $0.rhyme == rhyme }
     }
-    
-    var body: some View {
-        LazyVGrid(
+
+    @ViewBuilder
+    private var grid: some View {
+        let content = LazyVGrid(
             columns:[GridItem(
                 .adaptive(minimum: 400),
                 spacing: 32
             )],
             spacing: 8
         ){
-            ForEach(rhymes) { item in
+            ForEach(rhymes, id: \.self) { rhyme in
                 RhymeItemView(
                     layout,
                     onPress: {
-                        if UIDevice.current.userInterfaceIdiom == .phone {
-                            sheetDetail = item
+                        if let onRhymeTap {
+                            onRhymeTap(word, rhyme)
+                        } else if UIDevice.current.userInterfaceIdiom == .phone {
+                            sheetDetail = RhymeItem(word: word, rhyme: rhyme)
                         } else {
-                            navigationRhyme = item.rhyme
+                            navigationRhyme = rhyme
                             shouldNavigate = true
                         }
                     },
-                    rhyme: item.rhyme,
+                    rhyme: rhyme,
                     word: word,
-                    isFavorite: isFavorite(item.rhyme),
-                    toggleFavorite: { toggleFavorite(item.rhyme) },
+                    isFavorite: isFavorite(rhyme),
+                    toggleFavorite: { toggleFavorite(rhyme) },
                 )
             }
         }
-        .navigationDestination(isPresented: $shouldNavigate) {
-            FavoritesItemView(
-                .detail,
-                word: word,
-                rhyme: $navigationRhyme.wrappedValue,
-                favorites: $favorites,
-                isFavorite: isFavorite($navigationRhyme.wrappedValue),
-                toggleFavorite: { toggleFavorite($navigationRhyme.wrappedValue) },
-                onDismiss: {sheetDetail = nil}
-            )
+
+        if onRhymeTap == nil {
+            content.navigationDestination(isPresented: $shouldNavigate) {
+                RhymeDetailView(
+                    .detail,
+                    word: word,
+                    rhyme: $navigationRhyme.wrappedValue,
+                    onDismiss: { shouldNavigate = false }
+                )
+            }
+        } else {
+            content
         }
-        .sheet(
+    }
+
+    var body: some View {
+        grid
+            .sheet(
             item: $sheetDetail,
             onDismiss: {sheetDetail = nil}
         )
         { item in
-            FavoritesItemView(
+            RhymeDetailView(
                 .detail,
                 word: word,
                 rhyme: item.rhyme,
-                favorites: $favorites,
-                isFavorite: isFavorite(item.rhyme),
-                toggleFavorite: { toggleFavorite(item.rhyme) },
                 onDismiss: {sheetDetail = nil}
             )
             .presentationDetents([.medium, .large])
@@ -92,18 +101,6 @@ struct RhymesGrid: View {
     }
 }
 
-struct PreviewRhymesGrid: View {
-    @State var rhymes: [RhymeItem] = [
-        RhymeItem(word: "test", rhyme: "west"),
-        RhymeItem(word: "test", rhyme: "best"),
-        RhymeItem(word: "test", rhyme: "chest"),
-    ]
-    @State var favorites = FavoriteRhymesStorage().getFavoriteRhymes()
-    var body: some View {
-        RhymesGrid(word: "test", rhymes: rhymes, favorites: $favorites)
-    }
-}
-
 #Preview {
-    PreviewRhymesGrid()
+    RhymesGrid(word: "test", rhymes: ["west", "best", "chest"])
 }
