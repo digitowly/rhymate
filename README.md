@@ -1,6 +1,6 @@
 # Rhymate
 
-Rhymate is a Swift-based app for songwriters and lyricists. It helps you organize lyrics, find rhymes and synonyms, and enhance your writing with AI assistance.
+Rhymate is a Swift-based app for songwriters and lyricists. It helps you organize lyrics, find rhymes and synonyms, and enhance your writing.
 
 ### Features
 
