@@ -115,37 +115,16 @@ final class TextEditorViewController: UIViewController, UITextViewDelegate {
     func toggleTraitAtCurrentSelection(_ type: TraitType ) -> NSAttributedString {
         let range = textView.selectedRange
         guard range.length > 0 else { return textView.attributedText }
-        
-        let mutable = NSMutableAttributedString(attributedString: textView.attributedText)
-        
-        var trait: UIFontDescriptor.SymbolicTraits {
-            switch type {
-            case .bold: return .traitBold
-            case .italic: return .traitItalic
-            }
+
+        let trait: UIFontDescriptor.SymbolicTraits = switch type {
+        case .bold: .traitBold
+        case .italic: .traitItalic
         }
-        
-        mutable.enumerateAttribute(.font, in: range, options: []) { value, subrange, _ in
-            if let font = value as? UIFont {
-                var traits = font.fontDescriptor.symbolicTraits
-                let isTraitApplied = traits.contains(trait)
-                
-                if isTraitApplied {
-                    traits.remove(trait)
-                } else {
-                    traits.insert(trait)
-                }
-                
-                if let newDescriptor = font.fontDescriptor.withSymbolicTraits(traits) {
-                    let updatedFont = UIFont(descriptor: newDescriptor, size: font.pointSize)
-                    mutable.addAttribute(.font, value: updatedFont, range: subrange)
-                }
-            }
-        }
-        
-        textView.attributedText = mutable
+
+        let result = ComposerLogic.toggleTrait(trait, in: textView.attributedText, over: range)
+        textView.attributedText = result
         textView.selectedRange = range
-        return mutable
+        return result
     }
     
     private func recalculateHeight() {

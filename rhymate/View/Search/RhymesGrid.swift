@@ -6,6 +6,7 @@ struct RhymesGrid: View {
     var layout: RhymeItemLayout = .grid
     var word: String
     var rhymes: [String]
+    var onRhymeTap: ((String, String) -> Void)?
 
     @Query private var allFavorites: [FavoriteRhyme]
     @Environment(\.modelContext) private var modelContext
@@ -48,7 +49,9 @@ struct RhymesGrid: View {
                 RhymeItemView(
                     layout,
                     onPress: {
-                        if UIDevice.current.userInterfaceIdiom == .phone {
+                        if let onRhymeTap {
+                            onRhymeTap(word, rhyme)
+                        } else if UIDevice.current.userInterfaceIdiom == .phone {
                             sheetDetail = RhymeItem(word: word, rhyme: rhyme)
                         } else {
                             navigationRhyme = rhyme

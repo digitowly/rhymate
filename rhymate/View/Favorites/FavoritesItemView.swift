@@ -4,6 +4,7 @@ import SwiftData
 enum FavoritesItemLayout {
     case list
     case detail
+    case embedded
 }
 
 struct FavoritesItemView: View {
@@ -121,6 +122,38 @@ struct FavoritesItemView: View {
                         withAnimation{ isLoading = false }
                     }
                 })
+            }
+        case .embedded:
+            VStack(alignment: .center) {
+                VStack {
+                    if isLoading {
+                        ProgressView()
+                    } else if definitions.isEmpty {
+                        Text("wiktionaryNoDefinitions").foregroundStyle(.secondary)
+                    } else {
+                        HTMLContentView(
+                            htmlElements: definitions,
+                            scheme: colorScheme,
+                            classNames: """
+                            .definition p {
+                                padding-bottom: 0.5rem;
+                            }
+                            """,
+                            linkOptions: HTMLContentLinkOptions(
+                                baseUrl: "https://en.wiktionary.org/",
+                                target: "_blank",
+                                color: ACCENT_COLOR
+                            )
+                        )
+                    }
+                }
+                .frame(minHeight: 0, maxHeight: .infinity)
+                .onAppear {
+                    Task {
+                        definitions = try await WiktionaryFetcher().getDefinitions(forWord: rhyme)
+                        withAnimation { isLoading = false }
+                    }
+                }
             }
         case .list:
             HStack {

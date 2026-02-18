@@ -3,6 +3,7 @@ import SwiftUI
 struct RhymesView: View {
     var word: String
     var onDisappear: ((String) -> Void)?
+    var onRhymeTap: ((String, String) -> Void)?
 
     private let lyricService = LyricService()
 
@@ -42,7 +43,7 @@ struct RhymesView: View {
                 SearchResultError(input: word, searchError: $searchError.wrappedValue ?? .generic)
             } else {
                 ScrollView {
-                    RhymesGrid(word: word, rhymes: rhymes)
+                    RhymesGrid(word: word, rhymes: rhymes, onRhymeTap: onRhymeTap)
                 }
             }
         }

@@ -21,21 +21,31 @@
   "groups" : [
     {
       "blend-mode" : "normal",
-      "blur-material" : null,
+      "blur-material" : 1,
       "hidden" : false,
       "layers" : [
         {
+          "blend-mode" : "normal",
           "fill-specializations" : [
+            {
+              "value" : {
+                "linear-gradient" : [
+                  "display-p3:0.10951,0.27234,0.23951,1.00000",
+                  "display-p3:0.07623,0.23184,0.20047,1.00000"
+                ]
+              }
+            },
             {
               "appearance" : "dark",
               "value" : {
                 "linear-gradient" : [
-                  "display-p3:0.03664,0.08013,0.03248,1.00000",
-                  "display-p3:0.06051,0.16323,0.16273,1.00000"
+                  "display-p3:0.08370,0.21569,0.18340,1.00000",
+                  "display-p3:0.07675,0.21864,0.18697,1.00000"
                 ]
               }
             }
           ],
+          "glass" : true,
           "image-name" : "rhymo_outline.svg",
           "name" : "rhymo_outline"
         },
@@ -59,6 +69,7 @@
               }
             }
           ],
+          "hidden" : true,
           "image-name" : "rhymo_background.svg",
           "name" : "rhymo_background",
           "position" : {
@@ -84,6 +95,57 @@
       "specular" : true,
       "translucency" : {
         "enabled" : false,
+        "value" : 0.5
+      }
+    },
+    {
+      "blur-material" : 0.5,
+      "hidden" : false,
+      "layers" : [
+        {
+          "fill-specializations" : [
+            {
+              "value" : {
+                "linear-gradient" : [
+                  "display-p3:0.83566,1.00000,0.87792,1.00000",
+                  "display-p3:0.54903,1.00000,0.78254,0.90243"
+                ]
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "linear-gradient" : [
+                  "display-p3:0.72251,1.00000,0.79387,1.00000",
+                  "display-p3:0.58241,1.00000,0.87756,0.80000"
+                ]
+              }
+            }
+          ],
+          "image-name" : "rhymo_background.svg",
+          "name" : "rhymo_background",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              -65.7985598983031,
+              100.0676836137603
+            ]
+          }
+        }
+      ],
+      "position" : {
+        "scale" : 1.15,
+        "translation-in-points" : [
+          18.34059952227711,
+          -5.175395091111443
+        ]
+      },
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
         "value" : 0.5
       }
     }

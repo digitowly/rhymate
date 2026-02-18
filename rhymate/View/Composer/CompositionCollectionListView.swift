@@ -150,8 +150,7 @@ struct CompositionCollectionListView: View {
 
     private func moveCollections(from source: IndexSet, to destination: Int) {
         var ordered = collections.map { $0 }
-        ordered.move(fromOffsets: source, toOffset: destination)
-        for (index, collection) in ordered.enumerated() {
+        ComposerLogic.applyMove(&ordered, from: source, to: destination) { collection, index in
             collection.sortOrder = index
         }
         try? modelContext.save()

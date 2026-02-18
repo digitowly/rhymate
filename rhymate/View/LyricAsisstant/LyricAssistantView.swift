@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct LyricAssistantView: View {
     @Binding var text: String
@@ -6,31 +7,58 @@ struct LyricAssistantView: View {
     var onSearchTermChange: ((String) -> Void)?
 
     @State private var searchText: String = ""
+    @State private var selectedRhyme: RhymeItem?
     @FocusState private var isInputFocused: Bool
 
     private var words: [String] {
-        text.split(separator: " ").map { Formatter.normalize(String($0)) }
+        ComposerLogic.words(in: text)
     }
 
     private var isSendButtonVisible: Bool {
-        guard let lastWord = words.last else { return false }
-        return lastWord != searchText
+        ComposerLogic.isSendButtonVisible(words: words, currentSearchText: searchText)
     }
 
     private func submit(_ word: String) {
         searchText = word
+        selectedRhyme = nil
         onSearchTermChange?(word)
     }
 
     var body: some View {
         VStack(spacing: 0) {
-            if searchText.isEmpty {
+            if let selected = selectedRhyme {
+                ZStack {
+                    Text(selected.rhyme)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .lineLimit(1)
+                    HStack {
+                        Button(action: { selectedRhyme = nil }) {
+                            Label("Back", systemImage: "chevron.left")
+                                .font(.subheadline)
+                        }
+                        Spacer()
+                        InlineFavoritesToggle(word: selected.word, rhyme: selected.rhyme)
+                    }
+                }
+                .padding(.horizontal)
+                .padding(.top, 8)
+
+                FavoritesItemView(
+                    .embedded,
+                    word: selected.word,
+                    rhyme: selected.rhyme,
+                    onDismiss: { selectedRhyme = nil }
+                )
+            } else if searchText.isEmpty {
                 Spacer()
                 LyricAssistantEmptyView()
                 Spacer()
             } else {
                 ScrollView {
-                    RhymesView(word: searchText)
+                    RhymesView(word: searchText, onRhymeTap: { word, rhyme in
+                        selectedRhyme = RhymeItem(word: word, rhyme: rhyme)
+                    })
                 }
                 .transaction { $0.animation = nil }
             }
@@ -100,6 +128,44 @@ struct LyricAssistantView: View {
             .padding(.horizontal)
             .padding(.bottom, 8)
         }
+    }
+}
+
+private struct InlineFavoritesToggle: View {
+    let word: String
+    let rhyme: String
+
+    @Query private var allFavorites: [FavoriteRhyme]
+    @Environment(\.modelContext) private var modelContext
+
+    private var normalizedWord: String { Formatter.normalize(word) }
+
+    private var isFavorite: Bool {
+        allFavorites.contains { $0.word == normalizedWord && $0.rhyme == rhyme }
+    }
+
+    private func toggleFavorite() {
+        let word = normalizedWord
+        let rhyme = self.rhyme
+        let descriptor = FetchDescriptor<FavoriteRhyme>(
+            predicate: #Predicate { $0.word == word && $0.rhyme == rhyme }
+        )
+        let existing = (try? modelContext.fetch(descriptor)) ?? []
+
+        if existing.first != nil {
+            for item in existing { modelContext.delete(item) }
+        } else {
+            modelContext.insert(FavoriteRhyme(word: word, rhyme: rhyme))
+        }
+        try? modelContext.save()
+    }
+
+    var body: some View {
+        FavoritesToggle(
+            action: toggleFavorite,
+            isActivated: isFavorite,
+            size: .large
+        )
     }
 }
 

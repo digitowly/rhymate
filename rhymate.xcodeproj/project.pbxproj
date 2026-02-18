@@ -68,6 +68,8 @@
 		ECBD84462C42678C00193BA2 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD84452C42678C00193BA2 /* Fetcher.swift */; };
 		ECBD84492C42F90E00193BA2 /* FetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD84482C42F90E00193BA2 /* FetcherTests.swift */; };
 		EC0000032E02000000000002 /* MarkdownConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000022E02000000000002 /* MarkdownConverterTests.swift */; };
+		EC0000092E36000000000001 /* ComposerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000082E36000000000001 /* ComposerLogic.swift */; };
+		EC000009AE36000000000002 /* ComposerLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC000008AE36000000000002 /* ComposerLogicTests.swift */; };
 		EC0000052E35000000000001 /* FavoriteRhymeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000052E35000000000002 /* FavoriteRhymeTests.swift */; };
 		EC0000062E35000000000001 /* FavoritesMigratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000062E35000000000002 /* FavoritesMigratorTests.swift */; };
 		ECBD844D2C42FBF100193BA2 /* TestProtocolHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD844C2C42FBF100193BA2 /* TestProtocolHandler.swift */; };
@@ -173,6 +175,8 @@
 		ECBD84452C42678C00193BA2 /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
 		ECBD84482C42F90E00193BA2 /* FetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherTests.swift; sourceTree = "<group>"; };
 		EC0000022E02000000000002 /* MarkdownConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownConverterTests.swift; sourceTree = "<group>"; };
+		EC0000082E36000000000001 /* ComposerLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerLogic.swift; sourceTree = "<group>"; };
+		EC000008AE36000000000002 /* ComposerLogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerLogicTests.swift; sourceTree = "<group>"; };
 		EC0000052E35000000000002 /* FavoriteRhymeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRhymeTests.swift; sourceTree = "<group>"; };
 		EC0000062E35000000000002 /* FavoritesMigratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesMigratorTests.swift; sourceTree = "<group>"; };
 		ECBD844C2C42FBF100193BA2 /* TestProtocolHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestProtocolHandler.swift; sourceTree = "<group>"; };
@@ -280,6 +284,7 @@
 				ECA8F6D92E042BF2009212D0 /* Model */,
 				ECBD844E2C4337F800193BA2 /* Service */,
 				ECBD84472C42F8CC00193BA2 /* Utils */,
+				EC00000AAE36000000000003 /* Composer */,
 				EC7782E12C39CAFA008E9884 /* Storage */,
 				EC238A6D2C321F6900829799 /* rhymateTests.swift */,
 				ECBD844C2C42FBF100193BA2 /* TestProtocolHandler.swift */,
@@ -491,6 +496,7 @@
 				EC81FCF82DFAE333008512CF /* Formatter.swift */,
 				EC0000042E34000000000002 /* FavoritesMigrator.swift */,
 				EC0000002E02000000000001 /* MarkdownConverter.swift */,
+				EC0000082E36000000000001 /* ComposerLogic.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -503,6 +509,14 @@
 				EC0000062E35000000000002 /* FavoritesMigratorTests.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		EC00000AAE36000000000003 /* Composer */ = {
+			isa = PBXGroup;
+			children = (
+				EC000008AE36000000000002 /* ComposerLogicTests.swift */,
+			);
+			path = Composer;
 			sourceTree = "<group>";
 		};
 		ECBD844E2C4337F800193BA2 /* Service */ = {
@@ -744,6 +758,7 @@
 				EC81FCF92DFAE333008512CF /* Formatter.swift in Sources */,
 				EC0000042E34000000000001 /* FavoritesMigrator.swift in Sources */,
 				EC0000012E02000000000001 /* MarkdownConverter.swift in Sources */,
+				EC0000092E36000000000001 /* ComposerLogic.swift in Sources */,
 				EC7782E62C3B1BE8008E9884 /* Datamuse.swift in Sources */,
 				ECA8F6EC2E045D26009212D0 /* KeyboardObserver.swift in Sources */,
 				ECA8F6E52E0448EE009212D0 /* GrowingTextView.swift in Sources */,
@@ -781,6 +796,7 @@
 				ECA8F6DB2E042C3C009212D0 /* LyricTypeTest.swift in Sources */,
 				ECBD84492C42F90E00193BA2 /* FetcherTests.swift in Sources */,
 				EC0000032E02000000000002 /* MarkdownConverterTests.swift in Sources */,
+				EC000009AE36000000000002 /* ComposerLogicTests.swift in Sources */,
 				ECF4C9342C52EC7D001E6B55 /* WiktionaryFetcherTests.swift in Sources */,
 				ECBD84522C43385D00193BA2 /* DatamuseFetcherTests.swift in Sources */,
 				ECF4C9392C52F2AB001E6B55 /* WiktionaryDefinitions.swift in Sources */,

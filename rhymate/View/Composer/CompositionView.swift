@@ -135,11 +135,10 @@ struct CompositionView: View {
         .gesture(
             DragGesture()
                 .onChanged { value in
-                    let translation = value.translation.height
-                    dragOffset = translation > 0 ? translation : translation * 0.15
+                    dragOffset = ComposerLogic.resistedDragOffset(translation: value.translation.height)
                 }
                 .onEnded { value in
-                    if value.translation.height > 100 {
+                    if ComposerLogic.shouldDismiss(translation: value.translation.height) {
                         closeAssistant()
                         dragOffset = 0
                     } else {
