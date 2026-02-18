@@ -8,6 +8,7 @@ struct RootView: View {
 
     @State private var selectedComposition: Composition?
     @State private var selectedCollection: CompositionCollection?
+    @State private var columnVisibility: NavigationSplitViewVisibility = .all
 
     var body: some View {
         TabView {
@@ -18,7 +19,7 @@ struct RootView: View {
                 Text("Rhymes")
             }
 
-            NavigationSplitView {
+            NavigationSplitView(columnVisibility: $columnVisibility) {
                 CompositionCollectionListView(selectedCollection: $selectedCollection)
             } content: {
                 if let collection = selectedCollection {
@@ -27,19 +28,41 @@ struct RootView: View {
                         selectedComposition: $selectedComposition
                     )
                 } else {
-                    Text("Select something")
+                    EmptyStateView(
+                        icon: "folder",
+                        title: "No Project Selected",
+                        description: "Select a project from the sidebar or create a new one to get started."
+                    )
                 }
             } detail: {
                 if let composition = selectedComposition {
-                    CompositionView(composition: composition)
+                    CompositionView(
+                        composition: composition,
+                        columnVisibility: $columnVisibility
+                    )
                 } else {
-                    Text("Select a composition")
+                    EmptyStateView(
+                        icon: "music.note.list",
+                        title: "No Composition Selected",
+                        description: "Select a composition to start writing."
+                    )
                 }
             }.tabItem {
                 Image(systemName: "music.pages.fill")
                 Text("Projects")
             }
         }
+        .onChange(of: selectedCollection) {
+            if let collection = selectedCollection {
+                if selectedComposition?.collection?.id != collection.id {
+                    selectedComposition = collection.compositions?
+                        .sorted(by: { $0.updatedAt > $1.updatedAt })
+                        .first
+                }
+                columnVisibility = .doubleColumn
+            }
+        }
+        .onChange(of: selectedComposition) {}
         .onAppear {
             if let latest = WhatsNewContent.releases.last,
                latest.version != lastSeenVersion {

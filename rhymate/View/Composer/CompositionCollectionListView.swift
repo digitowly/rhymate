@@ -27,6 +27,7 @@ struct CompositionCollectionListView: View {
                     ForEach(collections) { collection in
                         CollectionRow(
                             collection: collection,
+                            isSelected: selectedCollection?.id == collection.id,
                             onSelect: { selectedCollection = collection },
                             onRename: {
                                 nameInput = collection.name
@@ -55,6 +56,11 @@ struct CompositionCollectionListView: View {
                     }
                     .buttonStyle(.borderedProminent)
                 }
+            }
+        }
+        .onAppear {
+            if selectedCollection == nil, let first = collections.first {
+                selectedCollection = first
             }
         }
         .onChange(of: collections.count) {
@@ -159,6 +165,7 @@ struct CompositionCollectionListView: View {
 
 private struct CollectionRow: View {
     let collection: CompositionCollection
+    var isSelected: Bool
     var onSelect: () -> Void
     var onRename: () -> Void
     var onDelete: () -> Void
@@ -172,6 +179,7 @@ private struct CollectionRow: View {
     var body: some View {
         HStack {
             Label(collection.name, systemImage: "folder")
+                .foregroundStyle(isSelected ? .accent : .primary)
             Spacer()
             if isEditing {
                 Menu {

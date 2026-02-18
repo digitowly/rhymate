@@ -254,6 +254,12 @@
     "New Folder" : {
 
     },
+    "No Composition Selected" : {
+
+    },
+    "No Project Selected" : {
+
+    },
     "No rhymes yet" : {
 
     },
@@ -306,13 +312,13 @@
         }
       }
     },
-    "Select a composition" : {
+    "Select a composition to start writing." : {
 
     },
     "Select a Folder" : {
 
     },
-    "Select something" : {
+    "Select a project from the sidebar or create a new one to get started." : {
 
     },
     "Show all" : {

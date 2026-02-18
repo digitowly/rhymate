@@ -7,9 +7,9 @@ struct ComposeEditor: View {
 
     @Binding var isAssistantVisible: Bool
     @Binding var selectedWord: String
+    @Binding var coordinatorRef: TextEditorContainer.Coordinator?
 
     @State private var height: CGFloat = 400
-    @State private var coordinator: TextEditorContainer.Coordinator? = nil
     @State private var isKeyboardVisible = false
 
     var body: some View {
@@ -40,7 +40,7 @@ struct ComposeEditor: View {
                         isKeyboardVisible = visible
                     }
                 },
-                coordinatorRef: $coordinator
+                coordinatorRef: $coordinatorRef
             )
             .id(key)
             .frame(height: height)
@@ -58,14 +58,14 @@ struct ComposeEditor: View {
                 }
                 Menu {
                     Button {
-                        if let updatedText = coordinator?.toggleTrait(.bold) {
+                        if let updatedText = coordinatorRef?.toggleTrait(.bold) {
                             updateText(updatedText)
                         }
                     } label: {
                         Label("bold", systemImage: "bold")
                     }
                     Button {
-                        if let updatedText = coordinator?.toggleTrait(.italic) {
+                        if let updatedText = coordinatorRef?.toggleTrait(.italic) {
                             updateText(updatedText)
                         }
                     } label: {

@@ -12,6 +12,10 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         func toggleTrait(_ type: TraitType) -> NSAttributedString? {
             return controller?.toggleTraitAtCurrentSelection(type)
         }
+
+        func focus() {
+            controller?.textView.becomeFirstResponder()
+        }
     }
 
     let initialText: NSAttributedString

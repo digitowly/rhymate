@@ -39,6 +39,7 @@ struct CompositionListView: View {
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }
+                        .padding(.horizontal, 4)
                         .tag(composition)
                     }
                     .onDelete(perform: deleteComposition)
@@ -82,7 +83,7 @@ struct CompositionListView: View {
     private func createComposition() {
         guard let collection = selectedCollection else { return }
         let newComposition = Composition(
-            title: "Untitled",
+            title: "",
             collection: collection
         )
         modelContext.insert(newComposition)

@@ -3,12 +3,16 @@ import SwiftData
 
 struct CompositionView: View {
     @Bindable var composition: Composition
+    @Binding var columnVisibility: NavigationSplitViewVisibility
 
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @FocusState private var isTitleFocused: Bool
     @State var isMoveSheetVisible: Bool = false
     @State private var isAssistantVisible = false
     @State private var selectedWord = ""
     @State private var dragOffset: CGFloat = 0
     @State private var assistantSearchTerm = ""
+    @State private var editorCoordinator: TextEditorContainer.Coordinator?
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -19,6 +23,10 @@ struct CompositionView: View {
                         get: { composition.title },
                         set: { composition.title = $0 }
                     ))
+                    .focused($isTitleFocused)
+                    .onSubmit {
+                        editorCoordinator?.focus()
+                    }
                     .font(.title)
                     .fontWeight(.bold)
                     Spacer(minLength: 24)
@@ -30,12 +38,30 @@ struct CompositionView: View {
                         ),
                         onChange: { composition.updatedAt = Date.now },
                         isAssistantVisible: $isAssistantVisible,
-                        selectedWord: $selectedWord
+                        selectedWord: $selectedWord,
+                        coordinatorRef: $editorCoordinator
                     )
                 }
                 .padding(.horizontal)
             }
             .toolbar {
+                if horizontalSizeClass == .regular {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            withAnimation {
+                                if columnVisibility == .detailOnly {
+                                    columnVisibility = .doubleColumn
+                                } else {
+                                    columnVisibility = .detailOnly
+                                }
+                            }
+                        } label: {
+                            Image(systemName: columnVisibility == .detailOnly
+                                  ? "arrow.down.right.and.arrow.up.left"
+                                  : "arrow.up.left.and.arrow.down.right")
+                        }
+                    }
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
                         Button(action: {
@@ -60,6 +86,11 @@ struct CompositionView: View {
                 composition.title.isEmpty ? "New Song" : composition.title
             )
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                if composition.title.isEmpty {
+                    isTitleFocused = true
+                }
+            }
 
             if isAssistantVisible {
                 Color.black.opacity(0.15)
