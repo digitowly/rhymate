@@ -59,6 +59,7 @@ struct ComposeEditor: View {
             )
             .id(key)
             .frame(height: height)
+            .accessibilityIdentifier("compose-editor")
             .onChange(of: selectedWord) { _, newValue in
                 if coordinatorRef?.panelModel != nil {
                     coordinatorRef?.updateAccessorySelectedWord(newValue)

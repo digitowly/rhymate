@@ -18,6 +18,7 @@ struct RootView: View {
                 Image(systemName: "character.book.closed.fill")
                 Text("Rhymes")
             }
+            .accessibilityIdentifier("tab-rhymes")
 
             NavigationSplitView(columnVisibility: $columnVisibility) {
                 CompositionCollectionListView(selectedCollection: $selectedCollection)
@@ -51,6 +52,7 @@ struct RootView: View {
                 Image(systemName: "music.pages.fill")
                 Text("Projects")
             }
+            .accessibilityIdentifier("tab-projects")
         }
         .onChange(of: selectedCollection) {
             if let collection = selectedCollection {

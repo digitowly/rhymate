@@ -81,6 +81,7 @@ struct SearchScreen: View {
             placement: .navigationBarDrawer(displayMode: .always),
             prompt: "Find a rhyme"
         )
+        .accessibilityIdentifier("search-field")
         .onSubmit(of: .search, { navigateToResults = true } )
         .onChange(of: input) { _, newValue in
             isLoading = newValue.isEmpty == false;
