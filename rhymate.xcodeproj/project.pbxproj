@@ -7,7 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		87CC33A5350E84F44A3E2DCF /* AppFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D7CC193C69347BABB72F95 /* AppFlowTests.swift */; };
+		AA0000000000000000000002 /* WhatsNewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000001 /* WhatsNewContent.swift */; };
+		AA0000000000000000000004 /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000003 /* WhatsNewView.swift */; };
+		AA000001SNAPSHOT000001 /* SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002SNAPSHOT000001 /* SnapshotTests.swift */; };
+		AA000001SNAPSHOT000002 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002SNAPSHOT000002 /* SnapshotHelper.swift */; };
+		E8CB90884D12C541D79E2E88 /* SnapshotSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB8B0A92EA6FA124A5BA41 /* SnapshotSupport.swift */; };
+		EC0000012E02000000000001 /* MarkdownConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000002E02000000000001 /* MarkdownConverter.swift */; };
+		EC0000032E02000000000002 /* MarkdownConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000022E02000000000002 /* MarkdownConverterTests.swift */; };
+		EC0000032E33000000000002 /* FavoriteRhyme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000022E33000000000001 /* FavoriteRhyme.swift */; };
+		EC0000042E34000000000001 /* FavoritesMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000042E34000000000002 /* FavoritesMigrator.swift */; };
+		EC0000052E35000000000001 /* FavoriteRhymeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000052E35000000000002 /* FavoriteRhymeTests.swift */; };
+		EC0000062E35000000000001 /* FavoritesMigratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000062E35000000000002 /* FavoritesMigratorTests.swift */; };
+		EC0000092E36000000000001 /* ComposerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000082E36000000000001 /* ComposerLogic.swift */; };
+		EC000009AE36000000000002 /* ComposerLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC000008AE36000000000002 /* ComposerLogicTests.swift */; };
 		EC0D1F912DFEE34B00E46E52 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0D1F902DFEE34B00E46E52 /* RootView.swift */; };
+		EC0E5A202E33A1B0009212D0 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E5A1F2E33A1B0009212D0 /* EmptyStateView.swift */; };
+		EC1234570000000000000001 /* AssistantAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1234560000000000000001 /* AssistantAccessoryView.swift */; };
 		EC238A5D2C321F6800829799 /* rhymateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC238A5C2C321F6800829799 /* rhymateApp.swift */; };
 		EC238A5F2C321F6800829799 /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC238A5E2C321F6800829799 /* SearchScreen.swift */; };
 		EC238A612C321F6900829799 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC238A602C321F6900829799 /* Assets.xcassets */; };
@@ -34,7 +50,6 @@
 		EC7782E02C39CAE7008E9884 /* StorageHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7782DA2C39B2AB008E9884 /* StorageHandlerTests.swift */; };
 		EC7782E32C39CC28008E9884 /* RhymesStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7782E22C39CC28008E9884 /* RhymesStorageTests.swift */; };
 		EC7782E62C3B1BE8008E9884 /* Datamuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7782E52C3B1BE8008E9884 /* Datamuse.swift */; };
-		EC0000032E33000000000002 /* FavoriteRhyme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000022E33000000000001 /* FavoriteRhyme.swift */; };
 		EC7782E82C3C5B4B008E9884 /* Rhyme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7782E72C3C5B4B008E9884 /* Rhyme.swift */; };
 		EC7782EB2C3C5F67008E9884 /* FavoritesToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7782EA2C3C5F67008E9884 /* FavoritesToggle.swift */; };
 		EC7A0EF72E1D2148005CB643 /* LyricAssistantEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0EF62E1D2148005CB643 /* LyricAssistantEmptyView.swift */; };
@@ -43,13 +58,10 @@
 		EC81FCF32DFAC194008512CF /* RhymesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81FCF22DFAC194008512CF /* RhymesView.swift */; };
 		EC81FCF72DFAC85F008512CF /* Mutation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81FCF62DFAC85F008512CF /* Mutation.swift */; };
 		EC81FCF92DFAE333008512CF /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81FCF82DFAE333008512CF /* Formatter.swift */; };
-		EC0000042E34000000000001 /* FavoritesMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000042E34000000000002 /* FavoritesMigrator.swift */; };
-		EC0000012E02000000000001 /* MarkdownConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000002E02000000000001 /* MarkdownConverter.swift */; };
 		EC81FCFB2DFB2186008512CF /* LoadingSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81FCFA2DFB2186008512CF /* LoadingSpinner.swift */; };
 		ECA551932E0321AA009DD4A5 /* ComposeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA551922E0321AA009DD4A5 /* ComposeEditor.swift */; };
 		ECA8F6D22E0328BD009212D0 /* TextEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6D12E0328BD009212D0 /* TextEditorViewController.swift */; };
 		ECA8F6D42E0328D9009212D0 /* TextEditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6D32E0328D9009212D0 /* TextEditorContainer.swift */; };
-		EC1234570000000000000001 /* AssistantAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1234560000000000000001 /* AssistantAccessoryView.swift */; };
 		ECA8F6D62E036C92009212D0 /* LyricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6D52E036C92009212D0 /* LyricService.swift */; };
 		ECA8F6D82E03FF07009212D0 /* LyricType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6D72E03FEA7009212D0 /* LyricType.swift */; };
 		ECA8F6DB2E042C3C009212D0 /* LyricTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6DA2E042C3C009212D0 /* LyricTypeTest.swift */; };
@@ -58,7 +70,6 @@
 		ECA8F6E52E0448EE009212D0 /* GrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6E42E0448EE009212D0 /* GrowingTextView.swift */; };
 		ECA8F6E82E0458C7009212D0 /* hideKeyboardOnTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6E72E0458BD009212D0 /* hideKeyboardOnTap.swift */; };
 		ECA8F6EA2E045CC4009212D0 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6E92E045CC4009212D0 /* RoundedCorners.swift */; };
-		EC0E5A202E33A1B0009212D0 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E5A1F2E33A1B0009212D0 /* EmptyStateView.swift */; };
 		ECA8F6EC2E045D26009212D0 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6EB2E045D26009212D0 /* KeyboardObserver.swift */; };
 		ECA8F6F02E05A100009212D0 /* WordRecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6EF2E05A100009212D0 /* WordRecommendationView.swift */; };
 		ECA8F6F32E09C9BE009212D0 /* Compositon.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6F22E09C9BE009212D0 /* Compositon.swift */; };
@@ -68,11 +79,6 @@
 		ECB1A5DF2C3C84730087EDF9 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB1A5DE2C3C84730087EDF9 /* Storage.swift */; };
 		ECBD84462C42678C00193BA2 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD84452C42678C00193BA2 /* Fetcher.swift */; };
 		ECBD84492C42F90E00193BA2 /* FetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD84482C42F90E00193BA2 /* FetcherTests.swift */; };
-		EC0000032E02000000000002 /* MarkdownConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000022E02000000000002 /* MarkdownConverterTests.swift */; };
-		EC0000092E36000000000001 /* ComposerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000082E36000000000001 /* ComposerLogic.swift */; };
-		EC000009AE36000000000002 /* ComposerLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC000008AE36000000000002 /* ComposerLogicTests.swift */; };
-		EC0000052E35000000000001 /* FavoriteRhymeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000052E35000000000002 /* FavoriteRhymeTests.swift */; };
-		EC0000062E35000000000001 /* FavoritesMigratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0000062E35000000000002 /* FavoritesMigratorTests.swift */; };
 		ECBD844D2C42FBF100193BA2 /* TestProtocolHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD844C2C42FBF100193BA2 /* TestProtocolHandler.swift */; };
 		ECBD84522C43385D00193BA2 /* DatamuseFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD84512C43385D00193BA2 /* DatamuseFetcherTests.swift */; };
 		ECBD84542C43BC9400193BA2 /* FallbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBD84532C43BC9400193BA2 /* FallbackView.swift */; };
@@ -91,8 +97,6 @@
 		ECE8AB392E15C47A007F08D4 /* CompositionMoveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8AB382E15C47A007F08D4 /* CompositionMoveView.swift */; };
 		ECF4C9342C52EC7D001E6B55 /* WiktionaryFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF4C9332C52EC7D001E6B55 /* WiktionaryFetcherTests.swift */; };
 		ECF4C9392C52F2AB001E6B55 /* WiktionaryDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF4C9382C52F2AB001E6B55 /* WiktionaryDefinitions.swift */; };
-		AA0000000000000000000002 /* WhatsNewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000001 /* WhatsNewContent.swift */; };
-		AA0000000000000000000004 /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000003 /* WhatsNewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,7 +117,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		37EB8B0A92EA6FA124A5BA41 /* SnapshotSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnapshotSupport.swift; sourceTree = "<group>"; };
+		AA0000000000000000000001 /* WhatsNewContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewContent.swift; sourceTree = "<group>"; };
+		AA0000000000000000000003 /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
+		AA000002SNAPSHOT000001 /* SnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTests.swift; sourceTree = "<group>"; };
+		AA000002SNAPSHOT000002 /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		EC0000002E02000000000001 /* MarkdownConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownConverter.swift; sourceTree = "<group>"; };
+		EC0000022E02000000000002 /* MarkdownConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownConverterTests.swift; sourceTree = "<group>"; };
+		EC0000022E33000000000001 /* FavoriteRhyme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRhyme.swift; sourceTree = "<group>"; };
+		EC0000042E34000000000002 /* FavoritesMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesMigrator.swift; sourceTree = "<group>"; };
+		EC0000052E35000000000002 /* FavoriteRhymeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRhymeTests.swift; sourceTree = "<group>"; };
+		EC0000062E35000000000002 /* FavoritesMigratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesMigratorTests.swift; sourceTree = "<group>"; };
+		EC0000082E36000000000001 /* ComposerLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerLogic.swift; sourceTree = "<group>"; };
+		EC000008AE36000000000002 /* ComposerLogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerLogicTests.swift; sourceTree = "<group>"; };
 		EC0D1F902DFEE34B00E46E52 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		EC0E5A1F2E33A1B0009212D0 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		EC1234560000000000000001 /* AssistantAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantAccessoryView.swift; sourceTree = "<group>"; };
 		EC238A592C321F6800829799 /* rhymate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rhymate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC238A5C2C321F6800829799 /* rhymateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rhymateApp.swift; sourceTree = "<group>"; };
 		EC238A5E2C321F6800829799 /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
@@ -144,7 +163,6 @@
 		EC7782DA2C39B2AB008E9884 /* StorageHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageHandlerTests.swift; sourceTree = "<group>"; };
 		EC7782E22C39CC28008E9884 /* RhymesStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhymesStorageTests.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		EC7782E52C3B1BE8008E9884 /* Datamuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datamuse.swift; sourceTree = "<group>"; };
-		EC0000022E33000000000001 /* FavoriteRhyme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRhyme.swift; sourceTree = "<group>"; };
 		EC7782E72C3C5B4B008E9884 /* Rhyme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rhyme.swift; sourceTree = "<group>"; };
 		EC7782EA2C3C5F67008E9884 /* FavoritesToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesToggle.swift; sourceTree = "<group>"; };
 		EC7A0EF62E1D2148005CB643 /* LyricAssistantEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricAssistantEmptyView.swift; sourceTree = "<group>"; };
@@ -153,13 +171,10 @@
 		EC81FCF22DFAC194008512CF /* RhymesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhymesView.swift; sourceTree = "<group>"; };
 		EC81FCF62DFAC85F008512CF /* Mutation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mutation.swift; sourceTree = "<group>"; };
 		EC81FCF82DFAE333008512CF /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
-		EC0000042E34000000000002 /* FavoritesMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesMigrator.swift; sourceTree = "<group>"; };
-		EC0000002E02000000000001 /* MarkdownConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownConverter.swift; sourceTree = "<group>"; };
 		EC81FCFA2DFB2186008512CF /* LoadingSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSpinner.swift; sourceTree = "<group>"; };
 		ECA551922E0321AA009DD4A5 /* ComposeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeEditor.swift; sourceTree = "<group>"; };
 		ECA8F6D12E0328BD009212D0 /* TextEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorViewController.swift; sourceTree = "<group>"; };
 		ECA8F6D32E0328D9009212D0 /* TextEditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorContainer.swift; sourceTree = "<group>"; };
-		EC1234560000000000000001 /* AssistantAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantAccessoryView.swift; sourceTree = "<group>"; };
 		ECA8F6D52E036C92009212D0 /* LyricService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricService.swift; sourceTree = "<group>"; };
 		ECA8F6D72E03FEA7009212D0 /* LyricType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricType.swift; sourceTree = "<group>"; };
 		ECA8F6DA2E042C3C009212D0 /* LyricTypeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricTypeTest.swift; sourceTree = "<group>"; };
@@ -168,7 +183,6 @@
 		ECA8F6E42E0448EE009212D0 /* GrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingTextView.swift; sourceTree = "<group>"; };
 		ECA8F6E72E0458BD009212D0 /* hideKeyboardOnTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hideKeyboardOnTap.swift; sourceTree = "<group>"; };
 		ECA8F6E92E045CC4009212D0 /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
-		EC0E5A1F2E33A1B0009212D0 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		ECA8F6EB2E045D26009212D0 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		ECA8F6EF2E05A100009212D0 /* WordRecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRecommendationView.swift; sourceTree = "<group>"; };
 		ECA8F6F22E09C9BE009212D0 /* Compositon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compositon.swift; sourceTree = "<group>"; };
@@ -178,11 +192,6 @@
 		ECB1A5DE2C3C84730087EDF9 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		ECBD84452C42678C00193BA2 /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
 		ECBD84482C42F90E00193BA2 /* FetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetcherTests.swift; sourceTree = "<group>"; };
-		EC0000022E02000000000002 /* MarkdownConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownConverterTests.swift; sourceTree = "<group>"; };
-		EC0000082E36000000000001 /* ComposerLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerLogic.swift; sourceTree = "<group>"; };
-		EC000008AE36000000000002 /* ComposerLogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerLogicTests.swift; sourceTree = "<group>"; };
-		EC0000052E35000000000002 /* FavoriteRhymeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRhymeTests.swift; sourceTree = "<group>"; };
-		EC0000062E35000000000002 /* FavoritesMigratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesMigratorTests.swift; sourceTree = "<group>"; };
 		ECBD844C2C42FBF100193BA2 /* TestProtocolHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestProtocolHandler.swift; sourceTree = "<group>"; };
 		ECBD84512C43385D00193BA2 /* DatamuseFetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatamuseFetcherTests.swift; sourceTree = "<group>"; };
 		ECBD84532C43BC9400193BA2 /* FallbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallbackView.swift; sourceTree = "<group>"; };
@@ -202,8 +211,7 @@
 		ECE8AB382E15C47A007F08D4 /* CompositionMoveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionMoveView.swift; sourceTree = "<group>"; };
 		ECF4C9332C52EC7D001E6B55 /* WiktionaryFetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiktionaryFetcherTests.swift; sourceTree = "<group>"; };
 		ECF4C9382C52F2AB001E6B55 /* WiktionaryDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiktionaryDefinitions.swift; sourceTree = "<group>"; };
-		AA0000000000000000000001 /* WhatsNewContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewContent.swift; sourceTree = "<group>"; };
-		AA0000000000000000000003 /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
+		F4D7CC193C69347BABB72F95 /* AppFlowTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppFlowTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +239,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA0000000000000000000005 /* WhatsNew */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000001 /* WhatsNewContent.swift */,
+				AA0000000000000000000003 /* WhatsNewView.swift */,
+			);
+			path = WhatsNew;
+			sourceTree = "<group>";
+		};
+		EC00000AAE36000000000003 /* Composer */ = {
+			isa = PBXGroup;
+			children = (
+				EC000008AE36000000000002 /* ComposerLogicTests.swift */,
+			);
+			path = Composer;
+			sourceTree = "<group>";
+		};
 		EC238A502C321F6800829799 = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +296,7 @@
 				EC57075B2E7ABC3E00839CD6 /* AppIcon.icon */,
 				EC238A602C321F6900829799 /* Assets.xcassets */,
 				EC238A622C321F6900829799 /* Preview Content */,
+				37EB8B0A92EA6FA124A5BA41 /* SnapshotSupport.swift */,
 			);
 			path = rhymate;
 			sourceTree = "<group>";
@@ -303,6 +329,9 @@
 			children = (
 				EC238A772C321F6900829799 /* rhymateUITests.swift */,
 				EC238A792C321F6900829799 /* rhymateUITestsLaunchTests.swift */,
+				AA000002SNAPSHOT000001 /* SnapshotTests.swift */,
+				AA000002SNAPSHOT000002 /* SnapshotHelper.swift */,
+				F4D7CC193C69347BABB72F95 /* AppFlowTests.swift */,
 			);
 			path = rhymateUITests;
 			sourceTree = "<group>";
@@ -332,15 +361,6 @@
 				EC37ABBC2C63A05900B28B58 /* FavoritesGridItem.swift */,
 			);
 			path = FavoriteGrid;
-			sourceTree = "<group>";
-		};
-		AA0000000000000000000005 /* WhatsNew */ = {
-			isa = PBXGroup;
-			children = (
-				AA0000000000000000000001 /* WhatsNewContent.swift */,
-				AA0000000000000000000003 /* WhatsNewView.swift */,
-			);
-			path = WhatsNew;
 			sourceTree = "<group>";
 		};
 		EC7782DC2C39C904008E9884 /* View */ = {
@@ -527,14 +547,6 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		EC00000AAE36000000000003 /* Composer */ = {
-			isa = PBXGroup;
-			children = (
-				EC000008AE36000000000002 /* ComposerLogicTests.swift */,
-			);
-			path = Composer;
-			sourceTree = "<group>";
-		};
 		ECBD844E2C4337F800193BA2 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -616,8 +628,6 @@
 			dependencies = (
 			);
 			name = rhymate;
-			packageProductDependencies = (
-			);
 			productName = rhymate;
 			productReference = EC238A592C321F6800829799 /* rhymate.app */;
 			productType = "com.apple.product-type.application";
@@ -691,8 +701,6 @@
 				de,
 			);
 			mainGroup = EC238A502C321F6800829799;
-			packageReferences = (
-			);
 			productRefGroup = EC238A5A2C321F6800829799 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -803,6 +811,7 @@
 				ECB1A5DF2C3C84730087EDF9 /* Storage.swift in Sources */,
 				AA0000000000000000000002 /* WhatsNewContent.swift in Sources */,
 				AA0000000000000000000004 /* WhatsNewView.swift in Sources */,
+				E8CB90884D12C541D79E2E88 /* SnapshotSupport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -833,6 +842,9 @@
 			files = (
 				EC238A782C321F6900829799 /* rhymateUITests.swift in Sources */,
 				EC238A7A2C321F6900829799 /* rhymateUITestsLaunchTests.swift in Sources */,
+				AA000001SNAPSHOT000001 /* SnapshotTests.swift in Sources */,
+				AA000001SNAPSHOT000002 /* SnapshotHelper.swift in Sources */,
+				87CC33A5350E84F44A3E2DCF /* AppFlowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,7 +20,7 @@ final class TextEditorViewController: UIViewController, UITextViewDelegate {
     var firstLineIsHeading = false
 
     private lazy var accessoryBar: UIToolbar = {
-        let bar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 52))
+        let bar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64))
         bar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         bar.setShadowImage(UIImage(), forToolbarPosition: .any)
         bar.items = [
@@ -31,12 +31,23 @@ final class TextEditorViewController: UIViewController, UITextViewDelegate {
     }()
 
     private lazy var assistantButton: UIBarButtonItem = {
-        UIBarButtonItem(
-            image: UIImage(systemName: "character.book.closed"),
-            style: .plain,
-            target: self,
-            action: #selector(assistantButtonTapped)
-        )
+        let button = UIButton(type: .system)
+
+        let config = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
+        let image = UIImage(systemName: "character.book.closed", withConfiguration: config)
+
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(assistantButtonTapped), for: .touchUpInside)
+        
+        let size = CGFloat(42)
+
+        button.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalToConstant: size),
+            button.heightAnchor.constraint(equalToConstant: size)
+        ])
+
+        return UIBarButtonItem(customView: button)
     }()
 
     @objc private func assistantButtonTapped() {
@@ -52,6 +63,7 @@ final class TextEditorViewController: UIViewController, UITextViewDelegate {
         textView.isSelectable = true
         textView.isScrollEnabled = false
         textView.inputAccessoryView = accessoryBar
+        textView.accessibilityIdentifier = "compose-text-view"
 
         view.addSubview(textView)
         NSLayoutConstraint.activate([
@@ -138,16 +150,25 @@ final class TextEditorViewController: UIViewController, UITextViewDelegate {
 
     // MARK: - Typing Attributes
 
+    private func makeParagraphStyle() -> NSParagraphStyle {
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = EDITOR_LINE_SPACING
+        return style
+    }
+
     private func updateTypingAttributesForCursor() {
+        let paragraphStyle = makeParagraphStyle()
         if firstLineIsHeading && cursorIsOnFirstLine() {
             textView.typingAttributes = [
                 .font: UIFont.boldSystemFont(ofSize: HEADING_FONT_SIZE),
-                .foregroundColor: UIColor.label
+                .foregroundColor: UIColor.label,
+                .paragraphStyle: paragraphStyle
             ]
         } else {
             textView.typingAttributes = [
                 .font: UIFont.systemFont(ofSize: DEFAULT_FONT_SIZE),
-                .foregroundColor: UIColor.label
+                .foregroundColor: UIColor.label,
+                .paragraphStyle: paragraphStyle
             ]
         }
     }

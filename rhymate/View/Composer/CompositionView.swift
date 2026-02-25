@@ -36,7 +36,7 @@ struct CompositionView: View {
                         Button {
                             withAnimation {
                                 if columnVisibility == .detailOnly {
-                                    columnVisibility = .doubleColumn
+                                    columnVisibility = .all
                                 } else {
                                     columnVisibility = .detailOnly
                                 }
@@ -70,6 +70,18 @@ struct CompositionView: View {
             }
             .navigationTitle(composition.displayTitle)
             .navigationBarTitleDisplayMode(.inline)
+            #if DEBUG
+            .onAppear {
+                if ProcessInfo.processInfo.arguments.contains("-openAssistantForSnapshot") {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        selectedWord = "Rain"
+                        withAnimation(.spring(duration: 0.35, bounce: 0.1)) {
+                            isAssistantVisible = true
+                        }
+                    }
+                }
+            }
+            #endif
 
             if isAssistantVisible {
                 Color.black.opacity(0.15)

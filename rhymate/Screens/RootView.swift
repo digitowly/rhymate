@@ -18,6 +18,7 @@ struct RootView: View {
                 Image(systemName: "character.book.closed.fill")
                 Text("Rhymes")
             }
+            .accessibilityIdentifier("tab-rhymes")
 
             NavigationSplitView(columnVisibility: $columnVisibility) {
                 CompositionCollectionListView(selectedCollection: $selectedCollection)
@@ -51,6 +52,7 @@ struct RootView: View {
                 Image(systemName: "music.pages.fill")
                 Text("Projects")
             }
+            .accessibilityIdentifier("tab-projects")
         }
         .onChange(of: selectedCollection) {
             if let collection = selectedCollection {
@@ -60,13 +62,19 @@ struct RootView: View {
                             .sorted(by: { $0.updatedAt > $1.updatedAt })
                             .first
                     }
-                    columnVisibility = .doubleColumn
                 } else {
                     selectedComposition = nil
                 }
             }
         }
-        .onChange(of: selectedComposition) {}
+        .onChange(of: selectedComposition) {
+            #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("-detailOnlyForSnapshot"),
+               selectedComposition != nil {
+                columnVisibility = .detailOnly
+            }
+            #endif
+        }
         .onAppear {
             if let latest = WhatsNewContent.releases.last,
                latest.version != lastSeenVersion {

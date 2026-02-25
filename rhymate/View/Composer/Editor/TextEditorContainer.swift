@@ -107,6 +107,10 @@ struct TextEditorContainer: UIViewControllerRepresentable {
             }
         }
 
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = EDITOR_LINE_SPACING
+        mutable.addAttribute(.paragraphStyle, value: paragraphStyle, range: fullRange)
+
         return mutable
     }
 

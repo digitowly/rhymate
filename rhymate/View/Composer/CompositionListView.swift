@@ -8,6 +8,7 @@ struct CompositionListView: View {
     @State private var lastSelectedComposition: Composition?
 
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Query private var allCompositions: [Composition]
 
     var compositions: [Composition] {
@@ -41,6 +42,7 @@ struct CompositionListView: View {
                         }
                         .padding(.horizontal, 4)
                         .tag(composition)
+                        .accessibilityIdentifier("composition-\(composition.displayTitle)")
                     }
                     .onDelete(perform: deleteComposition)
                 }
@@ -56,7 +58,30 @@ struct CompositionListView: View {
                 }
             }
         }
+        .snapshotCompositionSeeding(collection: selectedCollection, compositions: compositions)
         .onDisappear() { saveModelContext() }
+        .onChange(of: selectedCollection?.id, initial: true) {
+            // On iPad, auto-select when this view appears or when the collection switches
+            if horizontalSizeClass == .regular,
+               selectedComposition == nil,
+               let first = compositions.first {
+                selectedComposition = first
+            }
+        }
+        .onChange(of: compositions.count, initial: true) {
+            // On iPad, auto-select when a composition appears after seeding (count 0 → 1).
+            // In DEBUG builds, -openFirstComposition extends this to compact/iPhone too,
+            // allowing the snapshot test to reach the editor without XCUI navigation.
+            #if DEBUG
+            let shouldAutoSelect = horizontalSizeClass == .regular ||
+                ProcessInfo.processInfo.arguments.contains("-openFirstComposition")
+            #else
+            let shouldAutoSelect = horizontalSizeClass == .regular
+            #endif
+            if shouldAutoSelect, selectedComposition == nil, let first = compositions.first {
+                selectedComposition = first
+            }
+        }
     }
 
     private func deleteComposition(at offsets: IndexSet) {
