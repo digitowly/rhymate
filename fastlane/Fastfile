@@ -1,0 +1,35 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Capture App Store screenshots — light and dark mode"
+  lane :screenshots do
+    snapshot(
+      dark_mode: false,
+      output_directory: "./fastlane/screenshots/light",
+      clear_previous_screenshots: true
+    )
+    snapshot(
+      dark_mode: true,
+      output_directory: "./fastlane/screenshots/dark",
+      clear_previous_screenshots: true
+    )
+  end
+
+  desc "Visual regression — screenshot every app flow (AppFlowTests)"
+  lane :test_screenshots do
+    snapshot(
+      xcargs: "-only-testing:rhymateUITests/AppFlowTests",
+      output_directory: "./fastlane/test_screenshots",
+      clear_previous_screenshots: true
+    )
+  end
+
+  desc "Run unit and UI tests (excludes screenshot test classes)"
+  lane :tests do
+    run_tests(
+      scheme: "rhymate",
+      devices: ["iPhone 16 Pro Max"],
+      xcargs: "-skip-testing:rhymateUITests/SnapshotTests -skip-testing:rhymateUITests/AppFlowTests"
+    )
+  end
+end

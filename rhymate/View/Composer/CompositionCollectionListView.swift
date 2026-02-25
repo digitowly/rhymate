@@ -36,6 +36,7 @@ struct CompositionCollectionListView: View {
                             },
                             onDelete: { collectionToDelete = collection }
                         )
+                        .accessibilityIdentifier("collection-\(collection.name)")
                     }
                     .onMove(perform: moveCollections)
                 }
@@ -69,7 +70,13 @@ struct CompositionCollectionListView: View {
             if collections.isEmpty {
                 editMode?.wrappedValue = .inactive
             }
+            // Handle case where @Query populates after onAppear (e.g. async context merge)
+            if horizontalSizeClass == .regular,
+               selectedCollection == nil, let first = collections.first {
+                selectedCollection = first
+            }
         }
+        .snapshotCollectionSeeding(collections: collections)
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
                 Button {
