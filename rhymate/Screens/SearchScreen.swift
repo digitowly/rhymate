@@ -14,6 +14,7 @@ struct SearchScreen: View {
     @State var searchHistory: [SearchHistoryEntry]
     @State private var navigateToResults: Bool = false
     @State private var debounceTask: Task<Void, Never>? = nil
+    @State private var showSettings = false
 
     init() {
         self.historyStorage = SearchHistoryStorage()
@@ -82,6 +83,18 @@ struct SearchScreen: View {
             prompt: "Find a rhyme"
         )
         .accessibilityIdentifier("search-field")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showSettings = true
+                } label: {
+                    Image(systemName: "gearshape")
+                }
+            }
+        }
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
+        }
         .onSubmit(of: .search, { navigateToResults = true } )
         .onChange(of: input) { _, newValue in
             isLoading = newValue.isEmpty == false;

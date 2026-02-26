@@ -63,10 +63,12 @@
 		ECA8F6D22E0328BD009212D0 /* TextEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6D12E0328BD009212D0 /* TextEditorViewController.swift */; };
 		ECA8F6D42E0328D9009212D0 /* TextEditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6D32E0328D9009212D0 /* TextEditorContainer.swift */; };
 		ECA8F6D62E036C92009212D0 /* LyricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6D52E036C92009212D0 /* LyricService.swift */; };
+		A0FCDC1DD2734E4FB18BCF81 /* FoundationModelRhymer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E91935DB2F345F78A150452 /* FoundationModelRhymer.swift */; };
 		ECA8F6D82E03FF07009212D0 /* LyricType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6D72E03FEA7009212D0 /* LyricType.swift */; };
 		ECA8F6DB2E042C3C009212D0 /* LyricTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6DA2E042C3C009212D0 /* LyricTypeTest.swift */; };
 		ECA8F6DD2E042FA6009212D0 /* SearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6DC2E042F9B009212D0 /* SearchError.swift */; };
 		ECA8F6DF2E0440BD009212D0 /* LyricAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6DE2E0440BD009212D0 /* LyricAssistantView.swift */; };
+		74009A4C4A224D53B06A58BE /* LyricBuddyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2C033F3AAC49EFBC99DD4B /* LyricBuddyView.swift */; };
 		ECA8F6E52E0448EE009212D0 /* GrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6E42E0448EE009212D0 /* GrowingTextView.swift */; };
 		ECA8F6E82E0458C7009212D0 /* hideKeyboardOnTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6E72E0458BD009212D0 /* hideKeyboardOnTap.swift */; };
 		ECA8F6EA2E045CC4009212D0 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8F6E92E045CC4009212D0 /* RoundedCorners.swift */; };
@@ -176,10 +178,12 @@
 		ECA8F6D12E0328BD009212D0 /* TextEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorViewController.swift; sourceTree = "<group>"; };
 		ECA8F6D32E0328D9009212D0 /* TextEditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorContainer.swift; sourceTree = "<group>"; };
 		ECA8F6D52E036C92009212D0 /* LyricService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricService.swift; sourceTree = "<group>"; };
+		5E91935DB2F345F78A150452 /* FoundationModelRhymer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelRhymer.swift; sourceTree = "<group>"; };
 		ECA8F6D72E03FEA7009212D0 /* LyricType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricType.swift; sourceTree = "<group>"; };
 		ECA8F6DA2E042C3C009212D0 /* LyricTypeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricTypeTest.swift; sourceTree = "<group>"; };
 		ECA8F6DC2E042F9B009212D0 /* SearchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchError.swift; sourceTree = "<group>"; };
 		ECA8F6DE2E0440BD009212D0 /* LyricAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricAssistantView.swift; sourceTree = "<group>"; };
+		7F2C033F3AAC49EFBC99DD4B /* LyricBuddyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricBuddyView.swift; sourceTree = "<group>"; };
 		ECA8F6E42E0448EE009212D0 /* GrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingTextView.swift; sourceTree = "<group>"; };
 		ECA8F6E72E0458BD009212D0 /* hideKeyboardOnTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hideKeyboardOnTap.swift; sourceTree = "<group>"; };
 		ECA8F6E92E045CC4009212D0 /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
@@ -398,6 +402,7 @@
 				EC238A902C34003600829799 /* DatamuseFetcher.swift */,
 				ECBDC3D92C46D1D200943D83 /* WiktionaryFetcher.swift */,
 				ECA8F6D52E036C92009212D0 /* LyricService.swift */,
+				5E91935DB2F345F78A150452 /* FoundationModelRhymer.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -501,6 +506,7 @@
 			isa = PBXGroup;
 			children = (
 				ECA8F6DE2E0440BD009212D0 /* LyricAssistantView.swift */,
+				7F2C033F3AAC49EFBC99DD4B /* LyricBuddyView.swift */,
 				ECA8F6EF2E05A100009212D0 /* WordRecommendationView.swift */,
 				EC7A0EF62E1D2148005CB643 /* LyricAssistantEmptyView.swift */,
 			);
@@ -768,10 +774,12 @@
 				ECBD84542C43BC9400193BA2 /* FallbackView.swift in Sources */,
 				ECBD84572C43DADB00193BA2 /* Constants.swift in Sources */,
 				ECA8F6DF2E0440BD009212D0 /* LyricAssistantView.swift in Sources */,
+				74009A4C4A224D53B06A58BE /* LyricBuddyView.swift in Sources */,
 				EC81FCFB2DFB2186008512CF /* LoadingSpinner.swift in Sources */,
 				ECA8F6D82E03FF07009212D0 /* LyricType.swift in Sources */,
 				EC324DF12CEFAA5100A245F4 /* AboutScreen.swift in Sources */,
 				ECA8F6D62E036C92009212D0 /* LyricService.swift in Sources */,
+				A0FCDC1DD2734E4FB18BCF81 /* FoundationModelRhymer.swift in Sources */,
 				ECA8F6D22E0328BD009212D0 /* TextEditorViewController.swift in Sources */,
 				ECD720F22C5C0410007CE080 /* Search.swift in Sources */,
 				EC37ABBD2C63A05900B28B58 /* FavoritesGridItem.swift in Sources */,

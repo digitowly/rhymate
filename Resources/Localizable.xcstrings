@@ -21,6 +21,9 @@
     "About" : {
 
     },
+    "AI Features" : {
+
+    },
     "Back" : {
 
     },
@@ -37,6 +40,9 @@
 
     },
     "Continue" : {
+
+    },
+    "Couldn't generate suggestions. Try a longer phrase." : {
 
     },
     "Datamuse API" : {
@@ -161,6 +167,12 @@
         }
       }
     },
+    "Enables AI-powered rhyme suggestions and Inspire. Requires Apple Intelligence." : {
+
+    },
+    "Experimental" : {
+
+    },
     "fallbackNoInput" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -225,6 +237,9 @@
     "Find Rhymes" : {
 
     },
+    "Get Inspired" : {
+
+    },
     "Heading" : {
 
     },
@@ -245,6 +260,9 @@
         }
       }
     },
+    "Inspire" : {
+
+    },
     "Italic" : {
 
     },
@@ -264,6 +282,9 @@
 
     },
     "No rhymes yet" : {
+
+    },
+    "No Suggestions" : {
 
     },
     "Projects" : {
@@ -328,6 +349,12 @@
 
     },
     "This will permanently delete the folder and all its compositions." : {
+
+    },
+    "Type a line below to get inspired" : {
+
+    },
+    "Type a line…" : {
 
     },
     "Type a word or phrase below to get started" : {

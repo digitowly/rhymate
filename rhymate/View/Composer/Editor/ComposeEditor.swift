@@ -6,6 +6,7 @@ struct ComposeEditor: View {
     var onChange: (() -> Void)?
 
     @Binding var isAssistantVisible: Bool
+    @Binding var isBuddyVisible: Bool
     @Binding var selectedWord: String
     @State private var coordinatorRef: TextEditorContainer.Coordinator?
 
@@ -48,6 +49,15 @@ struct ComposeEditor: View {
                         }
                     }
                 },
+                onBuddyTap: {
+                    if useAccessoryMode {
+                        coordinatorRef?.showAccessoryBuddy(phrase: selectedWord, modelContainer: modelContext.container)
+                    } else {
+                        withAnimation(.spring(duration: 0.35, bounce: 0.1)) {
+                            isBuddyVisible = true
+                        }
+                    }
+                },
                 onKeyboardVisibilityChange: { visible, height in
                     withAnimation {
                         isKeyboardVisible = visible
@@ -64,6 +74,9 @@ struct ComposeEditor: View {
                 if coordinatorRef?.panelModel != nil {
                     coordinatorRef?.updateAccessorySelectedWord(newValue)
                 }
+                if coordinatorRef?.buddyPanelModel != nil {
+                    coordinatorRef?.updateAccessoryBuddyPhrase(newValue)
+                }
             }
             .onChange(of: isAssistantVisible) { _, visible in
                 if !visible {
@@ -72,18 +85,16 @@ struct ComposeEditor: View {
                     }
                 }
             }
+            .onChange(of: isBuddyVisible) { _, visible in
+                if !visible {
+                    DispatchQueue.main.asyncAfter(deadline: .now()) {
+                        coordinatorRef?.focus()
+                    }
+                }
+            }
         }
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
-                if !isKeyboardVisible {
-                    Button {
-                        withAnimation(.spring(duration: 0.35, bounce: 0.1)) {
-                            isAssistantVisible = true
-                        }
-                    } label: {
-                        Image(systemName: "character.book.closed")
-                    }
-                }
                 Menu {
                     Button {
                         if let updatedText = coordinatorRef?.toggleHeading() {

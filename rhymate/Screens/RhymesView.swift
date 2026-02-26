@@ -8,7 +8,7 @@ struct RhymesView: View {
     private let lyricService = LyricService()
 
     @State private var isLoading: Bool = false
-    @State private var rhymes: [String] = []
+    @State private var rhymes: [RhymeSuggestion] = []
     @State private var searchError: SearchError? = nil
 
     private func getRhymes(forWord: String) async {
@@ -18,7 +18,7 @@ struct RhymesView: View {
         let searchTerm = Formatter.normalize(forWord)
         updateState(suggestions: rhymes, error: nil, loading: true)
 
-        let result = await lyricService.getSuggestions(forText: searchTerm, .word)
+        let result = await lyricService.getSuggestions(forText: searchTerm, LyricType.from(searchTerm))
         switch result {
         case .success(let suggestions):
             return updateState(suggestions: suggestions, error: nil, loading:false)
@@ -27,7 +27,7 @@ struct RhymesView: View {
         }
     }
 
-    private func updateState(suggestions: [String],error: SearchError?,loading: Bool) {
+    private func updateState(suggestions: [RhymeSuggestion],error: SearchError?,loading: Bool) {
         withAnimation{
             rhymes = suggestions
             searchError = error

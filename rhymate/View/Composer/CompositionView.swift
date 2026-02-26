@@ -6,11 +6,15 @@ struct CompositionView: View {
     @Binding var columnVisibility: NavigationSplitViewVisibility
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @AppStorage(AIFeatures.defaultsKey) private var aiEnabled: Bool = true
     @State var isMoveSheetVisible: Bool = false
     @State private var isAssistantVisible = false
+    @State private var isBuddyVisible = false
     @State private var selectedWord = ""
     @State private var dragOffset: CGFloat = 0
     @State private var assistantSearchTerm = ""
+
+    private var showBuddyFeature: Bool { aiEnabled && AIFeatures.isHardwareAvailable }
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -25,6 +29,7 @@ struct CompositionView: View {
                         ),
                         onChange: { composition.updatedAt = Date.now },
                         isAssistantVisible: $isAssistantVisible,
+                        isBuddyVisible: $isBuddyVisible,
                         selectedWord: $selectedWord
                     )
                 }
@@ -94,15 +99,34 @@ struct CompositionView: View {
                     .padding(.bottom, 60)
                     .transition(.move(edge: .bottom))
             }
+
+            if showBuddyFeature && isBuddyVisible {
+                Color.black.opacity(0.15)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        closeBuddy()
+                    }
+
+                buddyPanel
+                    .padding(.bottom, 60)
+                    .transition(.move(edge: .bottom))
+            }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)) { notification in
             guard let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
             let screenHeight = UIScreen.main.bounds.height
             let newHeight = max(screenHeight - frame.origin.y, 0)
 
-            if newHeight == 0 && isAssistantVisible {
-                withAnimation(.spring(duration: 0.3, bounce: 0.05)) {
-                    isAssistantVisible = false
+            if newHeight == 0 {
+                if isAssistantVisible {
+                    withAnimation(.spring(duration: 0.3, bounce: 0.05)) {
+                        isAssistantVisible = false
+                    }
+                }
+                if showBuddyFeature && isBuddyVisible {
+                    withAnimation(.spring(duration: 0.3, bounce: 0.05)) {
+                        isBuddyVisible = false
+                    }
                 }
             }
         }
@@ -111,6 +135,12 @@ struct CompositionView: View {
     private func closeAssistant() {
         withAnimation(.spring(duration: 0.3, bounce: 0.05)) {
             isAssistantVisible = false
+        }
+    }
+
+    private func closeBuddy() {
+        withAnimation(.spring(duration: 0.3, bounce: 0.05)) {
+            isBuddyVisible = false
         }
     }
 
@@ -123,7 +153,7 @@ struct CompositionView: View {
                 .padding(.bottom, 4)
 
             HStack {
-                Text(assistantSearchTerm.isEmpty ? "Rhyme Assistant" : assistantSearchTerm)
+                Text(assistantSearchTerm.isEmpty ? "Rhymes" : assistantSearchTerm)
                     .font(.headline)
                 Spacer()
                 Button {
@@ -161,6 +191,56 @@ struct CompositionView: View {
                 .onEnded { value in
                     if ComposerLogic.shouldDismiss(translation: value.translation.height) {
                         closeAssistant()
+                        dragOffset = 0
+                    } else {
+                        withAnimation(.spring(duration: 0.35, bounce: 0.15)) {
+                            dragOffset = 0
+                        }
+                    }
+                }
+        )
+    }
+
+    private var buddyPanel: some View {
+        VStack(spacing: 0) {
+            Capsule()
+                .fill(Color(.systemFill))
+                .frame(width: 36, height: 5)
+                .padding(.top, 8)
+                .padding(.bottom, 4)
+
+            HStack {
+                Label("Inspire", systemImage: "sparkles")
+                    .font(.headline)
+                Spacer()
+                Button {
+                    closeBuddy()
+                } label: {
+                    Image(systemName: "chevron.down.circle.fill")
+                        .font(.title2)
+                        .symbolRenderingMode(.hierarchical)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .padding(.horizontal)
+            .padding(.bottom, 8)
+
+            Divider()
+
+            LyricBuddyView(initialPhrase: selectedWord)
+        }
+        .frame(maxHeight: UIScreen.main.bounds.height * 0.5)
+        .background(.regularMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .shadow(color: .black.opacity(0.1), radius: 8, y: -4)
+        .gesture(
+            DragGesture()
+                .onChanged { value in
+                    dragOffset = ComposerLogic.resistedDragOffset(translation: value.translation.height)
+                }
+                .onEnded { value in
+                    if ComposerLogic.shouldDismiss(translation: value.translation.height) {
+                        closeBuddy()
                         dragOffset = 0
                     } else {
                         withAnimation(.spring(duration: 0.35, bounce: 0.15)) {

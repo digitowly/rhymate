@@ -84,6 +84,15 @@ struct LyricAssistantView: View {
             if words.count > 1 {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 8) {
+                        let phrase = text.trimmingCharacters(in: .whitespacesAndNewlines)
+                        Button(phrase) { submit(phrase) }
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .background(Color.blue.opacity(0.15))
+                            .clipShape(Capsule())
+                            .foregroundColor(.blue)
                         ForEach(words, id: \.self) { word in
                             Button(word) { submit(word) }
                                 .font(.subheadline)

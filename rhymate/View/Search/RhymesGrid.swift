@@ -5,7 +5,7 @@ import SwiftData
 struct RhymesGrid: View {
     var layout: RhymeItemLayout = .grid
     var word: String
-    var rhymes: [String]
+    var rhymes: [RhymeSuggestion]
     var onRhymeTap: ((String, String) -> Void)?
 
     @Query private var allFavorites: [FavoriteRhyme]
@@ -37,6 +37,7 @@ struct RhymesGrid: View {
         allFavorites.contains { $0.word == normalizedWord && $0.rhyme == rhyme }
     }
 
+
     @ViewBuilder
     private var grid: some View {
         let content = LazyVGrid(
@@ -46,23 +47,24 @@ struct RhymesGrid: View {
             )],
             spacing: 8
         ){
-            ForEach(rhymes, id: \.self) { rhyme in
+            ForEach(rhymes) { suggestion in
                 RhymeItemView(
                     layout,
                     onPress: {
                         if let onRhymeTap {
-                            onRhymeTap(word, rhyme)
+                            onRhymeTap(word, suggestion.text)
                         } else if UIDevice.current.userInterfaceIdiom == .phone {
-                            sheetDetail = RhymeItem(word: word, rhyme: rhyme)
+                            sheetDetail = RhymeItem(word: word, rhyme: suggestion.text)
                         } else {
-                            navigationRhyme = rhyme
+                            navigationRhyme = suggestion.text
                             shouldNavigate = true
                         }
                     },
-                    rhyme: rhyme,
+                    rhyme: suggestion.text,
                     word: word,
-                    isFavorite: isFavorite(rhyme),
-                    toggleFavorite: { toggleFavorite(rhyme) },
+                    isAI: suggestion.isAI,
+                    isFavorite: isFavorite(suggestion.text),
+                    toggleFavorite: { toggleFavorite(suggestion.text) },
                 )
             }
         }
@@ -102,5 +104,9 @@ struct RhymesGrid: View {
 }
 
 #Preview {
-    RhymesGrid(word: "test", rhymes: ["west", "best", "chest"])
+    RhymesGrid(word: "test", rhymes: [
+        RhymeSuggestion(text: "west", isAI: false),
+        RhymeSuggestion(text: "best", isAI: false),
+        RhymeSuggestion(text: "you've been blessed", isAI: true),
+    ])
 }

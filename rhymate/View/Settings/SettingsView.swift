@@ -1,11 +1,23 @@
 import SwiftUI
 
-
 struct SettingsView: View {
+    @AppStorage(AIFeatures.defaultsKey) private var aiEnabled: Bool = true
+
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             List {
-                NavigationLink(destination: AboutScreen()){
+                if AIFeatures.isHardwareAvailable {
+                    Section {
+                        Toggle(isOn: $aiEnabled) {
+                            Label("AI Features", systemImage: "sparkles")
+                        }
+                    } header: {
+                        Text("Experimental")
+                    } footer: {
+                        Text("Enables AI-powered rhyme suggestions and Inspire. Requires Apple Intelligence.")
+                    }
+                }
+                NavigationLink(destination: AboutScreen()) {
                     Text("About")
                 }
             }
@@ -15,8 +27,7 @@ struct SettingsView: View {
                 alignment: .leading
             )
         }
-    };
-    
+    }
 }
 
 #Preview {

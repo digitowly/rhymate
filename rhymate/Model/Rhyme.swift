@@ -3,3 +3,9 @@ struct RhymeItem: Identifiable {
     var word: String
     var rhyme: String
 }
+
+struct RhymeSuggestion: Identifiable, Equatable {
+    var id: String { text }
+    var text: String
+    var isAI: Bool
+}

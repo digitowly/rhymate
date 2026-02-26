@@ -2,77 +2,33 @@ import SwiftUI
 import SwiftData
 import UIKit
 
-// MARK: - Bridge Model
+// MARK: - Protocol
 
-final class AccessoryAssistantPanelModel: ObservableObject {
-    @Published var selectedWord: String
-    @Published var searchTerm: String = ""
-    var onClose: (() -> Void)?
-
-    init(selectedWord: String) {
-        self.selectedWord = selectedWord
-    }
+protocol InputAccessoryPanel: AnyObject {
+    func tearDown()
 }
 
-// MARK: - SwiftUI Panel
+// MARK: - Shared Base (UIKit)
 
-struct AccessoryAssistantPanel: View {
-    @ObservedObject var model: AccessoryAssistantPanelModel
-
-    var body: some View {
-        VStack(spacing: 0) {
-            HStack {
-                Text(model.searchTerm.isEmpty ? "Rhyme Assistant" : model.searchTerm)
-                    .font(.headline)
-                Spacer()
-                Button {
-                    model.onClose?()
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.title2)
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundStyle(.secondary)
-                }
-            }
-            .padding(.horizontal)
-            .padding(.vertical, 8)
-
-            Divider()
-
-            LyricAssistantView(
-                text: $model.selectedWord,
-                hasAutoSubmit: true,
-                suppressAutoFocus: true,
-                onSearchTermChange: { term in
-                    model.searchTerm = term
-                }
-            )
-        }
-        .background(.regularMaterial)
-    }
-}
-
-// MARK: - UIKit Accessory View
-
-final class AssistantAccessoryView: UIView {
-    private static let viewHeight: CGFloat = 220
+class HostedPanelView: UIView, InputAccessoryPanel {
+    static let panelHeight: CGFloat = 220
 
     private var hostingController: UIHostingController<AnyView>?
 
     override var intrinsicContentSize: CGSize {
-        CGSize(width: UIView.noIntrinsicMetric, height: Self.viewHeight)
+        CGSize(width: UIView.noIntrinsicMetric, height: Self.panelHeight)
     }
 
-    init(model: AccessoryAssistantPanelModel, modelContainer: Any) {
-        super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: Self.viewHeight))
+    init(panel: some View, modelContainer: Any) {
+        super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: Self.panelHeight))
         autoresizingMask = .flexibleWidth
 
-        var panel = AnyView(AccessoryAssistantPanel(model: model))
+        var anyPanel = AnyView(panel)
         if let container = modelContainer as? ModelContainer {
-            panel = AnyView(panel.modelContainer(container))
+            anyPanel = AnyView(anyPanel.modelContainer(container))
         }
 
-        let hosting = UIHostingController(rootView: panel)
+        let hosting = UIHostingController(rootView: anyPanel)
         hosting.view.backgroundColor = .clear
         hostingController = hosting
 
@@ -95,5 +51,124 @@ final class AssistantAccessoryView: UIView {
     func tearDown() {
         hostingController?.view.removeFromSuperview()
         hostingController = nil
+    }
+}
+
+// MARK: - Shared Header (SwiftUI)
+
+struct ComposerAccessoryPanelHeader: View {
+    let title: String
+    let systemImage: String?
+    let onClose: () -> Void
+
+    var body: some View {
+        HStack {
+            if let systemImage {
+                Label(title, systemImage: systemImage)
+                    .font(.headline)
+            } else {
+                Text(title)
+                    .font(.headline)
+            }
+            Spacer()
+            Button {
+                onClose()
+            } label: {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.title2)
+                    .symbolRenderingMode(.hierarchical)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 8)
+    }
+}
+
+// MARK: - Assistant Bridge Model
+
+final class AccessoryAssistantPanelModel: ObservableObject {
+    @Published var selectedWord: String
+    @Published var searchTerm: String = ""
+    var onClose: (() -> Void)?
+
+    init(selectedWord: String) {
+        self.selectedWord = selectedWord
+    }
+}
+
+// MARK: - Assistant SwiftUI Panel
+
+struct AccessoryAssistantPanel: View {
+    @ObservedObject var model: AccessoryAssistantPanelModel
+
+    var body: some View {
+        VStack(spacing: 0) {
+            ComposerAccessoryPanelHeader(
+                title: model.searchTerm.isEmpty ? "Rhymes" : model.searchTerm,
+                systemImage: nil,
+                onClose: { model.onClose?() }
+            )
+
+            Divider()
+
+            LyricAssistantView(
+                text: $model.selectedWord,
+                hasAutoSubmit: true,
+                suppressAutoFocus: true,
+                onSearchTermChange: { term in
+                    model.searchTerm = term
+                }
+            )
+        }
+        .background(.regularMaterial)
+    }
+}
+
+// MARK: - Assistant UIKit Accessory View
+
+final class AssistantAccessoryView: HostedPanelView {
+    init(model: AccessoryAssistantPanelModel, modelContainer: Any) {
+        super.init(panel: AccessoryAssistantPanel(model: model), modelContainer: modelContainer)
+    }
+}
+
+// MARK: - Buddy Bridge Model
+
+final class BuddyPanelModel: ObservableObject {
+    @Published var phrase: String
+    var onClose: (() -> Void)?
+
+    init(phrase: String) {
+        self.phrase = phrase
+    }
+}
+
+// MARK: - Buddy SwiftUI Panel
+
+struct BuddyAccessoryPanel: View {
+    @ObservedObject var model: BuddyPanelModel
+
+    var body: some View {
+        VStack(spacing: 0) {
+            ComposerAccessoryPanelHeader(
+                title: "Inspire",
+                systemImage: "sparkles",
+                onClose: { model.onClose?() }
+            )
+
+            Divider()
+
+            LyricBuddyView(initialPhrase: model.phrase)
+        }
+        .background(.regularMaterial)
+    }
+}
+
+// MARK: - Buddy UIKit Accessory View
+
+final class BuddyAccessoryView: HostedPanelView {
+    init(model: BuddyPanelModel, modelContainer: Any) {
+        super.init(panel: BuddyAccessoryPanel(model: model), modelContainer: modelContainer)
     }
 }

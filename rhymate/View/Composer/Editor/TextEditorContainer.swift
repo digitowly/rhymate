@@ -8,10 +8,12 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         var onSelectionChange: ((String, NSRange) -> Void)?
         var onHeightChange: ((CGFloat) -> Void)?
         var onAssistantTap: (() -> Void)?
+        var onBuddyTap: (() -> Void)?
         var onKeyboardVisibilityChange: ((Bool, CGFloat) -> Void)?
         var onAccessoryAssistantDismissed: (() -> Void)?
 
         var panelModel: AccessoryAssistantPanelModel?
+        var buddyPanelModel: BuddyPanelModel?
 
         func toggleTrait(_ type: TraitType) -> NSAttributedString? {
             return controller?.toggleTraitAtCurrentSelection(type)
@@ -43,6 +45,17 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         func updateAccessorySelectedWord(_ word: String) {
             panelModel?.selectedWord = word
         }
+
+        func showAccessoryBuddy(phrase: String, modelContainer: ModelContainer) {
+            let model = BuddyPanelModel(phrase: phrase)
+            model.onClose = { [weak self] in self?.hideAccessoryAssistant() }
+            buddyPanelModel = model
+            controller?.showBuddyAccessory(model: model, modelContainer: modelContainer)
+        }
+
+        func updateAccessoryBuddyPhrase(_ phrase: String) {
+            buddyPanelModel?.phrase = phrase
+        }
     }
 
     let initialText: NSAttributedString
@@ -52,6 +65,7 @@ struct TextEditorContainer: UIViewControllerRepresentable {
     var onSelectionChange: ((String, NSRange) -> Void)? = nil
     var onHeightChange: ((CGFloat) -> Void)? = nil
     var onAssistantTap: (() -> Void)? = nil
+    var onBuddyTap: (() -> Void)? = nil
     var onKeyboardVisibilityChange: ((Bool, CGFloat) -> Void)? = nil
     var onAccessoryAssistantDismissed: (() -> Void)? = nil
     @Binding var coordinatorRef: TextEditorContainer.Coordinator?
@@ -62,6 +76,7 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         coordinator.onSelectionChange = onSelectionChange
         coordinator.onHeightChange = onHeightChange
         coordinator.onAssistantTap = onAssistantTap
+        coordinator.onBuddyTap = onBuddyTap
         coordinator.onKeyboardVisibilityChange = onKeyboardVisibilityChange
         coordinator.onAccessoryAssistantDismissed = onAccessoryAssistantDismissed
         return coordinator
@@ -73,6 +88,7 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         vc.onSelectionChange = context.coordinator.onSelectionChange
         vc.onHeightChange = context.coordinator.onHeightChange
         vc.onAssistantTap = context.coordinator.onAssistantTap
+        vc.onBuddyTap = context.coordinator.onBuddyTap
         vc.onKeyboardVisibilityChange = context.coordinator.onKeyboardVisibilityChange
         context.coordinator.controller = vc
 

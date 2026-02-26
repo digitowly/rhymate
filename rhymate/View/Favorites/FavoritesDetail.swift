@@ -8,9 +8,11 @@ struct FavoritesDetail: View {
     @Environment(\.dismiss) private var dismiss
     @Query private var allFavorites: [FavoriteRhyme]
 
-    private var rhymes: [String] {
+    private var rhymes: [RhymeSuggestion] {
         let normalized = Formatter.normalize(word)
-        return allFavorites.filter { $0.word == normalized }.map(\.rhyme)
+        return allFavorites
+            .filter { $0.word == normalized }
+            .map { RhymeSuggestion(text: $0.rhyme, isAI: false) }
     }
 
     var body: some View {

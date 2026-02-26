@@ -12,6 +12,7 @@ final class TextEditorViewController: UIViewController, UITextViewDelegate {
     var onSelectionChange: ((String, NSRange) -> Void)?
     var onHeightChange: ((CGFloat) -> Void)?
     var onAssistantTap: (() -> Void)?
+    var onBuddyTap: (() -> Void)?
 
     var onKeyboardVisibilityChange: ((Bool, CGFloat) -> Void)?
 
@@ -23,12 +24,35 @@ final class TextEditorViewController: UIViewController, UITextViewDelegate {
         let bar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64))
         bar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         bar.setShadowImage(UIImage(), forToolbarPosition: .any)
-        bar.items = [
-            UIBarButtonItem.flexibleSpace(),
-            assistantButton
-        ]
         return bar
     }()
+
+    private var shouldShowBuddyButton: Bool { AIFeatures.isAvailable }
+
+    @objc private func updateToolbarItems() {
+        accessoryBar.items = shouldShowBuddyButton
+            ? [.flexibleSpace(), buddyButton, .fixedSpace(8), assistantButton]
+            : [.flexibleSpace(), assistantButton]
+    }
+
+    private lazy var buddyButton: UIBarButtonItem = {
+        let button = UIButton(type: .system)
+        let config = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
+        let image = UIImage(systemName: "sparkles", withConfiguration: config)
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(buddyButtonTapped), for: .touchUpInside)
+        let size = CGFloat(42)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalToConstant: size),
+            button.heightAnchor.constraint(equalToConstant: size)
+        ])
+        return UIBarButtonItem(customView: button)
+    }()
+
+    @objc private func buddyButtonTapped() {
+        onBuddyTap?()
+    }
 
     private lazy var assistantButton: UIBarButtonItem = {
         let button = UIButton(type: .system)
@@ -79,6 +103,8 @@ final class TextEditorViewController: UIViewController, UITextViewDelegate {
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(_:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateToolbarItems), name: UserDefaults.didChangeNotification, object: nil)
+        updateToolbarItems()
     }
 
     @objc private func keyboardDidShow(_ notification: Notification) {
@@ -100,7 +126,14 @@ final class TextEditorViewController: UIViewController, UITextViewDelegate {
 
     // MARK: - Assistant Accessory
 
-    private var assistantAccessoryView: AssistantAccessoryView?
+    private var assistantAccessoryView: (UIView & InputAccessoryPanel)?
+
+    func showBuddyAccessory(model: BuddyPanelModel, modelContainer: Any) {
+        let accessory = BuddyAccessoryView(model: model, modelContainer: modelContainer)
+        assistantAccessoryView = accessory
+        textView.inputAccessoryView = accessory
+        textView.reloadInputViews()
+    }
 
     func showAssistantAccessory(model: AccessoryAssistantPanelModel, modelContainer: Any) {
         let accessory = AssistantAccessoryView(model: model, modelContainer: modelContainer)
