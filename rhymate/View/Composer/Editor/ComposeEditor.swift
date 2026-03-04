@@ -1,4 +1,5 @@
 import SwiftUI
+import ChordKit
 
 struct ComposeEditor: View {
     var key: String;
@@ -9,6 +10,9 @@ struct ComposeEditor: View {
     @Binding var isBuddyVisible: Bool
     @Binding var selectedWord: String
     @State private var coordinatorRef: TextEditorContainer.Coordinator?
+    @State private var isChordInputVisible = false
+    @State private var pendingChordName = ""
+    @State private var selectedChordName: String? = nil
 
     @Environment(\.modelContext) private var modelContext
     @State private var height: CGFloat = 400
@@ -58,6 +62,13 @@ struct ComposeEditor: View {
                         }
                     }
                 },
+                onChordTap: {
+                    pendingChordName = ""
+                    isChordInputVisible = true
+                },
+                onChordSelected: { name in
+                    selectedChordName = name
+                },
                 onKeyboardVisibilityChange: { visible, height in
                     withAnimation {
                         isKeyboardVisible = visible
@@ -92,6 +103,19 @@ struct ComposeEditor: View {
                     }
                 }
             }
+        }
+        .alert("Insert Chord", isPresented: $isChordInputVisible) {
+            TextField("Am, G, C#m7…", text: $pendingChordName)
+                .autocorrectionDisabled()
+            Button("Insert") {
+                let name = pendingChordName.trimmingCharacters(in: .whitespaces)
+                if !name.isEmpty { coordinatorRef?.insertChord(name: name) }
+                pendingChordName = ""
+            }
+            Button("Cancel", role: .cancel) { pendingChordName = "" }
+        }
+        .sheet(item: $selectedChordName) { name in
+            ChordDetailSheet(chordName: name)
         }
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
@@ -130,6 +154,10 @@ struct ComposeEditor: View {
             onChange?()
         }
     }
+}
+
+extension String: @retroactive Identifiable {
+    public var id: String { self }
 }
 
 #Preview {

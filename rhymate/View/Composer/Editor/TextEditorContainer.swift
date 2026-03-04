@@ -9,6 +9,8 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         var onHeightChange: ((CGFloat) -> Void)?
         var onAssistantTap: (() -> Void)?
         var onBuddyTap: (() -> Void)?
+        var onChordTap: (() -> Void)?
+        var onChordSelected: ((String) -> Void)?
         var onKeyboardVisibilityChange: ((Bool, CGFloat) -> Void)?
         var onAccessoryAssistantDismissed: (() -> Void)?
 
@@ -56,6 +58,10 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         func updateAccessoryBuddyPhrase(_ phrase: String) {
             buddyPanelModel?.phrase = phrase
         }
+
+        func insertChord(name: String) {
+            controller?.insertChord(name: name)
+        }
     }
 
     let initialText: NSAttributedString
@@ -66,6 +72,8 @@ struct TextEditorContainer: UIViewControllerRepresentable {
     var onHeightChange: ((CGFloat) -> Void)? = nil
     var onAssistantTap: (() -> Void)? = nil
     var onBuddyTap: (() -> Void)? = nil
+    var onChordTap: (() -> Void)? = nil
+    var onChordSelected: ((String) -> Void)? = nil
     var onKeyboardVisibilityChange: ((Bool, CGFloat) -> Void)? = nil
     var onAccessoryAssistantDismissed: (() -> Void)? = nil
     @Binding var coordinatorRef: TextEditorContainer.Coordinator?
@@ -77,6 +85,8 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         coordinator.onHeightChange = onHeightChange
         coordinator.onAssistantTap = onAssistantTap
         coordinator.onBuddyTap = onBuddyTap
+        coordinator.onChordTap = onChordTap
+        coordinator.onChordSelected = onChordSelected
         coordinator.onKeyboardVisibilityChange = onKeyboardVisibilityChange
         coordinator.onAccessoryAssistantDismissed = onAccessoryAssistantDismissed
         return coordinator
@@ -89,6 +99,8 @@ struct TextEditorContainer: UIViewControllerRepresentable {
         vc.onHeightChange = context.coordinator.onHeightChange
         vc.onAssistantTap = context.coordinator.onAssistantTap
         vc.onBuddyTap = context.coordinator.onBuddyTap
+        vc.onChordTap = context.coordinator.onChordTap
+        vc.onChordSelected = context.coordinator.onChordSelected
         vc.onKeyboardVisibilityChange = context.coordinator.onKeyboardVisibilityChange
         context.coordinator.controller = vc
 
